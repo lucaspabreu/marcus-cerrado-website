@@ -2,10 +2,10 @@ import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { BarraAprovacoes } from "@/components/sections/BarraAprovacoes";
 import { Sobre } from "@/components/sections/Sobre";
-import { Metodo } from "@/components/sections/Metodo";
+import { AulaGratuita } from "@/components/sections/AulaGratuita";
 import { Trilhas } from "@/components/sections/Trilhas";
+import { Metodo } from "@/components/sections/Metodo";
 import { Concursos } from "@/components/sections/Concursos";
-import { Canais } from "@/components/sections/Canais";
 import { Depoimentos } from "@/components/sections/Depoimentos";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTAFinal } from "@/components/sections/CTAFinal";
@@ -19,13 +19,13 @@ export default function Home() {
         <Hero />
         <BarraAprovacoes />
         <Sobre />
-        <Metodo />
+        <AulaGratuita />
         <Trilhas />
+        <Metodo />
         <Concursos />
-        <Canais />
         <Depoimentos />
-        <FAQ />
         <CTAFinal />
+        <FAQ />
       </main>
       <Footer />
     </>

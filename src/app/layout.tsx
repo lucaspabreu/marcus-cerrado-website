@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cal_Sans, Inter, Roboto_Mono } from "next/font/google";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import "./globals.css";
 
 const calSans = Cal_Sans({
@@ -24,7 +25,7 @@ const robotoMono = Roboto_Mono({
 });
 
 const SITE_URL = "https://marcusnery.com.br";
-const SITE_TITLE = "Marcus Nery — Cerrado Concursos";
+const SITE_TITLE = "Cerrado Concursos";
 const SITE_DESCRIPTION =
   "Marcus Nery, criador do Método CERRADO. Aprovado na PRF aos 19 anos. Trilhas de preparação para concursos policiais com leitura clara de edital, banca e estratégia.";
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: "%s — Marcus Nery",
+    template: "%s — Cerrado Concursos",
   },
   description: SITE_DESCRIPTION,
   keywords: [
@@ -47,14 +48,14 @@ export const metadata: Metadata = {
     "polícia federal",
     "preparação concurso",
   ],
-  authors: [{ name: "Marcus Nery" }],
+  authors: [{ name: "Cerrado Concursos" }],
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: SITE_URL,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    siteName: "Marcus Nery",
+    siteName: "Cerrado Concursos",
   },
   twitter: {
     card: "summary_large_image",
@@ -79,6 +80,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)]">
         {children}
+        <WhatsAppFloat />
       </body>
     </html>
   );

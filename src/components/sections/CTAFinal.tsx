@@ -18,7 +18,7 @@ export function CTAFinal() {
           <div className="lg:col-span-8">
             <div className="flex items-baseline gap-3 mb-5">
               <span className="font-display text-xs text-[var(--accent-soft)] tabular-nums">
-                09
+                08
               </span>
               <span className="eyebrow text-[var(--bg)]/60">A jornada completa</span>
             </div>

@@ -63,7 +63,8 @@ export function Trilhas() {
                 destaque
                   ? "ring-2 ring-[var(--accent)]"
                   : "border border-[var(--line)]",
-                "bg-[var(--bg-elevated)]"
+                "bg-[var(--bg-elevated)]",
+                fechado && "opacity-60 saturate-[0.4] hover:opacity-90 hover:saturate-100"
               )}
             >
               {/* Selo "Mais escolhido" */}
@@ -184,9 +185,6 @@ export function Trilhas() {
         })}
       </div>
 
-      <p className="mt-8 text-xs text-[var(--neutral)] leading-relaxed text-center sm:text-left">
-        Banners decorativos provisórios — substitua por fotos reais salvando em <code className="font-mono text-[11px] bg-[var(--bg-elevated)] px-1.5 py-0.5 rounded">public/produtos/[id].jpg</code>.
-      </p>
     </Section>
   );
 }

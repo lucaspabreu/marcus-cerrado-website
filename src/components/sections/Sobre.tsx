@@ -16,13 +16,10 @@ export function Sobre() {
       <div className="grid lg:grid-cols-12 gap-x-12 gap-y-10">
         <div className="lg:col-span-7 space-y-5 text-base sm:text-lg text-[var(--ink-soft)] leading-[1.65]">
           <p>
-            Marcus Nery passou na Polícia Rodoviária Federal aos dezenove anos. Antes disso, atravessou três anos de estudo dentro de casa, em Goiás — sem cursinho premium, sem rotina importada de influenciador. Construiu o método na base do erro próprio, ajustando o que não funcionava semana após semana.
+            Marcus Nery passou na PRF aos 19 anos. Em seguida, aprovações em PCGO, PMGO, PMDF e CBMGO — bancas diferentes, mesma matriz por trás.
           </p>
           <p>
-            Vieram outras aprovações em sequência: Polícia Civil de Goiás, Polícia Militar de Goiás, Polícia Militar do Distrito Federal e Corpo de Bombeiros de Goiás. Cada uma com banca diferente, cobrança diferente, e a mesma matriz de raciocínio por trás.
-          </p>
-          <p>
-            Hoje Marcus comanda o Cerrado Concursos. Não é guru e não promete vaga. Ensina o que aprendeu na prática para quem quer entrar em uma carreira policial: leitura técnica de edital, estudo orientado por banca, rotina sustentável, revisão ativa, e o que muda da reta final pra prova.
+            Hoje comanda o Cerrado Concursos. Não é guru e não promete vaga. Ensina o que aprendeu na prática: leitura técnica de edital, estratégia por banca e rotina sustentável.
           </p>
         </div>
 

@@ -19,6 +19,8 @@ export interface Produto {
   titulo: string;
   subtitulo: string;
   descricao: string;
+  acesso?: string;
+  acessoDetalhe?: string;
   bullets: string[];
   ctaLabel: string;
   ctaHref: string;
@@ -46,10 +48,3 @@ export interface PilarMetodo {
   descricao: string;
 }
 
-export interface CanalConteudo {
-  id: string;
-  plataforma: string;
-  handle: string;
-  descricao: string;
-  href: string;
-}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Section } from "../ui/Section";
 import { depoimentos } from "@/data/depoimentos";
 
@@ -6,7 +8,7 @@ export function Depoimentos() {
     <Section
       id="depoimentos"
       number="07"
-      eyebrow="Quem passou"
+      eyebrow="Resultados"
       title={
         <>
           Aprovações
@@ -44,6 +46,19 @@ export function Depoimentos() {
             </footer>
           </article>
         ))}
+      </div>
+
+      <div className="mt-10 flex justify-center">
+        <Link
+          href="#"
+          className="group inline-flex items-center gap-2.5 rounded-lg border border-[var(--ink)] bg-transparent px-6 py-3 text-sm font-medium text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors"
+        >
+          <span>Mais resultados</span>
+          <ArrowUpRight
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            strokeWidth={1.75}
+          />
+        </Link>
       </div>
     </Section>
   );

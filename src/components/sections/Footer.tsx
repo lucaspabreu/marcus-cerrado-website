@@ -53,11 +53,11 @@ export function Footer() {
               href="/"
               className="font-display text-2xl tracking-tight text-[var(--ink)]"
             >
-              Marcus Nery
+              Cerrado Concursos
               <span className="text-[var(--accent)]">.</span>
             </Link>
             <p className="mt-3 text-sm text-[var(--neutral)] leading-relaxed max-w-sm">
-              Cerrado Concursos. Estratégia honesta para concursos policiais.
+              Estratégia honesta para concursos policiais. Comandado por Marcus Nery.
             </p>
           </div>
 
@@ -70,7 +70,7 @@ export function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Marcus Nery no ${label}`}
+                    aria-label={`Cerrado Concursos no ${label}`}
                     className="group inline-flex items-center gap-3 text-sm text-[var(--ink-soft)] hover:text-[var(--accent)] transition-colors"
                   >
                     <Icon
@@ -103,7 +103,7 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-[var(--line)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <p className="text-xs text-[var(--neutral)]">
-            © {new Date().getFullYear()} Marcus Nery. Todos os direitos reservados.
+            © {new Date().getFullYear()} Cerrado Concursos. Todos os direitos reservados.
           </p>
           <p className="text-xs text-[var(--neutral)]">
             Desenvolvido com cuidado · Brasil

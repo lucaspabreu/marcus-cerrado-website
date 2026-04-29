@@ -84,58 +84,82 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
             const isHighlighted = hoveredSigla === estado.sigla;
             const fill = statusFill[concurso.status];
 
+            // Drop pin geometry: tip at (cx, cy), head circle above
+            const pinScale = isHighlighted ? 1.15 : 1;
+            const headRadius = 13 * pinScale;
+            const headCx = estado.cx;
+            const headCy = estado.cy - headRadius - 2; // pin head sits above tip
+            const labelLength = estado.sigla.length * 8.5 + 14;
+
             return (
               <g
                 key={`pin-${estado.sigla}`}
                 onMouseEnter={() => onHover(concurso.id)}
                 onMouseLeave={() => onHover(null)}
-                className="cursor-pointer"
+                className="cursor-pointer transition-transform duration-300"
+                style={{
+                  transformOrigin: `${estado.cx}px ${estado.cy}px`,
+                  transform: isHighlighted ? "scale(1.1)" : "scale(1)",
+                }}
               >
-                {/* Pulse ring */}
+                {/* Pulse halo at the tip */}
                 <circle
                   cx={estado.cx}
                   cy={estado.cy}
-                  r={isHighlighted ? 12 : 7}
+                  r={isHighlighted ? 24 : 18}
                   fill={fill}
-                  opacity={isHighlighted ? 0.35 : 0.25}
+                  opacity={isHighlighted ? 0.3 : 0.18}
                   className="transition-all duration-300"
                 />
-                {/* Solid dot */}
-                <circle
-                  cx={estado.cx}
-                  cy={estado.cy}
-                  r={isHighlighted ? 5 : 3.5}
+
+                {/* Drop pin shape — teardrop with circular head */}
+                <path
+                  d={`
+                    M ${estado.cx} ${estado.cy}
+                    L ${headCx - headRadius * 0.7} ${headCy + headRadius * 0.5}
+                    A ${headRadius} ${headRadius} 0 1 1 ${headCx + headRadius * 0.7} ${headCy + headRadius * 0.5}
+                    Z
+                  `}
                   fill={fill}
                   stroke="var(--ink)"
-                  strokeWidth="1"
+                  strokeWidth="1.2"
+                  strokeLinejoin="round"
                   className="transition-all duration-300"
                 />
-                {/* State code label on hover */}
-                {isHighlighted && (
-                  <g className="pointer-events-none">
-                    <rect
-                      x={estado.cx + 8}
-                      y={estado.cy - 18}
-                      width={estado.sigla.length * 6.5 + 8}
-                      height="14"
-                      rx="2"
-                      fill="var(--ink)"
-                    />
-                    <text
-                      x={estado.cx + 12}
-                      y={estado.cy - 8}
-                      fontSize="9"
-                      fontWeight="600"
-                      fill="var(--bg)"
-                      style={{
-                        fontFamily: "var(--font-inter), sans-serif",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
-                      {estado.sigla}
-                    </text>
-                  </g>
-                )}
+
+                {/* Inner circle on the pin head */}
+                <circle
+                  cx={headCx}
+                  cy={headCy}
+                  r={headRadius * 0.42}
+                  fill="var(--ink)"
+                />
+
+                {/* Always-visible state code label */}
+                <g className="pointer-events-none">
+                  <rect
+                    x={estado.cx + headRadius + 3}
+                    y={headCy - 9}
+                    width={labelLength}
+                    height="18"
+                    rx="3"
+                    fill="var(--ink)"
+                    opacity={isHighlighted ? 1 : 0.92}
+                  />
+                  <text
+                    x={estado.cx + headRadius + 10}
+                    y={headCy + 4.5}
+                    fontSize="13"
+                    fontWeight="700"
+                    fill="var(--bg)"
+                    style={{
+                      fontFamily: "var(--font-inter), sans-serif",
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    {estado.sigla}
+                  </text>
+                </g>
               </g>
             );
           })}

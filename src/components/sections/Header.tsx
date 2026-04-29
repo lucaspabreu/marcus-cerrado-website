@@ -24,9 +24,9 @@ export function Header() {
           <Link
             href="/"
             className="font-display text-lg tracking-tight text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
-            aria-label="Marcus Nery — página inicial"
+            aria-label="Cerrado Concursos — página inicial"
           >
-            Marcus Nery
+            Cerrado Concursos
             <span className="text-[var(--accent)]">.</span>
           </Link>
 

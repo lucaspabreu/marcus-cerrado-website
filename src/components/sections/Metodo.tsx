@@ -5,7 +5,7 @@ export function Metodo() {
   return (
     <Section
       id="metodo"
-      number="03"
+      number="05"
       eyebrow="Método CERRADO"
       title={
         <>
