@@ -7,7 +7,7 @@ import { Section } from "../ui/Section";
 const VIDEO = {
   titulo: "O Caminho do Cerrado",
   duracao: "25 min",
-  descricao: "Os 5 erros que travam quem está começando — antes mesmo do edital sair.",
+  descricao: "Por que focar em concursos policiais a partir de hoje pode mudar a sua rota.",
   // youtubeId: "dQw4w9WgXcQ",  // ← when ready, paste the ID here
   // posterUrl: "/aula-poster.jpg", // ← optional: real thumbnail
   href: "https://instagram.com/marcusconcursos", // fallback link while there is no video
@@ -21,37 +21,36 @@ export function AulaGratuita() {
       eyebrow="Primeira vez aqui?"
       title={
         <>
-          Antes da trilha, uma <span className="text-[var(--accent-soft)]">aula aberta.</span>
+          Antes da trilha, uma <span className="text-[var(--accent)]">aula aberta.</span>
         </>
       }
       containerSize="wide"
-      tone="dark"
     >
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         {/* Text side */}
         <div className="lg:col-span-5">
-          <p className="text-base sm:text-lg text-[var(--bg)]/75 leading-[1.65]">
-            Se você chegou agora e <span className="text-[var(--accent-soft)] font-medium">não sabe por onde começar</span>{" "}
+          <p className="text-base sm:text-lg text-[var(--ink-soft)] leading-[1.65]">
+            Se você chegou agora e <span className="text-[var(--accent)] font-medium">não sabe por onde começar</span>{" "}
             no mundo dos concursos policiais, Marcus gravou uma aula gratuita pra você. Em{" "}
-            <span className="font-medium text-[var(--bg)]">25 minutos</span> ele mostra{" "}
-            <span className="font-medium text-[var(--bg)]">os 5 erros que travam a maioria</span> — antes mesmo do edital sair.
+            <span className="font-medium text-[var(--ink)]">25 minutos</span>, ele mostra{" "}
+            <span className="font-medium text-[var(--ink)]">por que vale a pena focar em concursos policiais a partir de hoje</span> — mesmo que você ainda não saiba qual carreira escolher.
           </p>
 
-          <p className="mt-5 text-sm text-[var(--accent-soft)] font-medium">
+          <p className="mt-5 text-sm text-[var(--accent)] font-medium">
             Toque no vídeo ao lado pra assistir agora.
           </p>
 
-          <ul className="mt-8 space-y-2 text-xs text-[var(--bg)]/55">
+          <ul className="mt-8 space-y-2 text-xs text-[var(--neutral)]">
             <li className="flex items-baseline gap-2">
-              <span className="text-[var(--accent-soft)]">·</span>
+              <span className="text-[var(--accent)]">·</span>
               <span>Sem cadastro e sem custo</span>
             </li>
             <li className="flex items-baseline gap-2">
-              <span className="text-[var(--accent-soft)]">·</span>
+              <span className="text-[var(--accent)]">·</span>
               <span>Direto ao ponto, sem rodeio</span>
             </li>
             <li className="flex items-baseline gap-2">
-              <span className="text-[var(--accent-soft)]">·</span>
+              <span className="text-[var(--accent)]">·</span>
               <span>Pra quem ainda nem sabe qual carreira escolher</span>
             </li>
           </ul>

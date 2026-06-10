@@ -31,7 +31,9 @@ export function Section({
       id={id}
       className={cn(
         "py-16 sm:py-20 md:py-24",
-        isDark && "bg-[var(--ink)] text-[var(--bg)]",
+        isDark
+          ? "bg-[var(--ink)] text-[var(--bg)]"
+          : "border-t border-[var(--line)]",
         className
       )}
     >

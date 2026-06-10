@@ -14,6 +14,20 @@ export interface Concurso {
   detalhe: string;
 }
 
+export type StatusOferta = "ativo" | "em-breve";
+
+export interface OfertaConcurso {
+  id: string;
+  sigla: string;
+  nome: string;
+  banca?: string;
+  status: StatusOferta;
+  statusLabel: string;
+  produtos: Produto[];
+  imagem?: string;
+  brasao?: string;
+}
+
 export interface Produto {
   id: string;
   titulo: string;
@@ -27,6 +41,8 @@ export interface Produto {
   destaque?: boolean;
   selo?: string;
   badge?: string;
+  preco?: number;
+  precoDe?: number;
 }
 
 export interface Depoimento {

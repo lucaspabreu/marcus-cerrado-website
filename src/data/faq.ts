@@ -5,7 +5,7 @@ export const faq: FAQItem[] = [
     id: "comecar-do-zero",
     pergunta: "Eu nunca estudei pra concurso. Consigo começar pelo Cerrado?",
     resposta:
-      "Sim. O Pré-Edital Cerrado foi desenhado exatamente para quem está começando. Você é levado da base — Português, RLM, Constitucional — até estar pronto pra disputar qualquer edital policial em condição de igualdade com candidatos experientes.",
+      "Sim. O Guia de Estudos PRF foi pensado pra te conduzir do zero: o que estudar, em que ordem, com qual rotina. Mesmo sem base, você sai com um plano claro pra disputar a PRF em condição de igualdade com candidatos experientes.",
   },
   {
     id: "tempo-de-estudo",
@@ -17,24 +17,18 @@ export const faq: FAQItem[] = [
     id: "trocar-carreira",
     pergunta: "Estou em outra área policial. Faz sentido pra mim?",
     resposta:
-      "Faz. Boa parte dos alunos do Combo Cerrado são policiais ou militares migrando entre carreiras. A trilha contempla quem já tem base jurídica e precisa ajustar foco e estratégia pra uma banca diferente.",
-  },
-  {
-    id: "diferenca-mentoria",
-    pergunta: "Qual a diferença entre o Combo Cerrado e a Mentoria Individual?",
-    resposta:
-      "O Combo é a trilha completa, com mentoria em grupo e suporte da equipe. A Mentoria Individual é atendimento direto comigo, em casos específicos: troca de carreira difícil, recurso após reprovação, prova de cargo de elite. Vagas são limitadas e abrem por lista de espera.",
+      "Faz. Boa parte dos alunos são policiais ou militares migrando entre carreiras. O conteúdo da PRF contempla quem já tem base jurídica e precisa ajustar foco e estratégia pra banca específica do concurso.",
   },
   {
     id: "tempo-acesso",
     pergunta: "Por quanto tempo tenho acesso ao material?",
     resposta:
-      "Você mantém acesso durante todo o ciclo da trilha contratada e às atualizações realizadas no período. As condições específicas estão na página de cada produto e no contrato apresentado antes da matrícula.",
+      "Você mantém acesso de 12 meses a partir da compra, incluindo as atualizações realizadas no período. As condições específicas estão na página de cada produto e no contrato apresentado antes da matrícula.",
   },
   {
     id: "garantia",
     pergunta: "Existe garantia? E se eu desistir?",
     resposta:
-      "Sim. Todas as trilhas têm garantia de sete dias por arrependimento, conforme o Código de Defesa do Consumidor. Após esse prazo, condições específicas dependem do tempo de uso e estão detalhadas no contrato de matrícula.",
+      "Sim. Todos os produtos têm garantia de sete dias por arrependimento, conforme o Código de Defesa do Consumidor. Após esse prazo, condições específicas dependem do tempo de uso e estão detalhadas no contrato de matrícula.",
   },
 ];

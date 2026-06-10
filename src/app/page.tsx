@@ -4,7 +4,6 @@ import { BarraAprovacoes } from "@/components/sections/BarraAprovacoes";
 import { Sobre } from "@/components/sections/Sobre";
 import { AulaGratuita } from "@/components/sections/AulaGratuita";
 import { Trilhas } from "@/components/sections/Trilhas";
-import { Metodo } from "@/components/sections/Metodo";
 import { Concursos } from "@/components/sections/Concursos";
 import { Depoimentos } from "@/components/sections/Depoimentos";
 import { FAQ } from "@/components/sections/FAQ";
@@ -18,10 +17,9 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <BarraAprovacoes />
+        <Trilhas />
         <Sobre />
         <AulaGratuita />
-        <Trilhas />
-        <Metodo />
         <Concursos />
         <Depoimentos />
         <CTAFinal />

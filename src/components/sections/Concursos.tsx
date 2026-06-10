@@ -31,21 +31,20 @@ export function Concursos() {
       number="06"
       title={
         <>
-          Próximos <span className="text-[var(--accent-soft)]">Concursos.</span>
+          Próximos <span className="text-[var(--accent)]">Concursos.</span>
         </>
       }
       intro="Mapa dos concursos policiais previstos no Brasil. Acompanhamento contínuo de comissão, banca, previsão de edital e publicação."
       containerSize="default"
-      tone="dark"
     >
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
         {/* MAP — narrower column */}
         <div className="lg:col-span-5">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--accent-soft)]">
+            <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--accent)]">
               Editais previstos
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--bg)]/40">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--neutral)]">
               {String(concursos.length).padStart(2, "0")} estados
             </span>
           </div>
@@ -59,7 +58,7 @@ export function Concursos() {
           </div>
 
           {/* Legend */}
-          <div className="mt-6 pt-5 border-t border-white/10 grid grid-cols-2 gap-x-3 gap-y-2">
+          <div className="mt-6 pt-5 border-t border-[var(--line)] grid grid-cols-2 gap-x-3 gap-y-2">
             {statusOrdem
               .filter((s) => grouped.some((g) => g.status === s))
               .map((status) => (
@@ -67,7 +66,7 @@ export function Concursos() {
                   <span
                     className={cn("h-1.5 w-1.5 rounded-full shrink-0", statusDot[status])}
                   />
-                  <span className="text-[10px] text-[var(--bg)]/65 leading-snug">
+                  <span className="text-[10px] text-[var(--neutral)] leading-snug">
                     {statusLabel[status]}
                   </span>
                 </div>
@@ -76,15 +75,15 @@ export function Concursos() {
         </div>
 
         {/* LIST */}
-        <div className="lg:col-span-7 space-y-6 lg:border-l lg:border-white/10 lg:pl-12">
+        <div className="lg:col-span-7 space-y-6 lg:border-l lg:border-[var(--line)] lg:pl-12">
           {grouped.map(({ status, items }) => (
             <div key={status}>
               <div className="flex items-center gap-3 mb-2.5">
                 <span className={cn("h-1.5 w-1.5 rounded-full", statusDot[status])} />
-                <h3 className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                <h3 className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--neutral)]">
                   {statusLabel[status]}
                 </h3>
-                <span className="ml-auto font-mono text-[10px] text-[var(--bg)]/35 tabular-nums">
+                <span className="ml-auto font-mono text-[10px] text-[var(--neutral-soft)] tabular-nums">
                   {String(items.length).padStart(2, "0")}
                 </span>
               </div>
@@ -99,7 +98,7 @@ export function Concursos() {
                       onMouseLeave={() => setHoveredId(null)}
                       className={cn(
                         "group flex items-baseline gap-3 sm:gap-4 py-2 px-2 -mx-2 rounded-md cursor-pointer transition-all duration-150",
-                        isHovered && "bg-white/5"
+                        isHovered && "bg-[var(--bg-elevated)]"
                       )}
                     >
                       <span
@@ -107,7 +106,7 @@ export function Concursos() {
                           "font-mono text-[11px] tabular-nums shrink-0 w-7 transition-colors",
                           isHovered
                             ? "text-[var(--accent)]"
-                            : "text-[var(--bg)]/35"
+                            : "text-[var(--neutral-soft)]"
                         )}
                       >
                         {concurso.siglaEstado}
@@ -116,7 +115,7 @@ export function Concursos() {
                         <span
                           className={cn(
                             "text-sm font-medium leading-snug whitespace-nowrap shrink-0 transition-colors",
-                            isHovered ? "text-[var(--accent-soft)]" : "text-[var(--bg)]"
+                            isHovered ? "text-[var(--accent)]" : "text-[var(--ink)]"
                           )}
                         >
                           {concurso.nome}
@@ -124,7 +123,7 @@ export function Concursos() {
                         <span
                           className={cn(
                             "text-xs leading-snug truncate transition-colors",
-                            isHovered ? "text-[var(--bg)]/70" : "text-[var(--bg)]/45"
+                            isHovered ? "text-[var(--ink-soft)]" : "text-[var(--neutral)]"
                           )}
                         >
                           {concurso.detalhe}
@@ -139,7 +138,7 @@ export function Concursos() {
         </div>
       </div>
 
-      <p className="mt-10 text-xs text-[var(--bg)]/45 leading-relaxed">
+      <p className="mt-10 text-xs text-[var(--neutral)] leading-relaxed">
         Atualizado mensalmente com base em editais e previsões oficiais.
       </p>
     </Section>

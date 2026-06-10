@@ -41,26 +41,12 @@ export function Hero() {
                 href="#trilhas"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors w-fit"
               >
-                <span>Conhecer as trilhas</span>
+                <span>Ver os produtos</span>
                 <ArrowDown
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
                   strokeWidth={1.75}
                 />
               </Link>
-
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-[var(--neutral)]">
-                <span className="hidden sm:inline-block w-10 h-px bg-[var(--line-strong)]" />
-                <span className="leading-relaxed">
-                  Pré-Edital · Pós-Edital · Combo Cerrado ·{" "}
-                  <span
-                    className="line-through opacity-50"
-                    title="Vagas fechadas"
-                    aria-label="Mentoria — vagas fechadas"
-                  >
-                    Mentoria
-                  </span>
-                </span>
-              </div>
             </div>
           </div>
 

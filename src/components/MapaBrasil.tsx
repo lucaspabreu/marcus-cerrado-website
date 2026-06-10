@@ -54,7 +54,7 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
                   isHighlighted
                     ? "var(--accent)"
                     : hasConcurso
-                    ? "var(--bg)"
+                    ? "var(--ink)"
                     : "var(--line-strong)"
                 }
                 stroke="var(--ink)"
