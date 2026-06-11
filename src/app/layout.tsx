@@ -32,7 +32,11 @@ const anton = Anton({
   display: "swap",
 });
 
-const SITE_URL = "https://marcusnery.com.br";
+// Domínio canônico. Enquanto marcusnery.com.br não estiver no ar, usamos o
+// deploy do Cloudflare Pages para o preview de link funcionar. Trocar quando
+// o domínio final entrar (ou setar NEXT_PUBLIC_SITE_URL no ambiente).
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcus-cerrado-website.pages.dev";
 const SITE_TITLE = "Cerrado Concursos";
 const SITE_DESCRIPTION =
   "Marcus Nery, criador do Método CERRADO. Aprovado na PRF aos 19 anos. Materiais de estudo para concursos policiais com leitura clara de edital, banca e estratégia.";
@@ -64,11 +68,20 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     siteName: "Cerrado Concursos",
+    images: [
+      {
+        url: "/logo-cerrado_page-1x1.jpg",
+        width: 484,
+        height: 484,
+        alt: "Cerrado Concursos",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
+    images: ["/logo-cerrado_page-1x1.jpg"],
   },
   robots: {
     index: true,
