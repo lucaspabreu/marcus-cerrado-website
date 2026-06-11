@@ -32,6 +32,7 @@ Coprodução do Marcus Nery (@marcusconcursos), focado em concursos policiais no
 - shadcn/ui para Accordion
 - Fontes via next/font: Fraunces (display) e Inter (corpo)
 - Mapa do Brasil: SVG inline customizado em components/MapaBrasil.tsx
+- WhatsApp float (components/WhatsAppFloat.tsx): botão fixo global; em /concursos/[id] a mensagem pré-preenchida cita a carreira (sigla + nome) automaticamente via usePathname; nas demais páginas usa mensagem genérica
 
 ## Arquivos editáveis (conteúdo)
 - src/data/concursos.ts — lista de concursos previstos por estado
