@@ -261,8 +261,30 @@ export function Concursos() {
       </div>
 
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+        {/* LIST — agrupada por status */}
+        <div className="min-w-0 lg:col-span-7 space-y-7">
+          {grupos.map(({ status, items }) => (
+            <div key={status}>
+              <div className="flex items-center gap-3 mb-2.5">
+                <span
+                  className={cn("h-1.5 w-1.5 rounded-full", statusDot[status])}
+                />
+                <h3 className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--neutral)]">
+                  {statusLabel[status]}
+                </h3>
+                <span className="ml-auto font-mono text-[10px] text-[var(--neutral-soft)] tabular-nums">
+                  {String(items.length).padStart(2, "0")}
+                </span>
+              </div>
+              <ul className="divide-y divide-[var(--line)]">
+                {items.map(renderRow)}
+              </ul>
+            </div>
+          ))}
+        </div>
+
         {/* MAP — narrower column */}
-        <div className="min-w-0 lg:col-span-5">
+        <div className="min-w-0 lg:col-span-5 lg:border-l lg:border-[var(--line)] lg:pl-12">
           <div className="flex items-center justify-between mb-4">
             <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--accent)]">
               Editais previstos
@@ -305,28 +327,6 @@ export function Concursos() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* LIST — agrupada por status */}
-        <div className="min-w-0 lg:col-span-7 space-y-7 lg:border-l lg:border-[var(--line)] lg:pl-12">
-          {grupos.map(({ status, items }) => (
-            <div key={status}>
-              <div className="flex items-center gap-3 mb-2.5">
-                <span
-                  className={cn("h-1.5 w-1.5 rounded-full", statusDot[status])}
-                />
-                <h3 className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--neutral)]">
-                  {statusLabel[status]}
-                </h3>
-                <span className="ml-auto font-mono text-[10px] text-[var(--neutral-soft)] tabular-nums">
-                  {String(items.length).padStart(2, "0")}
-                </span>
-              </div>
-              <ul className="divide-y divide-[var(--line)]">
-                {items.map(renderRow)}
-              </ul>
-            </div>
-          ))}
         </div>
       </div>
 
