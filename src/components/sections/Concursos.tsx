@@ -262,7 +262,7 @@ export function Concursos() {
 
       <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
         {/* LIST — agrupada por status */}
-        <div className="min-w-0 lg:col-span-7 space-y-7">
+        <div className="order-2 lg:order-1 min-w-0 lg:col-span-7 space-y-7">
           {grupos.map(({ status, items }) => (
             <div key={status}>
               <div className="flex items-center gap-3 mb-2.5">
@@ -284,7 +284,7 @@ export function Concursos() {
         </div>
 
         {/* MAP — narrower column */}
-        <div className="min-w-0 lg:col-span-5 lg:border-l lg:border-[var(--line)] lg:pl-12">
+        <div className="order-1 lg:order-2 min-w-0 lg:col-span-5 lg:border-l lg:border-[var(--line)] lg:pl-12">
           <div className="flex items-center justify-between mb-4">
             <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--accent)]">
               Editais previstos
