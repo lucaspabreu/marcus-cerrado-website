@@ -20,9 +20,17 @@ interface MapaBrasilProps {
   concursos: Concurso[];
   hoveredId: string | null;
   onHover: (id: string | null) => void;
+  selectedSigla?: string | null;
+  onSelectSigla?: (sigla: string | null) => void;
 }
 
-export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
+export function MapaBrasil({
+  concursos,
+  hoveredId,
+  onHover,
+  selectedSigla = null,
+  onSelectSigla,
+}: MapaBrasilProps) {
   // Vários concursos podem cair no mesmo estado — guardamos o mais avançado
   // (menor índice em statusOrdem) como representante do pino, e a contagem.
   const concursoBySigla = new Map<string, Concurso>();
@@ -44,6 +52,13 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
     : null;
   const hoveredSigla = hoveredConcurso?.siglaEstado;
 
+  // Só destacamos/escurecemos o mapa quando o estado filtrado tem pino aqui —
+  // filtros federais (BR) não têm estado no mapa e o deixam intacto.
+  const selectedState =
+    selectedSigla && concursoBySigla.has(selectedSigla) ? selectedSigla : null;
+  const toggleSigla = (sigla: string) =>
+    onSelectSigla?.(selectedSigla === sigla ? null : sigla);
+
   return (
     <div className="relative w-full">
       <svg
@@ -58,7 +73,12 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
           {estadosPaths.map((estado) => {
             const concurso = concursoBySigla.get(estado.sigla);
             const hasConcurso = !!concurso;
-            const isHighlighted = hoveredSigla === estado.sigla;
+            const isSelected = selectedState === estado.sigla;
+            // Mapa do Brasil sempre inteiro; ao filtrar, os outros estados
+            // ficam apagados (base clara) e só o filtrado se destaca.
+            const isMuted = !!selectedState && !isSelected;
+            const isHighlighted =
+              !isMuted && (hoveredSigla === estado.sigla || isSelected);
 
             return (
               <path
@@ -67,6 +87,8 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
                 fill={
                   isHighlighted
                     ? "var(--accent)"
+                    : isMuted
+                    ? "var(--line-strong)"
                     : hasConcurso
                     ? "var(--ink)"
                     : "var(--line-strong)"
@@ -76,6 +98,7 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
                 strokeLinejoin="round"
                 onMouseEnter={() => concurso && onHover(concurso.id)}
                 onMouseLeave={() => onHover(null)}
+                onClick={() => concurso && toggleSigla(estado.sigla)}
                 className={cn(
                   "transition-all duration-200",
                   hasConcurso && "cursor-pointer"
@@ -95,7 +118,9 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
           {estadosPaths.map((estado) => {
             const concurso = concursoBySigla.get(estado.sigla);
             if (!concurso) return null;
-            const isHighlighted = hoveredSigla === estado.sigla;
+            const isSelected = selectedState === estado.sigla;
+            if (selectedState && !isSelected) return null;
+            const isHighlighted = hoveredSigla === estado.sigla || isSelected;
             const fill = statusFill[concurso.status];
             const count = countBySigla.get(estado.sigla) ?? 1;
             const labelText = count > 1 ? `${estado.sigla} ${count}` : estado.sigla;
@@ -112,7 +137,8 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
                 key={`pin-${estado.sigla}`}
                 onMouseEnter={() => onHover(concurso.id)}
                 onMouseLeave={() => onHover(null)}
-                className="cursor-pointer transition-transform duration-300"
+                onClick={() => toggleSigla(estado.sigla)}
+                className="cursor-pointer transition-all duration-300"
                 style={{
                   transformOrigin: `${estado.cx}px ${estado.cy}px`,
                   transform: isHighlighted ? "scale(1.1)" : "scale(1)",
