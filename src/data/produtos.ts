@@ -41,24 +41,6 @@ const produtosPRF: Produto[] = [
     preco: 97,
   },
   {
-    id: "resumo-prf",
-    titulo: "Resumo Completo PRF",
-    subtitulo: "Matéria condensada pra revisão e véspera",
-    descricao:
-      "Resumo direto e completo de todas as matérias da PRF, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
-    acesso: "12 meses",
-    acessoDetalhe: "a partir da compra",
-    bullets: [
-      "Cobertura integral do edital PRF",
-      "Linguagem objetiva, sem enrolação",
-      "Atualizado conforme mudanças da banca",
-      "Pensado para revisão acelerada",
-    ],
-    ctaLabel: "Quero o resumo",
-    ctaHref: "#",
-    preco: 197,
-  },
-  {
     id: "flashcards-prf",
     titulo: "Flashcards e Questões PRF",
     subtitulo: "Ativa memória e calibra timing",
@@ -75,6 +57,24 @@ const produtosPRF: Produto[] = [
     ctaLabel: "Quero os flashcards",
     ctaHref: "#",
     preco: 117,
+  },
+  {
+    id: "resumo-prf",
+    titulo: "Resumo Completo PRF",
+    subtitulo: "Matéria condensada pra revisão e véspera",
+    descricao:
+      "Resumo direto e completo de todas as matérias da PRF, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
+    acesso: "12 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Cobertura integral do edital PRF",
+      "Linguagem objetiva, sem enrolação",
+      "Atualizado conforme mudanças da banca",
+      "Pensado para revisão acelerada",
+    ],
+    ctaLabel: "Quero o resumo",
+    ctaHref: "#",
+    preco: 197,
   },
   {
     id: "combo-prf",
