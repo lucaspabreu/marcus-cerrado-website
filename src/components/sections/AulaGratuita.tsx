@@ -17,7 +17,6 @@ export function AulaGratuita() {
   return (
     <Section
       id="aula"
-      number="03"
       eyebrow="Primeira vez aqui?"
       title={
         <>

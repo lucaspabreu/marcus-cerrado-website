@@ -11,7 +11,6 @@ export function FAQ() {
   return (
     <Section
       id="faq"
-      number="09"
       eyebrow="Dúvidas comuns"
       title={
         <>

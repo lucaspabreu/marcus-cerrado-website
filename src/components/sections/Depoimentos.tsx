@@ -7,7 +7,6 @@ export function Depoimentos() {
   return (
     <Section
       id="depoimentos"
-      number="07"
       eyebrow="Resultados"
       title={
         <>

@@ -13,7 +13,6 @@ export function Trilhas() {
   return (
     <Section
       id="trilhas"
-      number="02"
       eyebrow="Trilha de preparação"
       title={
         <>

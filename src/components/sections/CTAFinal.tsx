@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Play } from "lucide-react";
 import { Container } from "../ui/Container";
 
 export function CTAFinal() {
@@ -15,39 +14,37 @@ export function CTAFinal() {
 
       <Container size="wide">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div className="lg:col-span-8">
-            <div className="flex items-baseline gap-3 mb-5">
-              <span className="font-display text-xs text-[var(--accent)] tabular-nums">
-                08
-              </span>
-              <span className="eyebrow text-[var(--neutral)]">A jornada completa</span>
+          <div className="lg:col-span-5">
+            <div className="mb-5">
+              <span className="eyebrow text-[var(--neutral)]">Aula gratuita</span>
             </div>
 
             <h2 className="font-display font-normal text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-[-0.015em] text-[var(--ink)]">
-              Vai de{" "}
-              <span className="text-[var(--accent)]">Combo PRF.</span>
+              Comece com uma{" "}
+              <span className="text-[var(--accent)]">aula gratuita.</span>
             </h2>
 
-            <p className="mt-5 text-base sm:text-lg text-[var(--ink-soft)] leading-relaxed max-w-2xl">
-              Guia, Resumo e Flashcards num pacote só, com condição especial. A forma mais completa de cobrir todas as frentes do estudo até o dia da prova.
+            <p className="mt-5 text-base sm:text-lg text-[var(--ink-soft)] leading-relaxed">
+              O Marcus abre o Método CERRADO numa aula completa: como estudar pra concurso policial, o que priorizar e por onde começar. Sem custo, direto ao ponto.
             </p>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-4 lg:items-end">
-            <Link
-              href="#"
-              className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3.5 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors w-fit"
-            >
-              <span>Quero o Combo PRF</span>
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                strokeWidth={1.75}
-              />
-            </Link>
-
-            <p className="text-xs text-[var(--neutral)] leading-relaxed lg:text-right max-w-xs">
-              Sete dias de garantia. Acompanhamento até a prova.
-            </p>
+          {/* Video container — colar o embed do YouTube aqui */}
+          <div className="lg:col-span-7 aspect-video w-full overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--ink)] relative">
+            {/* TODO: substituir o placeholder abaixo pelo <iframe> do YouTube
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src="https://www.youtube.com/embed/VIDEO_ID"
+                  title="Aula gratuita — Método CERRADO"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                /> */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent)]">
+                <Play className="h-6 w-6 text-[var(--bg)]" fill="currentColor" strokeWidth={0} />
+              </div>
+              <p className="text-sm text-[var(--bg)]/60">Aula em breve</p>
+            </div>
           </div>
         </div>
       </Container>

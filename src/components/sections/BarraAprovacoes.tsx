@@ -16,9 +16,6 @@ export function BarraAprovacoes() {
           <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--accent-soft)] whitespace-nowrap">
             Aprovações
           </span>
-          <span className="text-[10px] font-mono tabular-nums text-[var(--bg)]/40">
-            05
-          </span>
         </div>
 
         {/* Marquee track */}

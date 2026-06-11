@@ -22,7 +22,6 @@ function TikTokIcon({ className, strokeWidth = 1.5 }: { className?: string; stro
 const legalLinks = [
   { label: "Termos de uso", href: "#" },
   { label: "Política de privacidade", href: "#" },
-  { label: "Contrato de matrícula", href: "#" },
 ];
 
 const socials = [
@@ -57,7 +56,7 @@ export function Footer() {
               <span className="text-[var(--accent)]">.</span>
             </Link>
             <p className="mt-3 text-sm text-[var(--neutral)] leading-relaxed max-w-sm">
-              Estratégia honesta para concursos policiais. Comandado por Marcus Nery.
+              O Preparatório que você precisa para se tornar um Policial Concursado.
             </p>
           </div>
 
@@ -106,7 +105,7 @@ export function Footer() {
             © {new Date().getFullYear()} Cerrado Concursos. Todos os direitos reservados.
           </p>
           <p className="text-xs text-[var(--neutral)]">
-            Desenvolvido com cuidado · Brasil
+            Desenvolvido por Ruket Tech House · Brasil
           </p>
         </div>
       </Container>

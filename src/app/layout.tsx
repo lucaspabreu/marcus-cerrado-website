@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cal_Sans, Inter, Roboto_Mono } from "next/font/google";
+import { Anton, Cal_Sans, Inter, Roboto_Mono } from "next/font/google";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import "./globals.css";
 
@@ -21,6 +21,14 @@ const robotoMono = Roboto_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   weight: ["500", "600"],
+  display: "swap",
+});
+
+// Anton — face condensada pesada para os títulos "capa" dos produtos
+const anton = Anton({
+  variable: "--font-cover",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -76,7 +84,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${calSans.variable} ${inter.variable} ${robotoMono.variable}`}
+      className={`${calSans.variable} ${inter.variable} ${robotoMono.variable} ${anton.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)]">
         {children}

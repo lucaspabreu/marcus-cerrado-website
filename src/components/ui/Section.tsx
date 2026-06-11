@@ -5,7 +5,6 @@ interface SectionProps {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  number?: string;
   eyebrow?: string;
   title?: React.ReactNode;
   intro?: React.ReactNode;
@@ -17,7 +16,6 @@ export function Section({
   children,
   className,
   id,
-  number,
   eyebrow,
   title,
   intro,
@@ -38,30 +36,18 @@ export function Section({
       )}
     >
       <Container size={containerSize}>
-        {(number || eyebrow || title || intro) && (
+        {(eyebrow || title || intro) && (
           <header className="mb-10 sm:mb-14 max-w-2xl">
-            {(number || eyebrow) && (
-              <div className="flex items-baseline gap-3 mb-4">
-                {number && (
-                  <span
-                    className={cn(
-                      "font-display text-xs tabular-nums",
-                      isDark ? "text-[var(--accent-soft)]" : "text-[var(--accent)]"
-                    )}
-                  >
-                    {number}
-                  </span>
-                )}
-                {eyebrow && (
-                  <span
-                    className={cn(
-                      "text-[11px] uppercase tracking-[0.18em] font-medium",
-                      isDark ? "text-[var(--bg)]/55" : "text-[var(--neutral)]"
-                    )}
-                  >
-                    {eyebrow}
-                  </span>
-                )}
+            {eyebrow && (
+              <div className="mb-4">
+                <span
+                  className={cn(
+                    "text-[11px] uppercase tracking-[0.18em] font-medium",
+                    isDark ? "text-[var(--bg)]/55" : "text-[var(--neutral)]"
+                  )}
+                >
+                  {eyebrow}
+                </span>
               </div>
             )}
             {title && (

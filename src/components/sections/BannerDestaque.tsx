@@ -6,7 +6,7 @@ export function BannerDestaque() {
     <section aria-label="Concurso em destaque">
       <Link
         href="/concursos/prf"
-        className="group block bg-[var(--accent)] hover:bg-[var(--accent-deep)] transition-colors"
+        className="group block bg-[#A23420] hover:bg-[#852916] transition-colors"
       >
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3.5">

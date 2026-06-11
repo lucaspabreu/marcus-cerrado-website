@@ -233,7 +233,6 @@ export function Concursos() {
   return (
     <Section
       id="concursos"
-      number="06"
       title={
         <>
           Próximos <span className="text-[var(--accent)]">Concursos.</span>

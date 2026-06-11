@@ -4,7 +4,6 @@ export function Sobre() {
   return (
     <Section
       id="sobre"
-      number="02"
       eyebrow="Quem é o Marcus"
       title={
         <>

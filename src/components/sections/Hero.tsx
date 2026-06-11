@@ -9,10 +9,7 @@ export function Hero() {
       <Container size="wide">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-7">
-            <div className="flex items-baseline gap-3 mb-5 animate-fade-in">
-              <span className="font-display text-xs text-[var(--accent)] tabular-nums">
-                01
-              </span>
+            <div className="mb-5 animate-fade-in">
               <span className="eyebrow">Cerrado Concursos</span>
             </div>
 
