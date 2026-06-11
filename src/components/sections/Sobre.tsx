@@ -18,7 +18,7 @@ export function Sobre() {
             Marcus Nery passou na PRF aos 19 anos. Em seguida, aprovações em PCGO, PMGO, PMDF e CBMGO — bancas diferentes, mesma matriz por trás.
           </p>
           <p>
-            Hoje comanda o Cerrado Concursos. Não é guru e não promete vaga. Ensina o que aprendeu na prática: leitura técnica de edital, estratégia por banca e rotina sustentável.
+            Hoje é professor na Cerrado Concursos. Não é mentor e não promete vaga. Ensina o que aprendeu na prática: leitura técnica de edital, estratégia por banca e rotina sustentável.
           </p>
         </div>
 
