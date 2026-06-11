@@ -13,7 +13,7 @@ export function Hero() {
               <span className="eyebrow">Cerrado Concursos</span>
             </div>
 
-            <h1 className="font-display font-normal text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-[-0.015em] text-[var(--ink)] animate-fade-up">
+            <h1 className="font-display font-normal text-[3.25rem] sm:text-6xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-[-0.015em] text-[var(--ink)] animate-fade-up">
               Os Materiais
               <br />
               que você precisa
