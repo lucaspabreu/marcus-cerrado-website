@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
@@ -39,11 +40,17 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="font-display text-lg tracking-tight text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+            className="inline-flex items-center transition-opacity hover:opacity-80"
             aria-label="Cerrado Concursos — página inicial"
           >
-            Cerrado Concursos
-            <span className="text-[var(--accent)]">.</span>
+            <Image
+              src="/cerrado-logo-marrom.webp"
+              alt="Cerrado Concursos"
+              width={180}
+              height={48}
+              priority
+              className="h-9 w-auto"
+            />
           </Link>
 
           <nav

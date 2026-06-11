@@ -1,8 +1,9 @@
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
+import { BannerDestaque } from "@/components/sections/BannerDestaque";
 import { BarraAprovacoes } from "@/components/sections/BarraAprovacoes";
 import { Sobre } from "@/components/sections/Sobre";
-import { AulaGratuita } from "@/components/sections/AulaGratuita";
+// import { AulaGratuita } from "@/components/sections/AulaGratuita";
 import { Trilhas } from "@/components/sections/Trilhas";
 import { Concursos } from "@/components/sections/Concursos";
 import { Depoimentos } from "@/components/sections/Depoimentos";
@@ -16,10 +17,11 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <BarraAprovacoes />
+        <BannerDestaque />
         <Trilhas />
         <Sobre />
-        <AulaGratuita />
+        <BarraAprovacoes />
+        {/* <AulaGratuita /> */}
         <Concursos />
         <Depoimentos />
         <CTAFinal />

@@ -41,7 +41,7 @@ export function Hero() {
                 href="#trilhas"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors w-fit"
               >
-                <span>Ver os produtos</span>
+                <span>QUERO ME PREPARAR</span>
                 <ArrowDown
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
                   strokeWidth={1.75}
@@ -72,8 +72,10 @@ export function Hero() {
                 <br />
                 <span className="text-[var(--accent)]">Cerrado Concursos</span>
               </p>
-              <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--neutral-soft)]">
-                Goiás, BR
+              <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--neutral-soft)] text-right">
+                Servidor Público
+                <br />
+                Federal
               </p>
             </div>
           </div>

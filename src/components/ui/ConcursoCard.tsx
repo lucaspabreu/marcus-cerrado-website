@@ -90,7 +90,7 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
                 featured ? "text-2xl sm:text-3xl" : "text-lg"
               )}
             >
-              {concurso.sigla}
+              Concurso {concurso.sigla}
             </h3>
             <p
               className={cn(
@@ -115,8 +115,19 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
               {concurso.produtos.length}{" "}
               {concurso.produtos.length === 1 ? "produto" : "produtos"}
             </span>
-            <span className="text-xs font-medium text-[var(--ink)] group-hover/concurso:text-[var(--accent)] transition-colors whitespace-nowrap">
-              Ver produtos →
+            <span
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-lg font-medium text-[var(--bg)] whitespace-nowrap transition-colors",
+                featured ? "px-5 py-2.5 text-sm" : "px-4 py-2 text-xs",
+                ativo && featured
+                  ? "bg-[var(--accent)] group-hover/concurso:bg-[var(--accent-deep)]"
+                  : "bg-[var(--ink)] group-hover/concurso:bg-[var(--accent)]"
+              )}
+            >
+              Quero começar
+              <span aria-hidden="true" className="transition-transform duration-300 group-hover/concurso:translate-x-0.5">
+                →
+              </span>
             </span>
           </div>
         )}

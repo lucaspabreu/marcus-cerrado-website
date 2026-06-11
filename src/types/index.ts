@@ -1,9 +1,12 @@
 export type StatusConcurso =
+  | "banca-definida"
+  | "autorizado"
   | "comissao-formada"
-  | "definicao-banca"
-  | "previsao-edital"
-  | "edital-em-estudo"
-  | "edital-publicado";
+  | "credito-liberado"
+  | "banca-contratacao"
+  | "previsto"
+  | "anunciado"
+  | "solicitado";
 
 export interface Concurso {
   id: string;
@@ -12,6 +15,10 @@ export interface Concurso {
   siglaEstado: string;
   status: StatusConcurso;
   detalhe: string;
+  vagas: string;
+  salario: string;
+  /** Concurso federal — não aparece no mapa de estados */
+  federal?: boolean;
 }
 
 export type StatusOferta = "ativo" | "em-breve";

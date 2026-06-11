@@ -3,13 +3,17 @@
 import { cn } from "@/lib/utils";
 import type { Concurso, StatusConcurso } from "@/types";
 import { estadosPaths, MAP_VIEWBOX } from "@/data/brasil-paths";
+import { statusOrdem } from "@/data/concursos";
 
 const statusFill: Record<StatusConcurso, string> = {
-  "edital-publicado": "var(--accent)",
-  "definicao-banca": "var(--accent)",
-  "previsao-edital": "var(--accent-soft)",
-  "comissao-formada": "#3a3a3a",
-  "edital-em-estudo": "#1f1f1f",
+  "banca-definida": "var(--accent)",
+  autorizado: "var(--accent)",
+  "comissao-formada": "var(--accent-soft)",
+  "credito-liberado": "var(--accent-soft)",
+  "banca-contratacao": "#6b6b6b",
+  previsto: "#6b6b6b",
+  anunciado: "#3a3a3a",
+  solicitado: "#1f1f1f",
 };
 
 interface MapaBrasilProps {
@@ -19,10 +23,20 @@ interface MapaBrasilProps {
 }
 
 export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
-  // Map sigla → concurso for quick lookup
+  // Vários concursos podem cair no mesmo estado — guardamos o mais avançado
+  // (menor índice em statusOrdem) como representante do pino, e a contagem.
   const concursoBySigla = new Map<string, Concurso>();
+  const countBySigla = new Map<string, number>();
   for (const c of concursos) {
-    concursoBySigla.set(c.siglaEstado, c);
+    if (c.federal) continue; // federais não entram no mapa de estados
+    countBySigla.set(c.siglaEstado, (countBySigla.get(c.siglaEstado) ?? 0) + 1);
+    const atual = concursoBySigla.get(c.siglaEstado);
+    if (
+      !atual ||
+      statusOrdem.indexOf(c.status) < statusOrdem.indexOf(atual.status)
+    ) {
+      concursoBySigla.set(c.siglaEstado, c);
+    }
   }
 
   const hoveredConcurso = hoveredId
@@ -83,13 +97,15 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
             if (!concurso) return null;
             const isHighlighted = hoveredSigla === estado.sigla;
             const fill = statusFill[concurso.status];
+            const count = countBySigla.get(estado.sigla) ?? 1;
+            const labelText = count > 1 ? `${estado.sigla} ${count}` : estado.sigla;
 
             // Drop pin geometry: tip at (cx, cy), head circle above
             const pinScale = isHighlighted ? 1.15 : 1;
             const headRadius = 13 * pinScale;
             const headCx = estado.cx;
             const headCy = estado.cy - headRadius - 2; // pin head sits above tip
-            const labelLength = estado.sigla.length * 8.5 + 14;
+            const labelLength = labelText.length * 8.5 + 14;
 
             return (
               <g
@@ -157,7 +173,7 @@ export function MapaBrasil({ concursos, hoveredId, onHover }: MapaBrasilProps) {
                       letterSpacing: "0.04em",
                     }}
                   >
-                    {estado.sigla}
+                    {labelText}
                   </text>
                 </g>
               </g>

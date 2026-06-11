@@ -107,7 +107,7 @@ export const ofertaConcursos: OfertaConcurso[] = [
     banca: "Cebraspe (último edital)",
     status: "ativo",
     statusLabel: "Disponível",
-    imagem: "/banner-cerrado-site.jpg",
+    imagem: "/banner-cerrado-site.webp",
     brasao: "/brasao-prf.jpg",
     produtos: produtosPRF,
   },
@@ -125,6 +125,8 @@ export const ofertaConcursos: OfertaConcurso[] = [
     nome: "Polícia Militar de Goiás",
     status: "em-breve",
     statusLabel: "Em breve",
+    imagem: "/banner-cerrado-PMGO.webp",
+    brasao: "/brasao-pmgo.webp",
     produtos: [],
   },
   {
