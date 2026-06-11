@@ -1,10 +1,31 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import { ofertaConcursos } from "@/data/produtos";
+
 // WhatsApp floating support button.
-// Edit the number and message below.
+// Edit the number and messages below.
 const WHATSAPP_NUMBER = "5566981289655"; // 55 + DDD + número, sem espaços ou símbolos
-const WHATSAPP_MESSAGE = "Olá! Vim pelo site do Cerrado Concursos e gostaria de tirar uma dúvida.";
+const DEFAULT_MESSAGE =
+  "Olá! Vim pelo site do Cerrado Concursos e gostaria de tirar uma dúvida.";
+
+// Monta a mensagem do WhatsApp de acordo com a página atual.
+// Em /concursos/[id], identifica a carreira e cita ela na mensagem.
+function buildMessage(pathname: string): string {
+  const match = pathname.match(/^\/concursos\/([^/]+)/);
+  if (match) {
+    const concurso = ofertaConcursos.find((c) => c.id === match[1]);
+    if (concurso) {
+      return `Olá! Vim pelo site do Cerrado Concursos e gostaria de saber mais sobre os materiais de ${concurso.sigla} (${concurso.nome}).`;
+    }
+  }
+  return DEFAULT_MESSAGE;
+}
 
 export function WhatsAppFloat() {
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const pathname = usePathname();
+  const message = buildMessage(pathname ?? "");
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
   return (
     <a
