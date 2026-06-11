@@ -57,7 +57,7 @@ export const concursos: Concurso[] = [
     status: "banca-definida",
     detalhe: "Polícia Militar do DF — banca Cebraspe (Soldado)",
     vagas: "A definir",
-    salario: "R$ 5.336,96 + benefícios",
+    salario: "R$ 8.736,91 + benefícios",
   },
   {
     id: "pm-to",
