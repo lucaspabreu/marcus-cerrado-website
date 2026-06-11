@@ -20,7 +20,7 @@ export function AulaGratuita() {
       eyebrow="Primeira vez aqui?"
       title={
         <>
-          Antes da trilha, uma <span className="text-[var(--accent)]">aula aberta.</span>
+          Antes dos materiais, uma <span className="text-[var(--accent)]">aula aberta.</span>
         </>
       }
       containerSize="wide"

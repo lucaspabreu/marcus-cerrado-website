@@ -35,7 +35,7 @@ const anton = Anton({
 const SITE_URL = "https://marcusnery.com.br";
 const SITE_TITLE = "Cerrado Concursos";
 const SITE_DESCRIPTION =
-  "Marcus Nery, criador do Método CERRADO. Aprovado na PRF aos 19 anos. Trilhas de preparação para concursos policiais com leitura clara de edital, banca e estratégia.";
+  "Marcus Nery, criador do Método CERRADO. Aprovado na PRF aos 19 anos. Materiais de estudo para concursos policiais com leitura clara de edital, banca e estratégia.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

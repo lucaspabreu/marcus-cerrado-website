@@ -42,7 +42,7 @@ export function FAQ() {
         >
           @marcusconcursos
         </a>
-        . A equipe responde em até 24 horas em dias úteis.
+        .
       </p>
     </Section>
   );

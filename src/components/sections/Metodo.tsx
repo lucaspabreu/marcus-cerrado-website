@@ -13,7 +13,7 @@ export function Metodo() {
           Uma rota só.
         </>
       }
-      intro="O Método CERRADO é a estrutura por trás de cada trilha. Não é teoria de estudo — é o que sobrou depois de testar, errar e ajustar com mais de mil alunos em concursos policiais reais."
+      intro="O Método CERRADO é a estrutura por trás de cada material. Não é teoria de estudo — é o que sobrou depois de testar, errar e ajustar com mais de mil alunos em concursos policiais reais."
       containerSize="wide"
     >
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">

@@ -13,15 +13,15 @@ export function Trilhas() {
   return (
     <Section
       id="trilhas"
-      eyebrow="Trilha de preparação"
+      eyebrow="Materiais de estudo"
       title={
         <>
-          Escolha seu <span className="text-[var(--accent-soft)]">Preparatório.</span>
+          Escolha seus <span className="text-[var(--accent-soft)]">Materiais.</span>
         </>
       }
       intro={
         <>
-          <span className="text-[var(--accent-soft)]">Clique</span> em uma carreira para ver os cursos disponíveis.
+          <span className="text-[var(--accent-soft)]">Clique</span> em uma carreira para ver os materiais disponíveis.
         </>
       }
       containerSize="wide"

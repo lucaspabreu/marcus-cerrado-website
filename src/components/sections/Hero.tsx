@@ -14,7 +14,7 @@ export function Hero() {
             </div>
 
             <h1 className="font-display font-normal text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-[-0.015em] text-[var(--ink)] animate-fade-up">
-              O Preparatório
+              Os Materiais
               <br />
               que você precisa
               <br />

@@ -56,7 +56,7 @@ export function Footer() {
               <span className="text-[var(--accent)]">.</span>
             </Link>
             <p className="mt-3 text-sm text-[var(--neutral)] leading-relaxed max-w-sm">
-              O Preparatório que você precisa para se tornar um Policial Concursado.
+              Os Materiais que você precisa para se tornar um Policial Concursado.
             </p>
           </div>
 
