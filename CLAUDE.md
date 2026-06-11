@@ -7,7 +7,7 @@ Coprodução do Marcus Nery (@marcusconcursos), focado em concursos policiais no
 - Marcus Nery, "Concurseiro do Cerrado"
 - Aprovado na PRF aos 19 anos + PCGO, PMGO, PMDF, CBMGO
 - Criador do Método CERRADO
-- ~42K no Instagram, ativo no YouTube e TikTok
+- Ativo no Instagram, YouTube e TikTok
 
 ## Produtos
 - Pré-Edital Cerrado
