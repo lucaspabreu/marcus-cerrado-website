@@ -43,7 +43,7 @@ export function Sobre() {
             <div>
               <dt className="eyebrow">Comunidade</dt>
               <dd className="mt-1.5 font-display text-3xl text-[var(--ink)] tabular-nums">
-                42K
+                100K
               </dd>
               <p className="mt-1 text-xs text-[var(--neutral)] leading-snug">
                 Concurseiros policiais
