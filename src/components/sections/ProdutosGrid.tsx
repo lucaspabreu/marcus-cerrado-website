@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 function renderDescricao(produto: Produto) {
   if (produto.id !== "combo-prf") return produto.descricao;
   return produto.descricao
-    .split(/(Guia|Resumo|Flashcards)/)
+    .split(/(Guia de Estudos|Resumo|Flashcards)/)
     .map((parte, i) =>
-      /^(Guia|Resumo|Flashcards)$/.test(parte) ? (
+      /^(Guia de Estudos|Resumo|Flashcards)$/.test(parte) ? (
         <strong key={i} className="font-semibold text-[var(--ink-soft)]">
           {parte}
         </strong>

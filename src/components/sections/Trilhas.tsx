@@ -15,9 +15,9 @@ export function Trilhas() {
       id="trilhas"
       eyebrow="Materiais de estudo"
       title={
-        <>
-          Escolha seus <span className="text-[var(--accent-soft)]">Materiais.</span>
-        </>
+        <span className="whitespace-nowrap">
+          <span className="text-[var(--accent-soft)]">Materiais de Preparação</span> disponíveis.
+        </span>
       }
       intro={
         <>
