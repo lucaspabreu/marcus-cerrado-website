@@ -81,14 +81,13 @@ const produtosPRF: Produto[] = [
     titulo: "Combo PRF",
     subtitulo: "Os 3 produtos com condição especial",
     descricao:
-      "Guia de Estudos, Resumo e Flashcards integrados num único pacote, com desconto sobre a soma dos três. O caminho recomendado pra quem quer cobertura completa do começo até a prova.",
+      "Guia de Estudos, Resumo e Flashcards integrados em um único pacote, com desconto sobre a soma dos três. O caminho recomendado pra quem quer cobertura completa do começo até a prova.",
     acesso: "12 meses",
     acessoDetalhe: "acesso integral aos 3 produtos",
     bullets: [
       "Economia de R$ 114 vs. comprar os 3 separados",
       "Guia + Resumo + Flashcards integrados",
       "Atualizações inclusas durante o acesso",
-      "Cobertura do começo até a véspera",
     ],
     ctaLabel: "Quero o Combo",
     ctaHref: "#",

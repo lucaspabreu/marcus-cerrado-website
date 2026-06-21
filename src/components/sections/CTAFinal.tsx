@@ -25,7 +25,7 @@ export function CTAFinal() {
             </h2>
 
             <p className="mt-5 text-base sm:text-lg text-[var(--ink-soft)] leading-relaxed">
-              O Marcus abre o Método CERRADO numa aula completa: como estudar pra concurso policial, o que priorizar e por onde começar. Sem custo, direto ao ponto.
+              O Marcus abre o Método CERRADO com uma aula completa: como estudar pra concurso policial, o que priorizar e por onde começar. Sem custo, direto ao ponto.
             </p>
           </div>
 

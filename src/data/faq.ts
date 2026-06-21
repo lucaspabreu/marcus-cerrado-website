@@ -29,6 +29,6 @@ export const faq: FAQItem[] = [
     id: "garantia",
     pergunta: "Existe garantia? E se eu desistir?",
     resposta:
-      "Sim. Todos os produtos têm garantia de sete dias por arrependimento, conforme o Código de Defesa do Consumidor. Após esse prazo, condições específicas dependem do tempo de uso e estão detalhadas no contrato de matrícula.",
+      "Sim. Todos os produtos têm garantia de sete dias por arrependimento, conforme o Código de Defesa do Consumidor.",
   },
 ];
