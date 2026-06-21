@@ -1,4 +1,3 @@
-import { Play } from "lucide-react";
 import { Container } from "../ui/Container";
 
 export function CTAFinal() {
@@ -29,22 +28,15 @@ export function CTAFinal() {
             </p>
           </div>
 
-          {/* Video container — colar o embed do YouTube aqui */}
+          {/* Video container — embed do YouTube */}
           <div className="lg:col-span-7 aspect-video w-full overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--ink)] relative">
-            {/* TODO: substituir o placeholder abaixo pelo <iframe> do YouTube
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/VIDEO_ID"
-                  title="Aula gratuita — Método CERRADO"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                /> */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent)]">
-                <Play className="h-6 w-6 text-[var(--bg)]" fill="currentColor" strokeWidth={0} />
-              </div>
-              <p className="text-sm text-[var(--bg)]/60">Aula em breve</p>
-            </div>
+            <iframe
+              className="absolute inset-0 h-full w-full"
+              src="https://www.youtube.com/embed/ssQPHA1qIBM"
+              title="Aula gratuita — Método CERRADO"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
       </Container>
