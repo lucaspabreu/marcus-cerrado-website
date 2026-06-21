@@ -8,9 +8,9 @@ const VIDEO = {
   titulo: "O Caminho do Cerrado",
   duracao: "25 min",
   descricao: "Por que focar em concursos policiais a partir de hoje pode mudar a sua rota.",
-  // youtubeId: "dQw4w9WgXcQ",  // ← when ready, paste the ID here
+  youtubeId: "ssQPHA1qIBM",
   // posterUrl: "/aula-poster.jpg", // ← optional: real thumbnail
-  href: "https://instagram.com/marcusconcursos", // fallback link while there is no video
+  href: "https://youtu.be/ssQPHA1qIBM",
 };
 
 export function AulaGratuita() {
