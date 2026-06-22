@@ -27,7 +27,7 @@ export function Hero() {
               className="mt-8 text-base sm:text-lg text-[var(--neutral)] leading-relaxed max-w-xl animate-fade-up"
               style={{ animationDelay: "0.15s" }}
             >
-              Entenda como você pode encurtar o caminho para uma vida estável e se tornar um Policial Concursado.
+              Entenda como você pode encurtar o caminho para a estabilidade e a segurança de uma vida de concursado.
             </p>
 
             <div
