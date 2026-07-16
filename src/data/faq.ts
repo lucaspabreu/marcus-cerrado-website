@@ -15,7 +15,7 @@ export const faq: FAQItem[] = [
   },
   {
     id: "trocar-carreira",
-    pergunta: "Estou em outra área policial. Faz sentido pra mim?",
+    pergunta: "Estou em outra área de concurso. Faz sentido pra mim?",
     resposta:
       "Faz. Boa parte dos alunos são policiais ou militares migrando entre carreiras. O conteúdo da PRF contempla quem já tem base jurídica e precisa ajustar foco e estratégia pra banca específica do concurso.",
   },

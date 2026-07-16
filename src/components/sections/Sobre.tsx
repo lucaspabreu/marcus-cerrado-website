@@ -15,10 +15,10 @@ export function Sobre() {
       <div className="grid lg:grid-cols-12 gap-x-12 gap-y-10">
         <div className="lg:col-span-7 space-y-5 text-base sm:text-lg text-[var(--ink-soft)] leading-[1.65]">
           <p>
-            Marcus Nery passou na PRF aos 19 anos. Em seguida, aprovações em PCGO, PMGO, PMDF e CBMGO — bancas diferentes, mesma matriz por trás.
+            Marcus Nery passou na PRF aos 19 anos. Em seguida, aprovações em PCGO, PMGO, PMDF e CBMGO — bancas diferentes, mesmo Método por trás.
           </p>
           <p>
-            Hoje é professor na Cerrado Concursos. Não é mentor e não promete vaga. Ensina o que aprendeu na prática: leitura técnica de edital, estratégia por banca e rotina sustentável.
+            Hoje é Servidor Público e Professor na Cerrado Concursos. Não é mentor e não promete vaga. Ensina o que aprendeu na prática: leitura técnica de edital, estratégia por banca e rotina sustentável.
           </p>
         </div>
 
