@@ -16,6 +16,8 @@ export const resultados: Resultado[] = [
   { src: "/depoimentos-materiais-webp/0-IMG_2324.webp", w: 1170, h: 1442 },
   { src: "/depoimentos-materiais-webp/0-IMG_3407.webp", w: 1170, h: 802 },
   // --- restante ---
+  { src: "/depoimentos-materiais-webp/0-IMG_wpp-cfo.jpeg", w: 868, h: 1600 },
+  { src: "/depoimentos-materiais-webp/0-IMG_wpp-gloriosa.jpeg", w: 886, h: 1600 },
   { src: "/depoimentos-materiais-webp/0-IMG_0563.webp", w: 1170, h: 760 },
   { src: "/depoimentos-materiais-webp/0-IMG_0581.webp", w: 1170, h: 1341 },
   { src: "/depoimentos-materiais-webp/0-IMG_1487.webp", w: 1170, h: 1373 },
