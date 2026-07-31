@@ -37,7 +37,7 @@ const produtosPRF: Produto[] = [
       "Mapa de revisão até a véspera",
     ],
     ctaLabel: "Quero o guia",
-    ctaHref: "#",
+    ctaHref: "https://pay.hotmart.com/I106397959R?off=zfv4qvwf&sck=sitecerrado",
     preco: 97,
   },
   {
@@ -55,7 +55,7 @@ const produtosPRF: Produto[] = [
       "Histórico de desempenho por tema",
     ],
     ctaLabel: "Quero os flashcards",
-    ctaHref: "#",
+    ctaHref: "https://pay.hotmart.com/L106397820L?off=ba3j2nt6&sck=sitecerrado",
     preco: 117,
   },
   {
@@ -73,7 +73,7 @@ const produtosPRF: Produto[] = [
       "Pensado para revisão acelerada",
     ],
     ctaLabel: "Quero o resumo",
-    ctaHref: "#",
+    ctaHref: "https://pay.hotmart.com/P106397581D?off=vs539ug2&sck=sitecerrado",
     preco: 197,
   },
   {
