@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Anton, Cal_Sans, Inter, Roboto_Mono } from "next/font/google";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import "./globals.css";
@@ -37,6 +38,13 @@ const anton = Anton({
 // o domínio final entrar (ou setar NEXT_PUBLIC_SITE_URL no ambiente).
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcus-cerrado-website.pages.dev";
+// IDs de tracking — só disparam quando as env vars estão setadas
+// (deixe em branco em dev/preview pra não sujar os dados de produção).
+// GA_ID aceita tanto GA4 (G-XXXXXXX) quanto Google Ads (AW-XXXXXXXXX);
+// gtag.js suporta múltiplos config() na mesma tag.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+
 const SITE_TITLE = "Cerrado Concursos";
 const SITE_DESCRIPTION =
   "Marcus Nery, criador do Método CERRADO. Aprovado na PRF aos 19 anos. Materiais de estudo para concursos policiais com leitura clara de edital, banca e estratégia.";
@@ -100,8 +108,51 @@ export default function RootLayout({
       className={`${calSans.variable} ${inter.variable} ${robotoMono.variable} ${anton.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)]">
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
+        {FB_PIXEL_ID && (
+          <Script id="fb-pixel-init" strategy="afterInteractive">
+            {`
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '${FB_PIXEL_ID}');
+              fbq('track', 'PageView');
+            `}
+          </Script>
+        )}
         {children}
         <WhatsAppFloat />
+        {FB_PIXEL_ID && (
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+              alt=""
+            />
+          </noscript>
+        )}
       </body>
     </html>
   );
