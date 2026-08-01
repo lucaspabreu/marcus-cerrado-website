@@ -127,8 +127,8 @@ const produtosPMGO: Produto[] = [
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Cronograma estruturado por fases",
-      "Priorização por peso da banca",
-      "Rotina ajustável a quem trabalha",
+      "Porcentagem de cobrança e prioridade por assunto do edital",
+      "Filtros de questões no Qconcursos e TecConcursos",
       "Mapa de revisão até a véspera",
     ],
     ctaLabel: "Em breve",
