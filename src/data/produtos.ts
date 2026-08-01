@@ -90,7 +90,7 @@ const produtosPRF: Produto[] = [
       "Atualizações inclusas durante o acesso",
     ],
     ctaLabel: "Quero o Combo",
-    ctaHref: "#",
+    ctaHref: "https://pay.hotmart.com/M106978976I?off=948v5dvl&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
     preco: 297,
