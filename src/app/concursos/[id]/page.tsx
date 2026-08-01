@@ -129,7 +129,7 @@ export default async function ConcursoPage({
             </div>
 
             {concurso.produtos.length > 0 ? (
-              <ProdutosGrid produtos={concurso.produtos} />
+              <ProdutosGrid produtos={concurso.produtos} concurso={concurso} />
             ) : (
               <div className="rounded-lg border border-dashed border-[var(--line-strong)] bg-[var(--bg-elevated)] p-10 text-center">
                 <p className="font-display text-2xl text-[var(--ink)]">

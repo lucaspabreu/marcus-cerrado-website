@@ -98,6 +98,65 @@ const produtosPRF: Produto[] = [
   },
 ];
 
+const produtosPMGO: Produto[] = [
+  {
+    id: "resumo-pmgo",
+    titulo: "Resumo Completo PM-GO",
+    subtitulo: "Matéria condensada pra revisão e véspera",
+    descricao:
+      "Resumo direto e completo de todas as matérias da PM-GO, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
+    acesso: "12 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Cobertura integral do edital PM-GO",
+      "Linguagem objetiva, sem enrolação",
+      "Atualizado conforme mudanças da banca",
+      "Pensado para revisão acelerada",
+    ],
+    ctaLabel: "Quero o resumo",
+    ctaHref: "https://pay.hotmart.com/P106397581D?off=85zdba0x",
+    preco: 197,
+  },
+  {
+    id: "guia-pmgo",
+    titulo: "Guia de Estudos PM-GO",
+    subtitulo: "O que estudar e em que ordem",
+    descricao:
+      "Roteiro completo para quem vai encarar a PM-GO: o que priorizar, como sequenciar as matérias e o passo a passo do estudo eficiente até a prova.",
+    acesso: "12 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Cronograma estruturado por fases",
+      "Priorização por peso da banca",
+      "Rotina ajustável a quem trabalha",
+      "Mapa de revisão até a véspera",
+    ],
+    ctaLabel: "Em breve",
+    ctaHref: "#",
+    badge: "Em breve",
+    preco: 97,
+  },
+  {
+    id: "flashcards-pmgo",
+    titulo: "Flashcards e Questões PM-GO",
+    subtitulo: "Ativa memória e calibra timing",
+    descricao:
+      "Banco de flashcards e questões organizadas por matéria, com repetição espaçada e foco no padrão da banca. Pra fixar conteúdo e treinar prova de verdade.",
+    acesso: "12 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Flashcards com repetição espaçada",
+      "Questões organizadas por matéria",
+      "Padrão e estilo da banca da PM-GO",
+      "Histórico de desempenho por tema",
+    ],
+    ctaLabel: "Em breve",
+    ctaHref: "#",
+    badge: "Em breve",
+    preco: 117,
+  },
+];
+
 export const ofertaConcursos: OfertaConcurso[] = [
   {
     id: "prf",
@@ -114,11 +173,11 @@ export const ofertaConcursos: OfertaConcurso[] = [
     id: "pm-go",
     sigla: "PM-GO",
     nome: "Polícia Militar de Goiás",
-    status: "em-breve",
-    statusLabel: "Em breve",
+    status: "ativo",
+    statusLabel: "Disponível",
     imagem: "/banner-cerrado-PMGO.webp",
     brasao: "/brasao-pmgo.webp",
-    produtos: [],
+    produtos: produtosPMGO,
   },
 ];
 

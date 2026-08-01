@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 // Destaca em negrito os 3 produtos citados na descrição do Combo
 function renderDescricao(produto: Produto) {
-  if (produto.id !== "combo-prf") return produto.descricao;
+  if (!produto.id.startsWith("combo-")) return produto.descricao;
   return produto.descricao
     .split(/(Guia de Estudos|Resumo|Flashcards)/)
     .map((parte, i) =>
@@ -39,6 +39,10 @@ const coverKicker: Record<string, string> = {
   "resumo-prf": "PRÉ-EDITAL",
   "flashcards-prf": "PRÉ-EDITAL",
   "combo-prf": "PRÉ-EDITAL",
+  "guia-pmgo": "PRÉ-EDITAL",
+  "resumo-pmgo": "PRÉ-EDITAL",
+  "flashcards-pmgo": "PRÉ-EDITAL",
+  "combo-pmgo": "PRÉ-EDITAL",
 };
 
 const coverTag: Record<string, string> = {
@@ -46,13 +50,24 @@ const coverTag: Record<string, string> = {
   "resumo-prf": "COMPLETO",
   "flashcards-prf": "COMPLETO",
   "combo-prf": "3 EM 1",
+  "guia-pmgo": "COMPLETO",
+  "resumo-pmgo": "COMPLETO",
+  "flashcards-pmgo": "COMPLETO",
+  "combo-pmgo": "3 EM 1",
 };
+
+interface ConcursoCover {
+  sigla: string;
+  nome: string;
+  brasao?: string;
+}
 
 interface ProdutosGridProps {
   produtos: Produto[];
+  concurso: ConcursoCover;
 }
 
-export function ProdutosGrid({ produtos }: ProdutosGridProps) {
+export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
   const destaque = produtos.find((p) => p.destaque);
   const avulsos = produtos.filter((p) => !p.destaque);
 
@@ -61,7 +76,7 @@ export function ProdutosGrid({ produtos }: ProdutosGridProps) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
         {produtos.map((produto) => (
-          <ProdutoCard key={produto.id} produto={produto} />
+          <ProdutoCard key={produto.id} produto={produto} concurso={concurso} />
         ))}
       </div>
     );
@@ -69,7 +84,7 @@ export function ProdutosGrid({ produtos }: ProdutosGridProps) {
 
   return (
     <div className="space-y-10 sm:space-y-14">
-      <ComboHero produto={destaque} />
+      <ComboHero produto={destaque} concurso={concurso} />
 
       {avulsos.length > 0 && (
         <div>
@@ -84,7 +99,7 @@ export function ProdutosGrid({ produtos }: ProdutosGridProps) {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
             {avulsos.map((produto) => (
-              <ProdutoCard key={produto.id} produto={produto} />
+              <ProdutoCard key={produto.id} produto={produto} concurso={concurso} />
             ))}
           </div>
         </div>
@@ -94,22 +109,25 @@ export function ProdutosGrid({ produtos }: ProdutosGridProps) {
 }
 
 // Composição de "capa" estilo arte do produto: fundo escuro gritty,
-// marca-d'água repetida, brasão da PRF, kicker, título dourado e tag azul.
+// marca-d'água repetida, brasão do concurso, kicker, título dourado e tag azul.
 function CoverBanner({
   produto,
   variant,
+  concurso,
 }: {
   produto: Produto;
   variant: "hero" | "card";
+  concurso: ConcursoCover;
 }) {
   const hero = variant === "hero";
   const tint = bannerBackground[produto.id] ?? bannerBackground["guia-prf"];
-  const kicker = coverKicker[produto.id] ?? "PRF";
+  const kicker = coverKicker[produto.id] ?? concurso.sigla;
   const tag = coverTag[produto.id] ?? "COMPLETO";
+  const marcaDagua = concurso.nome.toUpperCase();
 
   return (
     <div className="absolute inset-0 overflow-hidden" style={{ background: tint }}>
-      {/* Marca-d'água "POLÍCIA RODOVIÁRIA FEDERAL" repetida */}
+      {/* Marca-d'água com o nome do concurso repetida */}
       <div
         aria-hidden="true"
         className="absolute inset-0 overflow-hidden select-none pointer-events-none"
@@ -128,27 +146,29 @@ function CoverBanner({
                 hero ? "text-4xl" : "text-2xl"
               )}
             >
-              POLÍCIA RODOVIÁRIA FEDERAL
+              {marcaDagua}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Brasão da PRF emergindo pela direita */}
-      <div
-        aria-hidden="true"
-        className={cn(
-          "absolute top-1/2 aspect-square -translate-y-1/2 [mask-image:radial-gradient(circle,#000_38%,transparent_70%)] [-webkit-mask-image:radial-gradient(circle,#000_38%,transparent_70%)]",
-          hero ? "right-[-10%] h-[118%] opacity-[0.24]" : "right-[-16%] h-[160%] opacity-40"
-        )}
-        style={{
-          backgroundImage: "url(/brasao-prf.jpg)",
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          filter: hero ? "saturate(0.95) blur(1.4px)" : "saturate(1.2)",
-        }}
-      />
+      {/* Brasão do concurso emergindo pela direita */}
+      {concurso.brasao && (
+        <div
+          aria-hidden="true"
+          className={cn(
+            "absolute top-1/2 aspect-square -translate-y-1/2 [mask-image:radial-gradient(circle,#000_38%,transparent_70%)] [-webkit-mask-image:radial-gradient(circle,#000_38%,transparent_70%)]",
+            hero ? "right-[-10%] h-[118%] opacity-[0.24]" : "right-[-16%] h-[160%] opacity-40"
+          )}
+          style={{
+            backgroundImage: `url(${concurso.brasao})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            filter: hero ? "saturate(0.95) blur(1.4px)" : "saturate(1.2)",
+          }}
+        />
+      )}
 
       {/* Grão / textura */}
       <div
@@ -222,7 +242,13 @@ function CoverBanner({
 }
 
 // Card-herói do combo: largo, horizontal, domina a seção
-function ComboHero({ produto }: { produto: Produto }) {
+function ComboHero({
+  produto,
+  concurso,
+}: {
+  produto: Produto;
+  concurso: ConcursoCover;
+}) {
   const economia =
     typeof produto.preco === "number" && typeof produto.precoDe === "number"
       ? produto.precoDe - produto.preco
@@ -233,7 +259,7 @@ function ComboHero({ produto }: { produto: Produto }) {
       <div className="grid lg:grid-cols-[0.85fr_1fr]">
         {/* Painel-capa */}
         <div className="relative min-h-[300px] overflow-hidden lg:min-h-full">
-          <CoverBanner produto={produto} variant="hero" />
+          <CoverBanner produto={produto} variant="hero" concurso={concurso} />
         </div>
 
         {/* Conteúdo */}
@@ -292,19 +318,26 @@ function ComboHero({ produto }: { produto: Produto }) {
 }
 
 // Card avulso: compacto e secundário ao combo
-function ProdutoCard({ produto }: { produto: Produto }) {
+function ProdutoCard({
+  produto,
+  concurso,
+}: {
+  produto: Produto;
+  concurso: ConcursoCover;
+}) {
   const fechado = !!produto.badge;
 
   return (
     <article
       className={cn(
-        "group/card relative flex flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-elevated)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--line-strong)]",
-        fechado &&
-          "opacity-60 saturate-[0.4] hover:opacity-90 hover:saturate-100"
+        "group/card relative flex flex-col overflow-hidden rounded-lg border border-[var(--line)] bg-[var(--bg-elevated)] transition-all duration-300",
+        fechado
+          ? "opacity-60 saturate-[0.4]"
+          : "hover:-translate-y-0.5 hover:border-[var(--line-strong)]"
       )}
     >
       <div className="relative h-48 overflow-hidden">
-        <CoverBanner produto={produto} variant="card" />
+        <CoverBanner produto={produto} variant="card" concurso={concurso} />
       </div>
 
       <div className="flex flex-1 flex-col p-5">
