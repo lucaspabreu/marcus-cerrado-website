@@ -4,6 +4,8 @@ import { ArrowLeft } from "lucide-react";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { CTAFinal } from "@/components/sections/CTAFinal";
+import { Diagnostico } from "@/components/sections/Diagnostico";
+import { Autoridade } from "@/components/sections/Autoridade";
 import { ProdutosGrid } from "@/components/sections/ProdutosGrid";
 import { Container } from "@/components/ui/Container";
 import { ofertaConcursos } from "@/data/produtos";
@@ -98,6 +100,8 @@ export default async function ConcursoPage({
           </Container>
         </section>
 
+        {ativo && <Diagnostico sigla={concurso.sigla} />}
+
         {/* PRODUTOS */}
         <section className="py-16 sm:py-20 md:py-24">
           <Container size="wide">
@@ -149,7 +153,12 @@ export default async function ConcursoPage({
           </Container>
         </section>
 
-        {ativo && <CTAFinal />}
+        {ativo && (
+          <>
+            <Autoridade sigla={concurso.sigla} />
+            <CTAFinal />
+          </>
+        )}
       </main>
       <Footer />
     </>
