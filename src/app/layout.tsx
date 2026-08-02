@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Anton, Cal_Sans, Inter, Roboto_Mono } from "next/font/google";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
 
 const calSans = Cal_Sans({
@@ -110,49 +111,36 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--ink)]">
         {GA_ID && (
           <>
+            {/* Consent Mode v2 — nega por padrão até o usuário decidir no
+                banner (components/CookieConsent.tsx). Precisa rodar antes
+                do gtag.js carregar, daí o strategy="beforeInteractive". */}
+            <Script id="consent-default" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('consent', 'default', {
+                  analytics_storage: 'denied',
+                  ad_storage: 'denied',
+                  ad_user_data: 'denied',
+                  ad_personalization: 'denied',
+                });
+              `}
+            </Script>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
               strategy="afterInteractive"
             />
             <Script id="gtag-init" strategy="afterInteractive">
               {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${GA_ID}');
               `}
             </Script>
           </>
         )}
-        {FB_PIXEL_ID && (
-          <Script id="fb-pixel-init" strategy="afterInteractive">
-            {`
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '${FB_PIXEL_ID}');
-              fbq('track', 'PageView');
-            `}
-          </Script>
-        )}
         {children}
         <WhatsAppFloat />
-        {FB_PIXEL_ID && (
-          <noscript>
-            <img
-              height="1"
-              width="1"
-              style={{ display: "none" }}
-              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
-              alt=""
-            />
-          </noscript>
-        )}
+        {(GA_ID || FB_PIXEL_ID) && <CookieConsent fbPixelId={FB_PIXEL_ID} />}
       </body>
     </html>
   );
