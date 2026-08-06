@@ -31,6 +31,14 @@ const bannerBackground: Record<string, string> = {
     "linear-gradient(150deg, #45230f 0%, #241208 55%, #100705 100%)",
   "combo-prf":
     "linear-gradient(150deg, #9a4622 0%, #4f2010 55%, #1c0c06 100%)",
+  "guia-pmgo":
+    "linear-gradient(150deg, #2a2a2a 0%, #161616 55%, #0b0b0b 100%)",
+  "resumo-pmgo":
+    "linear-gradient(150deg, #3a1f14 0%, #1d0f09 55%, #0d0604 100%)",
+  "flashcards-pmgo":
+    "linear-gradient(150deg, #45230f 0%, #241208 55%, #100705 100%)",
+  "combo-pmgo":
+    "linear-gradient(150deg, #9a4622 0%, #4f2010 55%, #1c0c06 100%)",
 };
 
 // Kicker (linha superior) e tag (etiqueta azul inferior) por produto
