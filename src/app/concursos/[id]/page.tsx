@@ -6,6 +6,7 @@ import { Footer } from "@/components/sections/Footer";
 import { CTAFinal } from "@/components/sections/CTAFinal";
 import { Diagnostico } from "@/components/sections/Diagnostico";
 import { Autoridade } from "@/components/sections/Autoridade";
+import { Depoimentos } from "@/components/sections/Depoimentos";
 import { ProdutosGrid } from "@/components/sections/ProdutosGrid";
 import { Container } from "@/components/ui/Container";
 import { ofertaConcursos } from "@/data/produtos";
@@ -156,6 +157,7 @@ export default async function ConcursoPage({
         {ativo && (
           <>
             <Autoridade sigla={concurso.sigla} />
+            <Depoimentos />
             <CTAFinal />
           </>
         )}
