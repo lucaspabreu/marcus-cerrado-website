@@ -92,7 +92,7 @@ export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
 
   return (
     <div className="space-y-10 sm:space-y-14">
-      <ComboHero produto={destaque} concurso={concurso} />
+      <ComboHero produto={destaque} concurso={concurso} inclusos={avulsos} />
 
       {avulsos.length > 0 && (
         <div>
@@ -253,9 +253,11 @@ function CoverBanner({
 function ComboHero({
   produto,
   concurso,
+  inclusos,
 }: {
   produto: Produto;
   concurso: ConcursoCover;
+  inclusos: Produto[];
 }) {
   const economia =
     typeof produto.preco === "number" && typeof produto.precoDe === "number"
@@ -275,6 +277,34 @@ function ComboHero({
           <p className="text-sm leading-relaxed text-[var(--neutral)] sm:text-base">
             {renderDescricao(produto)}
           </p>
+
+          {inclusos.length > 0 && (
+            <div className="mt-6 rounded-lg border border-[var(--line)] bg-[var(--bg)] p-4 sm:p-5">
+              <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--neutral)]">
+                O que vem no combo
+              </p>
+              <ul className="mt-3 divide-y divide-[var(--line)]">
+                {inclusos.map((item, i) => (
+                  <li
+                    key={item.id}
+                    className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
+                  >
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-deep)]">
+                      {i + 1}
+                    </span>
+                    <span className="flex-1 text-sm font-medium leading-snug text-[var(--ink)]">
+                      {item.titulo}
+                    </span>
+                    {typeof item.preco === "number" && (
+                      <span className="shrink-0 text-sm text-[var(--neutral)] line-through">
+                        R$ {item.preco}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <ul className="mt-6 grid gap-x-6 gap-y-3 text-sm text-[var(--ink-soft)] sm:grid-cols-2">
             {produto.bullets.map((bullet) => (
