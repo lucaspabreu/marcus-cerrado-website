@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 type ConsentChoice = "granted" | "denied";
@@ -71,16 +72,33 @@ export function CookieConsent({ fbPixelId }: CookieConsentProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // "granted" é permanente (localStorage); "denied" vale só pela sessão
+    // (sessionStorage), pra quem fechou no X ter nova chance numa próxima
+    // visita em vez de sair do remarketing pra sempre.
     const stored = localStorage.getItem(STORAGE_KEY) as ConsentChoice | null;
+
     if (stored === "granted") {
       applyConsent("granted", fbPixelId);
-    } else if (!stored) {
-      setVisible(true);
+      return;
     }
+
+    // Migração: a versão anterior gravava "denied" no localStorage e prendia
+    // o usuário pra sempre. Limpa o resíduo pra a nova regra valer.
+    if (stored === "denied") {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
+    if (sessionStorage.getItem(STORAGE_KEY) === "denied") return;
+
+    setVisible(true);
   }, [fbPixelId]);
 
   function handleChoice(choice: ConsentChoice) {
-    localStorage.setItem(STORAGE_KEY, choice);
+    if (choice === "granted") {
+      localStorage.setItem(STORAGE_KEY, "granted");
+    } else {
+      sessionStorage.setItem(STORAGE_KEY, "denied");
+    }
     applyConsent(choice, fbPixelId);
     setVisible(false);
   }
@@ -89,28 +107,30 @@ export function CookieConsent({ fbPixelId }: CookieConsentProps) {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[60] border-t border-[var(--line-strong)] bg-[var(--bg-elevated)] px-5 py-4 sm:px-6">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      {/* O X é a recusa: grava "denied" igual ao botão antigo, senão o banner
+          voltaria a cada reload. */}
+      <button
+        type="button"
+        onClick={() => handleChoice("denied")}
+        aria-label="Recusar cookies e fechar"
+        className="absolute right-2 top-2 rounded-md p-2 text-[var(--ink-soft)] transition-colors hover:bg-[var(--line-strong)] hover:text-[var(--ink)] sm:right-3 sm:top-3"
+      >
+        <X className="h-4 w-4" aria-hidden="true" />
+      </button>
+      <div className="mx-auto flex max-w-5xl flex-col gap-4 pr-8 sm:flex-row sm:items-center sm:justify-between sm:pr-10">
         <p className="text-sm leading-relaxed text-[var(--ink-soft)]">
           Usamos cookies para melhorar sua experiência e medir o desempenho do
-          site. Ao clicar em &ldquo;Aceitar&rdquo;, você concorda com o uso de
+          site. Ao clicar em &ldquo;OK&rdquo;, você concorda com o uso de
           cookies de análise e publicidade.
         </p>
-        <div className="flex shrink-0 gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleChoice("denied")}
-          >
-            Recusar
-          </Button>
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={() => handleChoice("granted")}
-          >
-            Aceitar
-          </Button>
-        </div>
+        <Button
+          variant="primary"
+          size="sm"
+          className="shrink-0"
+          onClick={() => handleChoice("granted")}
+        >
+          OK
+        </Button>
       </div>
     </div>
   );
