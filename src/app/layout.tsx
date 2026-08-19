@@ -39,12 +39,18 @@ const anton = Anton({
 // o domínio final entrar (ou setar NEXT_PUBLIC_SITE_URL no ambiente).
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://marcus-cerrado-website.pages.dev";
-// IDs de tracking — só disparam quando as env vars estão setadas
-// (deixe em branco em dev/preview pra não sujar os dados de produção).
+// IDs de tracking. São públicos por natureza (vão no JS do cliente), então
+// ficam versionados como padrão de produção — o build estático roda no
+// Cloudflare, onde .env.local não existe. Em dev não dispara nada, pra não
+// sujar os dados de produção; env var sobrescreve em qualquer ambiente.
 // GA_ID aceita tanto GA4 (G-XXXXXXX) quanto Google Ads (AW-XXXXXXXXX);
 // gtag.js suporta múltiplos config() na mesma tag.
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const IS_PROD = process.env.NODE_ENV === "production";
+const GA_ID =
+  process.env.NEXT_PUBLIC_GA_ID ?? (IS_PROD ? "G-C7DHJMY1CS" : undefined);
+const FB_PIXEL_ID =
+  process.env.NEXT_PUBLIC_FB_PIXEL_ID ??
+  (IS_PROD ? "1528092039326254" : undefined);
 
 const SITE_TITLE = "Cerrado Concursos";
 const SITE_DESCRIPTION =
