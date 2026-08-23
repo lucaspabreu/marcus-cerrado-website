@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { vendasPausadas, vendasRetorno } from "@/data/vendas";
 
 export function BannerDestaque() {
   return (
@@ -29,7 +30,11 @@ export function BannerDestaque() {
                 Combo PRF
               </span>
               <span className="text-xs sm:text-sm text-[var(--bg)]/75">
-                Guia + Resumo + Flashcards · de R$&nbsp;411 por R$&nbsp;297
+                {vendasPausadas ? (
+                  <>Guia + Resumo + Flashcards · vendas encerradas até {vendasRetorno}</>
+                ) : (
+                  <>Guia + Resumo + Flashcards · de R$&nbsp;411 por R$&nbsp;297</>
+                )}
               </span>
             </p>
 

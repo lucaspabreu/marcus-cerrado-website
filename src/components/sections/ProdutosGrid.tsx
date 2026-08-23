@@ -2,6 +2,20 @@ import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import type { Produto } from "@/types";
 import { cn } from "@/lib/utils";
+import { vendasPausadas, vendasRetorno } from "@/data/vendas";
+
+// Com as vendas pausadas, o valor real nem vai pro HTML: renderiza um
+// placeholder desfocado no lugar do preço.
+function Preco({ valor, className }: { valor: number; className?: string }) {
+  if (vendasPausadas) {
+    return (
+      <span className={cn("blur-[0.18em] select-none", className)} aria-hidden="true">
+        R$ 000
+      </span>
+    );
+  }
+  return <span className={className}>R$ {valor}</span>;
+}
 
 // Destaca em negrito os 3 produtos citados na descrição do Combo
 function renderDescricao(produto: Produto) {
@@ -245,6 +259,22 @@ function CoverBanner({
           {tag}
         </span>
       </div>
+
+      {/* Tarja de vendas pausadas atravessando a capa */}
+      {vendasPausadas && (
+        <div className="absolute left-1/2 top-1/2 z-30 w-[130%] -translate-x-1/2 -translate-y-1/2 -rotate-6 bg-[#A23420] py-2.5 text-center shadow-lg shadow-black/45 ring-1 ring-white/15">
+          <span
+            className={cn(
+              "font-sans font-bold uppercase text-white",
+              hero
+                ? "text-xs sm:text-sm tracking-[0.22em]"
+                : "text-[10px] tracking-[0.16em]"
+            )}
+          >
+            Vendas encerradas até {vendasRetorno}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -263,6 +293,11 @@ function ComboHero({
     typeof produto.preco === "number" && typeof produto.precoDe === "number"
       ? produto.precoDe - produto.preco
       : null;
+
+  // Sem preço visível, bullets com valores (ex.: "Economia de R$ 114") saem junto
+  const bullets = vendasPausadas
+    ? produto.bullets.filter((b) => !b.includes("R$"))
+    : produto.bullets;
 
   return (
     <article className="group/combo relative overflow-hidden rounded-xl bg-[var(--bg-elevated)] ring-2 ring-[var(--accent)] shadow-xl shadow-black/10">
@@ -296,9 +331,10 @@ function ComboHero({
                       {item.titulo}
                     </span>
                     {typeof item.preco === "number" && (
-                      <span className="shrink-0 text-sm text-[var(--neutral)] line-through">
-                        R$ {item.preco}
-                      </span>
+                      <Preco
+                        valor={item.preco}
+                        className="shrink-0 text-sm text-[var(--neutral)] line-through"
+                      />
                     )}
                   </li>
                 ))}
@@ -307,7 +343,7 @@ function ComboHero({
           )}
 
           <ul className="mt-6 grid gap-x-6 gap-y-3 text-sm text-[var(--ink-soft)] sm:grid-cols-2">
-            {produto.bullets.map((bullet) => (
+            {bullets.map((bullet) => (
               <li key={bullet} className="flex items-start gap-2">
                 <Check
                   className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]"
@@ -320,16 +356,19 @@ function ComboHero({
 
           <div className="mt-8 flex flex-col gap-5 border-t border-[var(--line)] pt-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              {economia !== null && (
+              {!vendasPausadas && economia !== null && (
                 <span className="mb-2 inline-flex items-center rounded-full bg-[var(--accent)]/12 px-2.5 py-1 text-[11px] font-semibold text-[var(--accent-deep)]">
                   Economize R$ {economia}
                 </span>
               )}
               <div className="flex items-baseline gap-2.5">
-                <span className="font-display text-4xl leading-none tracking-tight text-[var(--accent)] sm:text-5xl">
-                  R$ {produto.preco}
-                </span>
-                {typeof produto.precoDe === "number" && (
+                {typeof produto.preco === "number" && (
+                  <Preco
+                    valor={produto.preco}
+                    className="font-display text-4xl leading-none tracking-tight text-[var(--accent)] sm:text-5xl"
+                  />
+                )}
+                {!vendasPausadas && typeof produto.precoDe === "number" && (
                   <span className="text-base text-[var(--neutral)] line-through">
                     R$ {produto.precoDe}
                   </span>
@@ -337,17 +376,23 @@ function ComboHero({
               </div>
             </div>
 
-            <Link
-              href={produto.ctaHref}
-              className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--bg)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)] sm:text-base"
-              aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
-            >
-              <span>{produto.ctaLabel}</span>
-              <ArrowUpRight
-                className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                strokeWidth={2}
-              />
-            </Link>
+            {vendasPausadas ? (
+              <span className="inline-flex cursor-not-allowed items-center justify-center rounded-md border border-[var(--line-strong)] bg-[var(--bg)] px-7 py-3.5 text-sm font-medium text-[var(--neutral)] sm:text-base">
+                Vendas encerradas até {vendasRetorno}
+              </span>
+            ) : (
+              <Link
+                href={produto.ctaHref}
+                className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--bg)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)] sm:text-base"
+                aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
+              >
+                <span>{produto.ctaLabel}</span>
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                  strokeWidth={2}
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -405,32 +450,39 @@ function ProdutoCard({
           )}
           {typeof produto.preco === "number" && (
             <div className="mb-3.5 flex items-baseline gap-2">
-              <span className="font-display text-xl leading-none tracking-tight text-[var(--ink)]">
-                R$ {produto.preco}
-              </span>
-              {typeof produto.precoDe === "number" && (
+              <Preco
+                valor={produto.preco}
+                className="font-display text-xl leading-none tracking-tight text-[var(--ink)]"
+              />
+              {!vendasPausadas && typeof produto.precoDe === "number" && (
                 <span className="text-sm text-[var(--neutral)] line-through">
                   R$ {produto.precoDe}
                 </span>
               )}
             </div>
           )}
-          <Link
-            href={produto.ctaHref}
-            className={cn(
-              "group/btn inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors",
-              fechado
-                ? "border border-[var(--line-strong)] bg-[var(--bg)] text-[var(--ink)] hover:border-[var(--ink)]"
-                : "bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)]"
-            )}
-            aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
-          >
-            <span>{produto.ctaLabel}</span>
-            <ArrowUpRight
-              className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-              strokeWidth={2}
-            />
-          </Link>
+          {vendasPausadas && !fechado ? (
+            <span className="inline-flex w-full cursor-not-allowed items-center justify-center rounded-md border border-[var(--line-strong)] bg-[var(--bg)] px-4 py-2.5 text-sm font-medium text-[var(--neutral)]">
+              Vendas encerradas até {vendasRetorno}
+            </span>
+          ) : (
+            <Link
+              href={produto.ctaHref}
+              className={cn(
+                "group/btn inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors",
+                fechado
+                  ? "border border-[var(--line-strong)] bg-[var(--bg)] text-[var(--ink)] hover:border-[var(--ink)]"
+                  : "bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)]"
+              )}
+              aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
+            >
+              <span>{produto.ctaLabel}</span>
+              <ArrowUpRight
+                className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                strokeWidth={2}
+              />
+            </Link>
+          )}
         </div>
       </div>
     </article>
