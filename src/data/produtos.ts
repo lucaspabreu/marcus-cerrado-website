@@ -114,9 +114,11 @@ const produtosPRF: Produto[] = [
       "Atualizações inclusas durante o acesso",
     ],
     ctaLabel: "Quero o Projeto",
-    // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este
-    // href só é usado se a faixa vigente não tiver link pra este produto.
-    ctaHref: "https://pay.hotmart.com/M106978976I?off=m5s6kvrx&sck=sitecerrado",
+    // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este href
+    // é só o fallback caso a faixa vigente não tenha link pra este produto —
+    // mantenha na oferta vigente. Este arquivo entra no bundle do cliente (via
+    // WhatsAppFloat), então link de oferta vencida aqui fica achável no JS.
+    ctaHref: "https://pay.hotmart.com/M106978976I?off=ze8b1ffr&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
   },
@@ -215,9 +217,11 @@ const produtosPMGO: Produto[] = [
       "Atualizações inclusas durante o acesso",
     ],
     ctaLabel: "Quero o Projeto",
-    // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este
-    // href só é usado se a faixa vigente não tiver link pra este produto.
-    ctaHref: "https://pay.hotmart.com/M107409724K?off=ilnvw37v&sck=sitecerrado",
+    // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este href
+    // é só o fallback caso a faixa vigente não tenha link pra este produto —
+    // mantenha na oferta vigente. Este arquivo entra no bundle do cliente (via
+    // WhatsAppFloat), então link de oferta vencida aqui fica achável no JS.
+    ctaHref: "https://pay.hotmart.com/M107409724K?off=rzrcwgmr&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
   },

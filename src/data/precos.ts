@@ -40,10 +40,11 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     prazo: "hoje, às 23:59",
     preco: 447,
     precoDe: 597,
-    checkout: {
-      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=m5s6kvrx&sck=sitecerrado",
-      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=ilnvw37v&sck=sitecerrado",
-    },
+    // Faixa encerrada em 06/09. Os links da oferta de R$ 447 foram removidos de
+    // propósito — enquanto existirem no repo, entram em algum build e alguém
+    // compra pelo preço velho. A faixa fica só como âncora riscada na escada;
+    // não vire `faixaAtualId` pra cá de novo.
+    checkout: {},
   },
   semana: {
     id: "semana",
