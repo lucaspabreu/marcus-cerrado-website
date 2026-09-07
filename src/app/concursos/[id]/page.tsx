@@ -5,6 +5,7 @@ import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { CTAFinal } from "@/components/sections/CTAFinal";
 import { Diagnostico } from "@/components/sections/Diagnostico";
+import { FaixaOferta } from "@/components/sections/FaixaOferta";
 import { Autoridade } from "@/components/sections/Autoridade";
 import { Depoimentos } from "@/components/sections/Depoimentos";
 import { ProdutosGrid } from "@/components/sections/ProdutosGrid";
@@ -34,11 +35,15 @@ export default async function ConcursoPage({
   }
 
   const ativo = concurso.status === "ativo";
+  const projeto = concurso.produtos.find((p) => p.destaque);
+  const materiais = concurso.produtos.filter((p) => !p.destaque);
 
   return (
     <>
       <Header />
       <main className="flex-1">
+        {ativo && <FaixaOferta />}
+
         {/* HERO do concurso */}
         <section className="relative overflow-hidden border-b border-[var(--line)]">
           <div
@@ -106,32 +111,34 @@ export default async function ConcursoPage({
         {/* PRODUTOS */}
         <section className="py-16 sm:py-20 md:py-24">
           <Container size="wide">
-            <div className="mb-10 sm:mb-14 max-w-2xl">
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="font-display text-xs text-[var(--accent)] tabular-nums">
-                  01
-                </span>
-                <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--neutral)]">
-                  Produtos disponíveis
-                </span>
+            {(!ativo || !projeto) && (
+              <div className="mb-10 sm:mb-14 max-w-2xl">
+                <div className="flex items-baseline gap-3 mb-4">
+                  <span className="font-display text-xs text-[var(--accent)] tabular-nums">
+                    01
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--neutral)]">
+                    Produtos disponíveis
+                  </span>
+                </div>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--ink)]">
+                  {ativo
+                    ? `Materiais pra ${concurso.sigla}.`
+                    : `Em breve para ${concurso.sigla}.`}
+                </h2>
+                {ativo ? (
+                  <p className="mt-5 text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
+                    {materiais.length === 1
+                      ? "Um produto disponível pra esta carreira."
+                      : `${materiais.length} produtos disponíveis pra esta carreira. Escolha o que faz mais sentido pra onde você está agora.`}
+                  </p>
+                ) : (
+                  <p className="mt-5 text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
+                    Estamos preparando os materiais. Por enquanto, dá uma olhada nas carreiras que já estão prontas.
+                  </p>
+                )}
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--ink)]">
-                {ativo
-                  ? `Materiais pra ${concurso.sigla}.`
-                  : `Em breve para ${concurso.sigla}.`}
-              </h2>
-              {ativo ? (
-                <p className="mt-5 text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
-                  {concurso.produtos.length === 1
-                    ? "Um produto disponível pra esta carreira."
-                    : `${concurso.produtos.length} produtos disponíveis pra esta carreira. Escolha o que faz mais sentido pra onde você está agora.`}
-                </p>
-              ) : (
-                <p className="mt-5 text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
-                  Estamos preparando os materiais. Por enquanto, dá uma olhada nas carreiras que já estão prontas.
-                </p>
-              )}
-            </div>
+            )}
 
             {concurso.produtos.length > 0 ? (
               <ProdutosGrid produtos={concurso.produtos} concurso={concurso} />

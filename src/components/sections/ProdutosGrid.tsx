@@ -3,6 +3,9 @@ import { ArrowUpRight, Check } from "lucide-react";
 import type { Produto } from "@/types";
 import { cn } from "@/lib/utils";
 import { vendasPausadas, vendasRetorno } from "@/data/vendas";
+import { checkoutDaFaixa, faixaAtual } from "@/data/precos";
+import { EscadaPreco } from "@/components/sections/EscadaPreco";
+import { PlataformaCerrado } from "@/components/sections/PlataformaCerrado";
 
 // Com as vendas pausadas, o valor real nem vai pro HTML: renderiza um
 // placeholder desfocado no lugar do preço.
@@ -17,13 +20,13 @@ function Preco({ valor, className }: { valor: number; className?: string }) {
   return <span className={className}>R$ {valor}</span>;
 }
 
-// Destaca em negrito os 3 produtos citados na descrição do Combo
+// Destaca em negrito os materiais citados na descrição do Projeto
 function renderDescricao(produto: Produto) {
-  if (!produto.id.startsWith("combo-")) return produto.descricao;
+  if (!produto.destaque) return produto.descricao;
   return produto.descricao
-    .split(/(Guia de Estudos|Resumo|Flashcards)/)
+    .split(/(Guia de Estudos|Cronograma|Resumo|Flashcards)/)
     .map((parte, i) =>
-      /^(Guia de Estudos|Resumo|Flashcards)$/.test(parte) ? (
+      /^(Guia de Estudos|Cronograma|Resumo|Flashcards)$/.test(parte) ? (
         <strong key={i} className="font-semibold text-[var(--ink-soft)]">
           {parte}
         </strong>
@@ -43,7 +46,9 @@ const bannerBackground: Record<string, string> = {
     "linear-gradient(150deg, #3a1f14 0%, #1d0f09 55%, #0d0604 100%)",
   "flashcards-prf":
     "linear-gradient(150deg, #45230f 0%, #241208 55%, #100705 100%)",
-  "combo-prf":
+  "cronograma-prf":
+    "linear-gradient(150deg, #2f3327 0%, #171a13 55%, #0a0b08 100%)",
+  "projeto-prf":
     "linear-gradient(150deg, #9a4622 0%, #4f2010 55%, #1c0c06 100%)",
   "guia-pmgo":
     "linear-gradient(150deg, #2a2a2a 0%, #161616 55%, #0b0b0b 100%)",
@@ -51,7 +56,9 @@ const bannerBackground: Record<string, string> = {
     "linear-gradient(150deg, #3a1f14 0%, #1d0f09 55%, #0d0604 100%)",
   "flashcards-pmgo":
     "linear-gradient(150deg, #45230f 0%, #241208 55%, #100705 100%)",
-  "combo-pmgo":
+  "cronograma-pmgo":
+    "linear-gradient(150deg, #2f3327 0%, #171a13 55%, #0a0b08 100%)",
+  "projeto-pmgo":
     "linear-gradient(150deg, #9a4622 0%, #4f2010 55%, #1c0c06 100%)",
 };
 
@@ -60,22 +67,26 @@ const coverKicker: Record<string, string> = {
   "guia-prf": "PRÉ-EDITAL",
   "resumo-prf": "PRÉ-EDITAL",
   "flashcards-prf": "PRÉ-EDITAL",
-  "combo-prf": "PRÉ-EDITAL",
+  "cronograma-prf": "PRÉ-EDITAL",
+  "projeto-prf": "PRÉ-EDITAL",
   "guia-pmgo": "PRÉ-EDITAL",
   "resumo-pmgo": "PRÉ-EDITAL",
   "flashcards-pmgo": "PRÉ-EDITAL",
-  "combo-pmgo": "PRÉ-EDITAL",
+  "cronograma-pmgo": "PRÉ-EDITAL",
+  "projeto-pmgo": "PRÉ-EDITAL",
 };
 
 const coverTag: Record<string, string> = {
   "guia-prf": "COMPLETO",
   "resumo-prf": "COMPLETO",
   "flashcards-prf": "COMPLETO",
-  "combo-prf": "3 EM 1",
+  "cronograma-prf": "COMPLETO",
+  "projeto-prf": "COMBO + PLATAFORMA",
   "guia-pmgo": "COMPLETO",
   "resumo-pmgo": "COMPLETO",
   "flashcards-pmgo": "COMPLETO",
-  "combo-pmgo": "3 EM 1",
+  "cronograma-pmgo": "COMPLETO",
+  "projeto-pmgo": "COMBO + PLATAFORMA",
 };
 
 interface ConcursoCover {
@@ -91,7 +102,9 @@ interface ProdutosGridProps {
 
 export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
   const destaque = produtos.find((p) => p.destaque);
-  const avulsos = produtos.filter((p) => !p.destaque);
+  // `inclusos` alimenta a lista do Projeto; só parte deles é vendida separado
+  const inclusos = produtos.filter((p) => !p.destaque);
+  const avulsos = inclusos.filter((p) => !p.somenteNoProjeto);
 
   // Sem produto em destaque: grade simples (fallback defensivo)
   if (!destaque) {
@@ -106,7 +119,14 @@ export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
 
   return (
     <div className="space-y-10 sm:space-y-14">
-      <ComboHero produto={destaque} concurso={concurso} inclusos={avulsos} />
+      <PlataformaCerrado titulo={destaque.titulo} />
+
+      {/* A escada anda colada no card: é a justificativa do preço que a pessoa
+          acabou de ver, logo abaixo do CTA. */}
+      <div className="space-y-4">
+        <ProjetoHero produto={destaque} concurso={concurso} inclusos={inclusos} />
+        <EscadaPreco />
+      </div>
 
       {avulsos.length > 0 && (
         <div>
@@ -279,8 +299,8 @@ function CoverBanner({
   );
 }
 
-// Card-herói do combo: largo, horizontal, domina a seção
-function ComboHero({
+// Card-herói do Projeto: largo, horizontal, domina a seção
+function ProjetoHero({
   produto,
   concurso,
   inclusos,
@@ -290,17 +310,15 @@ function ComboHero({
   inclusos: Produto[];
 }) {
   const economia =
-    typeof produto.preco === "number" && typeof produto.precoDe === "number"
-      ? produto.precoDe - produto.preco
-      : null;
+    faixaAtual.precoDe !== undefined ? faixaAtual.precoDe - faixaAtual.preco : null;
 
-  // Sem preço visível, bullets com valores (ex.: "Economia de R$ 114") saem junto
+  // Sem preço visível, bullets com valores saem junto
   const bullets = vendasPausadas
     ? produto.bullets.filter((b) => !b.includes("R$"))
     : produto.bullets;
 
   return (
-    <article className="group/combo relative overflow-hidden rounded-xl bg-[var(--bg-elevated)] ring-2 ring-[var(--accent)] shadow-xl shadow-black/10">
+    <article className="group/projeto relative overflow-hidden rounded-xl bg-[var(--bg-elevated)] ring-2 ring-[var(--accent)] shadow-xl shadow-black/10">
       <div className="grid lg:grid-cols-[0.85fr_1fr]">
         {/* Painel-capa */}
         <div className="relative min-h-[300px] overflow-hidden lg:min-h-full">
@@ -316,7 +334,7 @@ function ComboHero({
           {inclusos.length > 0 && (
             <div className="mt-6 rounded-lg border border-[var(--line)] bg-[var(--bg)] p-4 sm:p-5">
               <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--neutral)]">
-                O que vem no combo
+                O que vem no projeto
               </p>
               <ul className="mt-3 divide-y divide-[var(--line)]">
                 {inclusos.map((item, i) => (
@@ -330,14 +348,16 @@ function ComboHero({
                     <span className="flex-1 text-sm font-medium leading-snug text-[var(--ink)]">
                       {item.titulo}
                     </span>
-                    {typeof item.preco === "number" && (
-                      <Preco
-                        valor={item.preco}
-                        className="shrink-0 text-sm text-[var(--neutral)] line-through"
-                      />
-                    )}
                   </li>
                 ))}
+                <li className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-deep)]">
+                    {inclusos.length + 1}
+                  </span>
+                  <span className="flex-1 text-sm font-medium leading-snug text-[var(--accent-deep)]">
+                    E muito mais ferramentas na Plataforma.
+                  </span>
+                </li>
               </ul>
             </div>
           )}
@@ -354,6 +374,7 @@ function ComboHero({
             ))}
           </ul>
 
+          {/* Preço e link saem da faixa vigente em @/data/precos.ts */}
           <div className="mt-8 flex flex-col gap-5 border-t border-[var(--line)] pt-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               {!vendasPausadas && economia !== null && (
@@ -362,15 +383,13 @@ function ComboHero({
                 </span>
               )}
               <div className="flex items-baseline gap-2.5">
-                {typeof produto.preco === "number" && (
-                  <Preco
-                    valor={produto.preco}
-                    className="font-display text-4xl leading-none tracking-tight text-[var(--accent)] sm:text-5xl"
-                  />
-                )}
-                {!vendasPausadas && typeof produto.precoDe === "number" && (
+                <Preco
+                  valor={faixaAtual.preco}
+                  className="font-display text-4xl leading-none tracking-tight text-[var(--accent)] sm:text-5xl"
+                />
+                {!vendasPausadas && faixaAtual.precoDe !== undefined && (
                   <span className="text-base text-[var(--neutral)] line-through">
-                    R$ {produto.precoDe}
+                    R$ {faixaAtual.precoDe}
                   </span>
                 )}
               </div>
@@ -382,7 +401,7 @@ function ComboHero({
               </span>
             ) : (
               <Link
-                href={produto.ctaHref}
+                href={checkoutDaFaixa(faixaAtual, produto.id, produto.ctaHref)}
                 className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--bg)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)] sm:text-base"
                 aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
               >
@@ -400,7 +419,7 @@ function ComboHero({
   );
 }
 
-// Card avulso: compacto e secundário ao combo
+// Card avulso: compacto e secundário ao Projeto
 function ProdutoCard({
   produto,
   concurso,

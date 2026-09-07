@@ -80,7 +80,7 @@ export function FlashcardsMark({ className }: MarkProps) {
   );
 }
 
-// Combo PRF — três trajetórias convergindo num ponto único
+// Projeto PRF — três trajetórias convergindo num ponto único
 export function ComboPrfMark({ className }: MarkProps) {
   return (
     <svg {...baseSvgProps} className={className}>
@@ -105,5 +105,5 @@ export const PRODUTO_MARKS: Record<
   "guia-prf": GuiaMark,
   "resumo-prf": ResumoMark,
   "flashcards-prf": FlashcardsMark,
-  "combo-prf": ComboPrfMark,
+  "projeto-prf": ComboPrfMark,
 };

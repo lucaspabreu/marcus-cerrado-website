@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { vendasPausadas, vendasRetorno } from "@/data/vendas";
+import { faixaAtual } from "@/data/precos";
 
 export function BannerDestaque() {
   return (
@@ -27,20 +28,25 @@ export function BannerDestaque() {
             {/* Título + detalhe */}
             <p className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 min-w-0">
               <span className="font-display text-base sm:text-lg text-[var(--bg)] tracking-tight">
-                Combo PRF
+                Projeto PRF
               </span>
               <span className="text-xs sm:text-sm text-[var(--bg)]/75">
+                Guia + Cronograma + Resumo + Flashcards ·{" "}
                 {vendasPausadas ? (
-                  <>Guia + Resumo + Flashcards · vendas encerradas até {vendasRetorno}</>
+                  <>vendas encerradas até {vendasRetorno}</>
+                ) : faixaAtual.precoDe !== undefined ? (
+                  <>
+                    de R$&nbsp;{faixaAtual.precoDe} por R$&nbsp;{faixaAtual.preco}
+                  </>
                 ) : (
-                  <>Guia + Resumo + Flashcards · de R$&nbsp;411 por R$&nbsp;297</>
+                  <>R$&nbsp;{faixaAtual.preco}</>
                 )}
               </span>
             </p>
 
             {/* CTA */}
             <span className="ml-auto inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[var(--bg)] whitespace-nowrap">
-              Ver o Combo
+              Ver o Projeto
               <ArrowRight
                 className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.75}

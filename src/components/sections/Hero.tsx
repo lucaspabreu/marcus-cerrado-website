@@ -53,7 +53,7 @@ export function Hero() {
           >
             <div className="relative aspect-square rounded-lg overflow-hidden bg-[var(--bg-elevated)] ring-1 ring-[var(--line-strong)]">
               <Image
-                src="/marcus.jpg"
+                src="/marcus3.webp"
                 alt="Marcus Nery, criador do Método CERRADO, em frente a parede de troncos de madeira"
                 fill
                 priority

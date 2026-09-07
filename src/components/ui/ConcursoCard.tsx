@@ -12,7 +12,6 @@ const defaultBannerGradient =
 
 export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) {
   const ativo = concurso.status === "ativo";
-
   const baseClasses = cn(
     "group/concurso relative flex flex-col rounded-lg border bg-[var(--bg-elevated)] overflow-hidden text-left transition-all duration-200 h-full",
     ativo
@@ -90,7 +89,7 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
                 featured ? "text-2xl sm:text-3xl" : "text-lg"
               )}
             >
-              Concurso {concurso.sigla}
+              Projeto {concurso.sigla}
             </h3>
             <p
               className={cn(
@@ -110,11 +109,7 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
         )}
 
         {ativo && (
-          <div className="mt-auto flex flex-col items-start gap-2 border-t border-[var(--line)] pt-3 lg:flex-row lg:items-center lg:justify-between">
-            <span className="text-[11px] uppercase tracking-wider text-[var(--neutral)] whitespace-nowrap">
-              {concurso.produtos.length}{" "}
-              {concurso.produtos.length === 1 ? "produto" : "produtos"}
-            </span>
+          <div className="mt-auto flex flex-col items-start gap-2 border-t border-[var(--line)] pt-3 lg:flex-row lg:items-center lg:justify-end">
             <span
               className={cn(
                 "inline-flex items-center gap-1.5 rounded-lg font-medium text-[var(--bg)] whitespace-nowrap transition-colors",

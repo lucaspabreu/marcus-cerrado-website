@@ -46,6 +46,8 @@ export interface Produto {
   ctaLabel: string;
   ctaHref: string;
   destaque?: boolean;
+  /** Entra na lista do Projeto, mas não é vendido avulso */
+  somenteNoProjeto?: boolean;
   selo?: string;
   badge?: string;
   preco?: number;

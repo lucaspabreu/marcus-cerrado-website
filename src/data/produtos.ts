@@ -21,6 +21,9 @@ const produtosCarreirasPoliciais: Produto[] = [
   },
 ];
 
+// `somenteNoProjeto` em todos os materiais: hoje só o Projeto é vendido.
+// Pra reabrir a venda avulsa de um material, tire a flag dele — o bloco
+// "Ou compre separado" reaparece sozinho.
 const produtosPRF: Produto[] = [
   {
     id: "guia-prf",
@@ -31,13 +34,14 @@ const produtosPRF: Produto[] = [
     acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
-      "Cronograma estruturado por fases",
+      "Sequência de estudo por fase: base, aprofundamento e reta final",
       "Porcentagem de cobrança e prioridade por assunto do edital",
       "Filtros de questões no Qconcursos e TecConcursos",
       "Mapa de revisão até a véspera",
     ],
     ctaLabel: "Quero o guia",
     ctaHref: "https://pay.hotmart.com/I106397959R?off=zfv4qvwf&sck=sitecerrado",
+    somenteNoProjeto: true,
     preco: 97,
   },
   {
@@ -56,6 +60,7 @@ const produtosPRF: Produto[] = [
     ],
     ctaLabel: "Quero os flashcards",
     ctaHref: "https://pay.hotmart.com/L106397820L?off=ba3j2nt6&sck=sitecerrado",
+    somenteNoProjeto: true,
     preco: 117,
   },
   {
@@ -74,27 +79,46 @@ const produtosPRF: Produto[] = [
     ],
     ctaLabel: "Quero o resumo",
     ctaHref: "https://pay.hotmart.com/P106397581D?off=vs539ug2&sck=sitecerrado",
+    somenteNoProjeto: true,
     preco: 197,
   },
   {
-    id: "combo-prf",
-    titulo: "Combo PRF",
-    subtitulo: "Os 3 produtos com condição especial",
+    id: "cronograma-prf",
+    titulo: "Cronograma de Estudos PRF",
+    subtitulo: "A rotina de estudo, semana a semana",
     descricao:
-      "Guia de Estudos, Resumo e Flashcards integrados em um único pacote, com desconto sobre a soma dos três. O caminho recomendado pra quem quer cobertura completa do começo até a prova.",
+      "Cronograma pronto pra PRF: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
     acesso: "12 meses",
-    acessoDetalhe: "acesso integral aos 3 produtos",
+    acessoDetalhe: "a partir da compra",
     bullets: [
-      "Economia de R$ 114 vs. comprar os 3 separados",
-      "Guia + Resumo + Flashcards integrados",
+      "Semana a semana, do início até a prova",
+      "Carga por matéria conforme o peso no edital",
+      "Ciclos de revisão já marcados",
+      "Ajustável pra quem trabalha ou estuda em tempo integral",
+    ],
+    ctaLabel: "Quero o cronograma",
+    ctaHref: "#",
+    somenteNoProjeto: true,
+    preco: 97,
+  },
+  {
+    id: "projeto-prf",
+    titulo: "Projeto PRF",
+    subtitulo: "Todos os materiais com condição especial",
+    descricao:
+      "Guia de Estudos, Cronograma, Resumo e Flashcards integrados na Plataforma Cerrado. Ela mostra o que estudar, quanto ainda falta e refaz o plano nos dias em que você rende menos — um passo a passo até a prova.",
+    acesso: "12 meses",
+    acessoDetalhe: "acesso integral aos 4 produtos",
+    bullets: [
+      "Guia + Cronograma + Resumo + Flashcards integrados",
       "Atualizações inclusas durante o acesso",
     ],
-    ctaLabel: "Quero o Combo",
-    ctaHref: "https://pay.hotmart.com/M106978976I?off=948v5dvl&sck=sitecerrado",
+    ctaLabel: "Quero o Projeto",
+    // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este
+    // href só é usado se a faixa vigente não tiver link pra este produto.
+    ctaHref: "https://pay.hotmart.com/M106978976I?off=m5s6kvrx",
     destaque: true,
     selo: "Mais escolhido",
-    preco: 297,
-    precoDe: 411,
   },
 ];
 
@@ -115,7 +139,27 @@ const produtosPMGO: Produto[] = [
     ],
     ctaLabel: "Quero o resumo",
     ctaHref: "https://pay.hotmart.com/P106397581D?off=85zdba0x",
+    somenteNoProjeto: true,
     preco: 197,
+  },
+  {
+    id: "cronograma-pmgo",
+    titulo: "Cronograma de Estudos PM-GO",
+    subtitulo: "A rotina de estudo, semana a semana",
+    descricao:
+      "Cronograma pronto pra PM-GO: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
+    acesso: "12 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Semana a semana, do início até a prova",
+      "Carga por matéria conforme o peso no edital",
+      "Ciclos de revisão já marcados",
+      "Ajustável pra quem trabalha ou estuda em tempo integral",
+    ],
+    ctaLabel: "Quero o cronograma",
+    ctaHref: "#",
+    somenteNoProjeto: true,
+    preco: 97,
   },
   {
     id: "guia-pmgo",
@@ -126,13 +170,14 @@ const produtosPMGO: Produto[] = [
     acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
-      "Cronograma estruturado por fases",
+      "Sequência de estudo por fase: base, aprofundamento e reta final",
       "Porcentagem de cobrança e prioridade por assunto do edital",
       "Filtros de questões no Qconcursos e TecConcursos",
       "Mapa de revisão até a véspera",
     ],
     ctaLabel: "Em breve",
     ctaHref: "#",
+    somenteNoProjeto: true,
     badge: "Em breve",
     preco: 97,
   },
@@ -152,8 +197,29 @@ const produtosPMGO: Produto[] = [
     ],
     ctaLabel: "Em breve",
     ctaHref: "#",
+    somenteNoProjeto: true,
     badge: "Em breve",
     preco: 117,
+  },
+  {
+    id: "projeto-pmgo",
+    titulo: "Projeto PM-GO",
+    subtitulo: "Todos os materiais com condição especial",
+    descricao:
+      "Resumo, Cronograma, Guia de Estudos e Flashcards integrados na Plataforma Cerrado. Ela mostra o que estudar, quanto ainda falta e refaz o plano nos dias em que você rende menos — um passo a passo até a prova.",
+    acesso: "12 meses",
+    acessoDetalhe: "acesso integral aos 4 produtos",
+    bullets: [
+      "Resumo + Cronograma liberados na hora da compra",
+      "Guia e Flashcards liberados assim que forem lançados",
+      "Atualizações inclusas durante o acesso",
+    ],
+    ctaLabel: "Quero o Projeto",
+    // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este
+    // href só é usado se a faixa vigente não tiver link pra este produto.
+    ctaHref: "https://pay.hotmart.com/M107409724K?off=ilnvw37v",
+    destaque: true,
+    selo: "Mais escolhido",
   },
 ];
 
