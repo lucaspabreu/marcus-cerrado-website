@@ -41,8 +41,8 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     preco: 447,
     precoDe: 597,
     checkout: {
-      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=m5s6kvrx",
-      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=ilnvw37v",
+      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=m5s6kvrx&sck=sitecerrado",
+      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=ilnvw37v&sck=sitecerrado",
     },
   },
   semana: {
@@ -55,8 +55,8 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     preco: 497,
     precoDe: 597,
     checkout: {
-      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=ze8b1ffr",
-      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=rzrcwgmr",
+      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=ze8b1ffr&sck=sitecerrado",
+      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=rzrcwgmr&sck=sitecerrado",
     },
   },
   padrao: {
@@ -71,8 +71,8 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
       // TODO(Lucas): links da oferta de R$ 597. Sem `?off=`, o Hotmart manda
       // pra oferta padrão do produto — confirme no painel que a padrão é a de
       // 597 antes de virar pra cá, ou troque pelos links da oferta certa.
-      "projeto-prf": "https://pay.hotmart.com/M106978976I",
-      "projeto-pmgo": "https://pay.hotmart.com/M107409724K",
+      "projeto-prf": "https://pay.hotmart.com/M106978976I?sck=sitecerrado",
+      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?sck=sitecerrado",
     },
   },
 };

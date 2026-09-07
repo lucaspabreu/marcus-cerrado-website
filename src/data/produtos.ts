@@ -116,7 +116,7 @@ const produtosPRF: Produto[] = [
     ctaLabel: "Quero o Projeto",
     // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este
     // href só é usado se a faixa vigente não tiver link pra este produto.
-    ctaHref: "https://pay.hotmart.com/M106978976I?off=m5s6kvrx",
+    ctaHref: "https://pay.hotmart.com/M106978976I?off=m5s6kvrx&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
   },
@@ -217,7 +217,7 @@ const produtosPMGO: Produto[] = [
     ctaLabel: "Quero o Projeto",
     // Preço e checkout do Projeto vêm da escada em @/data/precos.ts. Este
     // href só é usado se a faixa vigente não tiver link pra este produto.
-    ctaHref: "https://pay.hotmart.com/M107409724K?off=ilnvw37v",
+    ctaHref: "https://pay.hotmart.com/M107409724K?off=ilnvw37v&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
   },
