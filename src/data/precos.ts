@@ -35,7 +35,7 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     id: "lancamento",
     ordem: 0,
     rotulo: "lançamento",
-    periodo: "Até hoje 06/09 — 23h59",
+    periodo: "Até 06/09 — encerrada",
     parcela: "12x R$ 45,69",
     prazo: "hoje, às 23:59",
     preco: 447,
@@ -78,7 +78,7 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
 };
 
 // >>> Vire aqui quando o prazo passar. <<<
-export const faixaAtualId: FaixaId = "lancamento";
+export const faixaAtualId: FaixaId = "semana";
 
 export const faixaAtual = faixasPreco[faixaAtualId];
 
