@@ -28,7 +28,7 @@ const acessos = [
     id: "hotmart",
     eyebrow: "Videoaulas",
     titulo: "Vídeos na Hotmart",
-    descricao: "Onde ficam as videoaulas do seu material.",
+    descricao: "Vídeo sobre o método de estudos e como extrair o máximo da plataforma.",
     href: "https://hotmart.com/pt-br/club/cerradoconcursos",
     hrefLabel: "hotmart.com/pt-br/club/cerradoconcursos",
     Icon: MonitorPlay,
