@@ -70,16 +70,6 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <span
-              aria-disabled="true"
-              title="Em breve"
-              className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-[var(--ink)]/40 px-5 py-2.5 text-sm font-medium text-[var(--bg)] cursor-not-allowed select-none"
-            >
-              App Cerrado
-              <span className="rounded-full bg-[var(--bg)]/20 px-2 py-0.5 text-[11px] uppercase tracking-wide">
-                Em breve
-              </span>
-            </span>
             <button
               type="button"
               aria-label={open ? "Fechar menu" : "Abrir menu"}
@@ -121,15 +111,6 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <span
-            aria-disabled="true"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--ink)]/40 px-5 py-3 text-sm font-medium text-[var(--bg)] cursor-not-allowed select-none"
-          >
-            App Cerrado
-            <span className="rounded-full bg-[var(--bg)]/20 px-2 py-0.5 text-[11px] uppercase tracking-wide">
-              Em breve
-            </span>
-          </span>
         </nav>
       </div>
     </>
