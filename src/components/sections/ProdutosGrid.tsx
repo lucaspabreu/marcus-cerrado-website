@@ -9,15 +9,23 @@ import { PlataformaCerrado } from "@/components/sections/PlataformaCerrado";
 
 // Com as vendas pausadas, o valor real nem vai pro HTML: renderiza um
 // placeholder desfocado no lugar do preço.
-function Preco({ valor, className }: { valor: number; className?: string }) {
+function Preco({
+  texto,
+  placeholder,
+  className,
+}: {
+  texto: string;
+  placeholder: string;
+  className?: string;
+}) {
   if (vendasPausadas) {
     return (
       <span className={cn("blur-[0.18em] select-none", className)} aria-hidden="true">
-        R$ 000
+        {placeholder}
       </span>
     );
   }
-  return <span className={className}>R$ {valor}</span>;
+  return <span className={className}>{texto}</span>;
 }
 
 // Destaca em negrito os materiais citados na descrição do Projeto
@@ -123,7 +131,7 @@ export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
 
       {/* A escada anda colada no card: é a justificativa do preço que a pessoa
           acabou de ver, logo abaixo do CTA. */}
-      <div className="space-y-4">
+      <div id="investimento" className="scroll-mt-24 space-y-4">
         <ProjetoHero produto={destaque} concurso={concurso} inclusos={inclusos} />
         <EscadaPreco />
       </div>
@@ -382,17 +390,25 @@ function ProjetoHero({
                   Economize R$ {economia}
                 </span>
               )}
-              <div className="flex items-baseline gap-2.5">
+              <p className="font-display text-3xl leading-[1.05] tracking-tight text-[var(--accent)] sm:text-4xl lg:text-5xl">
+                {faixaAtual.parcelas}x{" "}
                 <Preco
-                  valor={faixaAtual.preco}
-                  className="font-display text-4xl leading-none tracking-tight text-[var(--accent)] sm:text-5xl"
+                  texto={`R$ ${faixaAtual.parcela}`}
+                  placeholder="R$ 00,00"
+                  className="whitespace-nowrap"
                 />
+              </p>
+              <p className="mt-2.5 flex flex-wrap items-baseline gap-x-2.5 text-base text-[var(--ink-soft)]">
+                <span>
+                  ou <Preco texto={`R$ ${faixaAtual.preco}`} placeholder="R$ 000" /> à
+                  vista
+                </span>
                 {!vendasPausadas && faixaAtual.precoDe !== undefined && (
-                  <span className="text-base text-[var(--neutral)] line-through">
+                  <span className="text-[var(--neutral)] line-through">
                     R$ {faixaAtual.precoDe}
                   </span>
                 )}
-              </div>
+              </p>
             </div>
 
             {vendasPausadas ? (
@@ -470,7 +486,8 @@ function ProdutoCard({
           {typeof produto.preco === "number" && (
             <div className="mb-3.5 flex items-baseline gap-2">
               <Preco
-                valor={produto.preco}
+                texto={`R$ ${produto.preco}`}
+                placeholder="R$ 000"
                 className="font-display text-xl leading-none tracking-tight text-[var(--ink)]"
               />
               {!vendasPausadas && typeof produto.precoDe === "number" && (

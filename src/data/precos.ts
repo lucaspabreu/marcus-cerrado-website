@@ -19,7 +19,9 @@ export interface FaixaPreco {
   rotulo: string;
   /** Janela da faixa, como aparece na escada de preço. */
   periodo: string;
-  /** Parcelamento do checkout. Copiar do Hotmart — não é conta redonda. */
+  /** Nº de parcelas do checkout. */
+  parcelas: number;
+  /** Valor da parcela, só o número ("50,80"). Copiar do Hotmart — não é conta redonda. */
   parcela: string;
   /** Prazo como aparece na tarja de urgência. `null` = sem tarja. */
   prazo: string | null;
@@ -36,7 +38,8 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     ordem: 0,
     rotulo: "lançamento",
     periodo: "Até 06/09 — encerrada",
-    parcela: "12x R$ 45,69",
+    parcelas: 12,
+    parcela: "45,69",
     prazo: "hoje, às 23:59",
     preco: 447,
     precoDe: 597,
@@ -51,7 +54,8 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     ordem: 1,
     rotulo: "até sexta",
     periodo: "De 07 a 11/09",
-    parcela: "12x R$ 50,80",
+    parcelas: 12,
+    parcela: "50,80",
     prazo: "sexta, 11/09, às 23:59",
     preco: 497,
     precoDe: 597,
@@ -65,7 +69,8 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     ordem: 2,
     rotulo: "padrão",
     periodo: "A partir de 12/09",
-    parcela: "12x R$ 61,02",
+    parcelas: 12,
+    parcela: "61,02",
     prazo: null,
     preco: 597,
     checkout: {

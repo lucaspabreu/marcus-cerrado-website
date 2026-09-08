@@ -54,20 +54,23 @@ export function EscadaPreco() {
               </p>
               <p
                 className={cn(
-                  "mt-3 font-display text-2xl leading-none tracking-tight tabular-nums sm:text-4xl",
+                  "mt-3 font-display text-xl leading-[1.05] tracking-tight sm:text-2xl lg:text-3xl",
                   vigente ? "text-white" : "text-[var(--ink-soft)]",
                   encerrada && "line-through decoration-1"
                 )}
               >
-                R$ {faixa.preco}
+                {faixa.parcelas}x{" "}
+                <span className="whitespace-nowrap">R$ {faixa.parcela}</span>
               </p>
               <p
                 className={cn(
                   "mt-2 text-[10px] leading-tight sm:text-xs",
-                  vigente ? "text-white/55" : "text-[var(--neutral)]"
+                  vigente ? "text-white/55" : "text-[var(--neutral)]",
+                  encerrada && "line-through decoration-1"
                 )}
               >
-                ou {faixa.parcela}
+                ou R$ {faixa.preco}
+                <span className="hidden sm:inline"> à vista</span>
               </p>
             </div>
           );
