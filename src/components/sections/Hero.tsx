@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import { Container } from "../ui/Container";
 
@@ -34,7 +33,10 @@ export function Hero() {
               className="mt-10 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 animate-fade-up"
               style={{ animationDelay: "0.3s" }}
             >
-              <Link
+              {/* Âncora nativa de propósito: o <Link> do Next não rola de novo
+                  quando a URL já está em #trilhas (segundo clique, ou quem
+                  chegou por /#trilhas e subiu). */}
+              <a
                 href="#trilhas"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors w-fit"
               >
@@ -43,7 +45,7 @@ export function Hero() {
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
                   strokeWidth={1.75}
                 />
-              </Link>
+              </a>
             </div>
           </div>
 
