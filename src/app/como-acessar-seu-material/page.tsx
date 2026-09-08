@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   ArrowUpRight,
   LayoutDashboard,
+  MessageCircle,
   MonitorPlay,
   TriangleAlert,
 } from "lucide-react";
@@ -9,6 +10,7 @@ import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { Container } from "@/components/ui/Container";
 import { VideoYouTube } from "@/components/VideoYouTube";
+import { whatsappHref } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Como acessar seu material",
@@ -21,6 +23,10 @@ export const metadata: Metadata = {
 // Vídeo de boas-vindas (o `v=` da URL do YouTube)
 const VIDEO_ID = "GPUHQys4Y1E";
 const VIDEO_TITULO = "Como acessar seu material";
+
+// Mensagem que já vai preenchida no WhatsApp de suporte
+const SUPORTE_MENSAGEM =
+  "Oii, acabei de adquirir a plataforma e gostaria de ajuda.";
 
 // Os dois destinos do aluno depois do vídeo. Pra trocar link, mexa aqui.
 const acessos = [
@@ -150,6 +156,37 @@ export default function ComoAcessarPage() {
                     </span>
                   </a>
                 ))}
+              </div>
+            </div>
+
+            {/* SUPORTE — pra quem travou em algum passo */}
+            <div className="mt-14 sm:mt-20 rounded-2xl border border-[var(--bg)]/15 p-6 sm:p-8 md:p-10">
+              <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-10">
+                <div className="max-w-xl">
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                    Suporte
+                  </span>
+                  <h2 className="mt-3 font-display text-2xl sm:text-3xl font-normal leading-[1.1] tracking-tight text-[var(--bg)]">
+                    Travou em algum passo?
+                  </h2>
+                  <p className="mt-3 text-base sm:text-lg leading-relaxed text-[var(--bg)]/65">
+                    Fala com a gente no WhatsApp.
+                  </p>
+                </div>
+                <a
+                  href={whatsappHref(SUPORTE_MENSAGEM)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex shrink-0 items-center justify-center gap-2.5 rounded-lg bg-[var(--bg)] px-7 py-4 text-base font-medium text-[var(--ink)] transition-colors hover:bg-[var(--accent)] hover:text-white"
+                >
+                  <MessageCircle className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                  <span>Falar com o suporte</span>
+                  <ArrowUpRight
+                    className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
+                </a>
               </div>
             </div>
           </Container>

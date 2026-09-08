@@ -2,10 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import { ofertaConcursos } from "@/data/produtos";
+import { whatsappHref } from "@/lib/whatsapp";
 
 // WhatsApp floating support button.
-// Edit the number and messages below.
-const WHATSAPP_NUMBER = "5566981289655"; // 55 + DDD + número, sem espaços ou símbolos
+// O número fica em lib/whatsapp.ts; as mensagens ficam aqui.
 const DEFAULT_MESSAGE =
   "Olá! Vim pelo site do Cerrado Concursos e gostaria de tirar uma dúvida.";
 
@@ -22,10 +22,16 @@ function buildMessage(pathname: string): string {
   return DEFAULT_MESSAGE;
 }
 
+// Rotas em que o botão flutuante não aparece (a página já tem o próprio
+// CTA de suporte).
+const ROTAS_SEM_FLOAT = ["/como-acessar-seu-material"];
+
 export function WhatsAppFloat() {
-  const pathname = usePathname();
-  const message = buildMessage(pathname ?? "");
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const pathname = usePathname() ?? "";
+  if (ROTAS_SEM_FLOAT.some((rota) => pathname.startsWith(rota))) return null;
+
+  const message = buildMessage(pathname);
+  const href = whatsappHref(message);
 
   return (
     <a
