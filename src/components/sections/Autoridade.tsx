@@ -57,8 +57,8 @@ export function Autoridade({ sigla }: AutoridadeProps) {
           <div className="overflow-hidden rounded-xl ring-1 ring-[var(--line-strong)]">
             <div className="relative aspect-[4/5]">
               <Image
-                src="/marcus.jpg"
-                alt="Marcus Nery, criador do Método CERRADO"
+                src="/marcus3.webp"
+                alt="Marcus Nery, criador do Método CERRADO, em frente a parede de troncos de madeira"
                 fill
                 sizes="(max-width: 1024px) 100vw, 34vw"
                 className="object-cover"

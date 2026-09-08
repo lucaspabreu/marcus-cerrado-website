@@ -23,7 +23,7 @@ export const faq: FAQItem[] = [
     id: "tempo-acesso",
     pergunta: "Por quanto tempo tenho acesso ao material?",
     resposta:
-      "Você mantém acesso de 12 meses a partir da compra, incluindo as atualizações realizadas no período. As condições específicas estão na página de cada produto e no contrato apresentado antes da matrícula.",
+      "O acesso à Plataforma e aos materiais dura 6 meses a partir da compra, incluindo as atualizações realizadas no período. Ao final, você pode renovar por mais 6 meses com desconto. As condições específicas estão na página de cada produto e no contrato apresentado antes da matrícula.",
   },
   {
     id: "garantia",
