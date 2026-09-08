@@ -7,7 +7,7 @@ const produtosCarreirasPoliciais: Produto[] = [
     subtitulo: "Roteiro base pra qualquer carreira policial",
     descricao:
       "Guia introdutório pra quem ainda não definiu carreira ou quer construir base sólida antes de focar num concurso específico. Foco nas matérias comuns à maioria das carreiras policiais.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Matérias-base comuns às carreiras policiais",
@@ -26,12 +26,31 @@ const produtosCarreirasPoliciais: Produto[] = [
 // "Ou compre separado" reaparece sozinho.
 const produtosPRF: Produto[] = [
   {
+    id: "cronograma-prf",
+    titulo: "Cronograma Interativo de Estudos PRF",
+    subtitulo: "A rotina de estudo, semana a semana",
+    descricao:
+      "Cronograma pronto pra PRF: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
+    acesso: "6 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Semana a semana, do início até a prova",
+      "Carga por matéria conforme o peso no edital",
+      "Ciclos de revisão já marcados",
+      "Ajustável pra quem trabalha ou estuda em tempo integral",
+    ],
+    ctaLabel: "Quero o cronograma",
+    ctaHref: "#",
+    somenteNoProjeto: true,
+    preco: 97,
+  },
+  {
     id: "guia-prf",
     titulo: "Guia de Estudos PRF",
     subtitulo: "O que estudar e em que ordem",
     descricao:
       "Roteiro completo para quem vai encarar a PRF: o que priorizar, como sequenciar as matérias e o passo a passo do estudo eficiente até a prova.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Sequência de estudo por fase: base, aprofundamento e reta final",
@@ -50,7 +69,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "Ativa memória e calibra timing",
     descricao:
       "Banco de flashcards e questões organizadas por matéria, com repetição espaçada e foco no padrão da banca. Pra fixar conteúdo e treinar prova de verdade.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Flashcards com repetição espaçada",
@@ -69,7 +88,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "Matéria condensada pra revisão e véspera",
     descricao:
       "Resumo direto e completo de todas as matérias da PRF, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Cobertura integral do edital PRF",
@@ -83,31 +102,12 @@ const produtosPRF: Produto[] = [
     preco: 197,
   },
   {
-    id: "cronograma-prf",
-    titulo: "Cronograma de Estudos PRF",
-    subtitulo: "A rotina de estudo, semana a semana",
-    descricao:
-      "Cronograma pronto pra PRF: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
-    acesso: "12 meses",
-    acessoDetalhe: "a partir da compra",
-    bullets: [
-      "Semana a semana, do início até a prova",
-      "Carga por matéria conforme o peso no edital",
-      "Ciclos de revisão já marcados",
-      "Ajustável pra quem trabalha ou estuda em tempo integral",
-    ],
-    ctaLabel: "Quero o cronograma",
-    ctaHref: "#",
-    somenteNoProjeto: true,
-    preco: 97,
-  },
-  {
     id: "projeto-prf",
     titulo: "Projeto PRF",
     subtitulo: "Todos os materiais com condição especial",
     descricao:
       "Guia de Estudos, Cronograma, Resumo e Flashcards integrados na Plataforma Cerrado. Ela mostra o que estudar, quanto ainda falta e refaz o plano nos dias em que você rende menos — um passo a passo até a prova.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "acesso integral aos 4 produtos",
     bullets: [
       "Guia + Cronograma + Resumo + Flashcards integrados",
@@ -126,31 +126,12 @@ const produtosPRF: Produto[] = [
 
 const produtosPMGO: Produto[] = [
   {
-    id: "resumo-pmgo",
-    titulo: "Resumo Completo PM-GO",
-    subtitulo: "Matéria condensada pra revisão e véspera",
-    descricao:
-      "Resumo direto e completo de todas as matérias da PM-GO, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
-    acesso: "12 meses",
-    acessoDetalhe: "a partir da compra",
-    bullets: [
-      "Cobertura integral do edital PM-GO",
-      "Linguagem objetiva, sem enrolação",
-      "Atualizado conforme mudanças da banca",
-      "Pensado para revisão acelerada",
-    ],
-    ctaLabel: "Quero o resumo",
-    ctaHref: "https://pay.hotmart.com/P106397581D?off=85zdba0x",
-    somenteNoProjeto: true,
-    preco: 197,
-  },
-  {
     id: "cronograma-pmgo",
-    titulo: "Cronograma de Estudos PM-GO",
+    titulo: "Cronograma Interativo de Estudos PM-GO",
     subtitulo: "A rotina de estudo, semana a semana",
     descricao:
       "Cronograma pronto pra PM-GO: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Semana a semana, do início até a prova",
@@ -164,12 +145,31 @@ const produtosPMGO: Produto[] = [
     preco: 97,
   },
   {
+    id: "resumo-pmgo",
+    titulo: "Resumo Completo PM-GO",
+    subtitulo: "Matéria condensada pra revisão e véspera",
+    descricao:
+      "Resumo direto e completo de todas as matérias da PM-GO, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
+    acesso: "6 meses",
+    acessoDetalhe: "a partir da compra",
+    bullets: [
+      "Cobertura integral do edital PM-GO",
+      "Linguagem objetiva, sem enrolação",
+      "Atualizado conforme mudanças da banca",
+      "Pensado para revisão acelerada",
+    ],
+    ctaLabel: "Quero o resumo",
+    ctaHref: "https://pay.hotmart.com/P106397581D?off=85zdba0x",
+    somenteNoProjeto: true,
+    preco: 197,
+  },
+  {
     id: "guia-pmgo",
     titulo: "Guia de Estudos PM-GO",
     subtitulo: "O que estudar e em que ordem",
     descricao:
       "Roteiro completo para quem vai encarar a PM-GO: o que priorizar, como sequenciar as matérias e o passo a passo do estudo eficiente até a prova.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Sequência de estudo por fase: base, aprofundamento e reta final",
@@ -189,7 +189,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "Ativa memória e calibra timing",
     descricao:
       "Banco de flashcards e questões organizadas por matéria, com repetição espaçada e foco no padrão da banca. Pra fixar conteúdo e treinar prova de verdade.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Flashcards com repetição espaçada",
@@ -209,7 +209,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "Todos os materiais com condição especial",
     descricao:
       "Resumo, Cronograma, Guia de Estudos e Flashcards integrados na Plataforma Cerrado. Ela mostra o que estudar, quanto ainda falta e refaz o plano nos dias em que você rende menos — um passo a passo até a prova.",
-    acesso: "12 meses",
+    acesso: "6 meses",
     acessoDetalhe: "acesso integral aos 4 produtos",
     bullets: [
       "Resumo + Cronograma liberados na hora da compra",
@@ -227,6 +227,12 @@ const produtosPMGO: Produto[] = [
   },
 ];
 
+// Vídeo do hero das páginas de concurso (youtube.com/watch?v=t_HLOq0KYk8)
+const videoPlataforma = {
+  youtubeId: "t_HLOq0KYk8",
+  titulo: "Plataforma de Estudos para Concursos Policiais",
+};
+
 export const ofertaConcursos: OfertaConcurso[] = [
   {
     id: "prf",
@@ -236,8 +242,10 @@ export const ofertaConcursos: OfertaConcurso[] = [
     status: "ativo",
     statusLabel: "Disponível",
     imagem: "/banner-cerrado-site.webp",
+    imagemHero: "/banner-cerrado-site-prf.jpg",
     brasao: "/brasao-prf.jpg",
     produtos: produtosPRF,
+    video: videoPlataforma,
   },
   {
     id: "pm-go",
@@ -246,8 +254,10 @@ export const ofertaConcursos: OfertaConcurso[] = [
     status: "ativo",
     statusLabel: "Disponível",
     imagem: "/banner-cerrado-PMGO.webp",
+    imagemHero: "/banner-cerrado-site-pmgo.jpg",
     brasao: "/brasao-pmgo.webp",
     produtos: produtosPMGO,
+    video: videoPlataforma,
   },
 ];
 

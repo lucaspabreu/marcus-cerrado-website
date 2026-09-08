@@ -31,8 +31,13 @@ export interface OfertaConcurso {
   status: StatusOferta;
   statusLabel: string;
   produtos: Produto[];
+  /** Banner do card na home. */
   imagem?: string;
+  /** Fundo do hero na página do concurso. Sem ele, usa `imagem`. */
+  imagemHero?: string;
   brasao?: string;
+  /** Vídeo de apresentação no hero da página do concurso. */
+  video?: { youtubeId: string; titulo: string };
 }
 
 export interface Produto {

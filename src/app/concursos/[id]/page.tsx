@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowDown, ArrowLeft } from "lucide-react";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { CTAFinal } from "@/components/sections/CTAFinal";
@@ -9,6 +9,8 @@ import { FaixaOferta } from "@/components/sections/FaixaOferta";
 import { Autoridade } from "@/components/sections/Autoridade";
 import { Depoimentos } from "@/components/sections/Depoimentos";
 import { ProdutosGrid } from "@/components/sections/ProdutosGrid";
+import { Acesso } from "@/components/sections/Acesso";
+import { VideoYouTube } from "@/components/VideoYouTube";
 import { Container } from "@/components/ui/Container";
 import { ofertaConcursos } from "@/data/produtos";
 import { cn } from "@/lib/utils";
@@ -35,6 +37,9 @@ export default async function ConcursoPage({
   }
 
   const ativo = concurso.status === "ativo";
+  // Vídeo só entra no hero de concurso ativo: é apresentação do que está à venda
+  const video = ativo ? concurso.video : undefined;
+  const fundoHero = concurso.imagemHero ?? concurso.imagem;
   const projeto = concurso.produtos.find((p) => p.destaque);
   const materiais = concurso.produtos.filter((p) => !p.destaque);
 
@@ -50,9 +55,9 @@ export default async function ConcursoPage({
             aria-hidden="true"
             className="absolute inset-0"
             style={
-              concurso.imagem
+              fundoHero
                 ? {
-                    backgroundImage: `url(${concurso.imagem})`,
+                    backgroundImage: `url(${fundoHero})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }
@@ -65,7 +70,7 @@ export default async function ConcursoPage({
           />
 
           <Container size="wide">
-            <div className="relative py-20 sm:py-24 lg:py-28">
+            <div className="relative py-14 sm:py-16 lg:py-20">
               <Link
                 href="/#trilhas"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-medium text-[var(--bg)]/70 hover:text-[var(--bg)] transition-colors mb-8"
@@ -74,34 +79,78 @@ export default async function ConcursoPage({
                 <span>Voltar pra carreiras</span>
               </Link>
 
-              <div className="flex items-center gap-3 mb-5">
-                <span
-                  className={cn(
-                    "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-wider",
-                    ativo
-                      ? "bg-[var(--accent)] text-[var(--bg)]"
-                      : "bg-[var(--bg)]/15 text-[var(--bg)] ring-1 ring-[var(--bg)]/25"
-                  )}
-                >
-                  {concurso.statusLabel}
-                </span>
-                <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
-                  Carreira policial
-                </span>
-              </div>
-
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight text-[var(--bg)] max-w-3xl">
-                {concurso.nome}
-              </h1>
-
-              <p className="mt-6 text-base sm:text-lg text-[var(--bg)]/70 leading-relaxed max-w-2xl">
-                Sigla: <span className="text-[var(--bg)]">{concurso.sigla}</span>
-                {concurso.banca && (
-                  <>
-                    {" · "}Banca: <span className="text-[var(--bg)]">{concurso.banca}</span>
-                  </>
+              <div
+                className={cn(
+                  "grid gap-10 lg:items-center lg:gap-14",
+                  video && "lg:grid-cols-12"
                 )}
-              </p>
+              >
+                <div className={video ? "lg:col-span-6" : "max-w-3xl"}>
+                  <div className="flex items-center gap-3 mb-5">
+                    <span
+                      className={cn(
+                        "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-wider",
+                        ativo
+                          ? "bg-[var(--accent)] text-[var(--bg)]"
+                          : "bg-[var(--bg)]/15 text-[var(--bg)] ring-1 ring-[var(--bg)]/25"
+                      )}
+                    >
+                      {concurso.statusLabel}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                      Carreira policial
+                    </span>
+                  </div>
+
+                  <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-[var(--bg)]">
+                    {ativo ? (
+                      <>
+                        A Melhor Ferramenta para você{" "}
+                        <span className="text-[var(--accent-soft)]">
+                          passar no concurso da {concurso.sigla}
+                        </span>
+                      </>
+                    ) : (
+                      concurso.nome
+                    )}
+                  </h1>
+
+                  <p className="mt-6 text-base sm:text-lg text-[var(--bg)]/70 leading-relaxed max-w-2xl">
+                    {ativo ? (
+                      <span className="text-[var(--bg)]">{concurso.nome}</span>
+                    ) : (
+                      <>
+                        Sigla: <span className="text-[var(--bg)]">{concurso.sigla}</span>
+                      </>
+                    )}
+                    {concurso.banca && (
+                      <>
+                        {" · "}Banca: <span className="text-[var(--bg)]">{concurso.banca}</span>
+                      </>
+                    )}
+                  </p>
+
+                  {/* Leva direto ao card do Projeto com o preço (âncora em ProdutosGrid) */}
+                  {ativo && (
+                    <a
+                      href="#investimento"
+                      className="group/cta mt-8 inline-flex items-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--bg)] shadow-lg shadow-black/25 transition-colors hover:bg-[var(--accent-soft)] sm:text-base"
+                    >
+                      <span>Quero adquirir</span>
+                      <ArrowDown
+                        className="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-y-0.5"
+                        strokeWidth={2}
+                      />
+                    </a>
+                  )}
+                </div>
+
+                {video && (
+                  <div className="lg:col-span-6">
+                    <VideoYouTube id={video.youtubeId} titulo={video.titulo} />
+                  </div>
+                )}
+              </div>
             </div>
           </Container>
         </section>
@@ -160,6 +209,9 @@ export default async function ConcursoPage({
             )}
           </Container>
         </section>
+
+        {/* Duração do acesso: logo abaixo do investimento, antes da autoridade */}
+        {ativo && projeto && <Acesso />}
 
         {ativo && (
           <>
