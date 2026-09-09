@@ -45,10 +45,9 @@ export default async function ConcursoPage({
 
   return (
     <>
+      {ativo && <FaixaOferta produto={projeto?.titulo} />}
       <Header />
       <main className="flex-1">
-        {ativo && <FaixaOferta />}
-
         {/* HERO do concurso */}
         <section className="relative overflow-hidden border-b border-[var(--line)]">
           <div

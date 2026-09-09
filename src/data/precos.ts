@@ -5,6 +5,9 @@
 // `faixaAtualId` abaixo e faça o deploy. Preço, valor "de", prazo da tarja de
 // urgência e link de checkout mudam juntos, nas duas carreiras.
 //
+// O cronômetro da tarja (FaixaOferta) zera sozinho em `encerraEm` e a tarja
+// some — mas o preço nas páginas continua o da faixa até o deploy.
+//
 //   06/09 até 23:59 → "lancamento" (R$ 447)
 //   07/09 a 11/09   → "semana"     (R$ 497)
 //   a partir de 12/09 → "padrao"   (R$ 597)
@@ -25,6 +28,11 @@ export interface FaixaPreco {
   parcela: string;
   /** Prazo como aparece na tarja de urgência. `null` = sem tarja. */
   prazo: string | null;
+  /**
+   * Instante exato do fim, ISO com fuso de Brasília (-03:00). Alimenta o
+   * cronômetro da tarja — tem que bater com `prazo`. `null` = sem tarja.
+   */
+  encerraEm: string | null;
   preco: number;
   /** Valor "de" riscado. Ausente na faixa padrão (não há de onde descontar). */
   precoDe?: number;
@@ -41,6 +49,7 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     parcelas: 12,
     parcela: "45,69",
     prazo: "hoje, às 23:59",
+    encerraEm: "2026-09-06T23:59:00-03:00",
     preco: 447,
     precoDe: 597,
     // Faixa encerrada em 06/09. Os links da oferta de R$ 447 foram removidos de
@@ -57,6 +66,7 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     parcelas: 12,
     parcela: "50,80",
     prazo: "sexta, 11/09, às 23:59",
+    encerraEm: "2026-09-11T23:59:00-03:00",
     preco: 497,
     precoDe: 597,
     checkout: {
@@ -72,6 +82,7 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     parcelas: 12,
     parcela: "61,02",
     prazo: null,
+    encerraEm: null,
     preco: 597,
     checkout: {
       // TODO(Lucas): links da oferta de R$ 597. Sem `?off=`, o Hotmart manda

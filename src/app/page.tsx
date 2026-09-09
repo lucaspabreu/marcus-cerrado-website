@@ -1,4 +1,5 @@
 import { Header } from "@/components/sections/Header";
+import { FaixaOferta } from "@/components/sections/FaixaOferta";
 import { Hero } from "@/components/sections/Hero";
 import { BannerDestaque } from "@/components/sections/BannerDestaque";
 import { BarraAprovacoes } from "@/components/sections/BarraAprovacoes";
@@ -14,6 +15,7 @@ import { Footer } from "@/components/sections/Footer";
 export default function Home() {
   return (
     <>
+      <FaixaOferta produto="Projetos PRF e PM-GO" />
       <Header />
       <main className="flex-1">
         <Hero />
