@@ -8,9 +8,9 @@
 // O cronômetro da tarja (FaixaOferta) zera sozinho em `encerraEm` e a tarja
 // some — mas o preço nas páginas continua o da faixa até o deploy.
 //
-//   06/09 até 23:59 → "lancamento" (R$ 447)
-//   07/09 a 11/09   → "semana"     (R$ 497)
-//   a partir de 12/09 → "padrao"   (R$ 597)
+//   06/09 até 23:59   → "lancamento" (R$ 447) — encerrada
+//   07/09 a 11/09     → "semana"     (R$ 497) — encerrada
+//   a partir de 12/09 → "padrao"     (R$ 597) — vigente
 
 export type FaixaId = "lancamento" | "semana" | "padrao";
 
@@ -62,17 +62,17 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     id: "semana",
     ordem: 1,
     rotulo: "até sexta",
-    periodo: "De 07 a 11/09",
+    periodo: "De 07 a 11/09 — encerrada",
     parcelas: 12,
     parcela: "50,80",
     prazo: "sexta, 11/09, às 23:59",
     encerraEm: "2026-09-11T23:59:00-03:00",
     preco: 497,
     precoDe: 597,
-    checkout: {
-      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=ze8b1ffr&sck=sitecerrado",
-      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=rzrcwgmr&sck=sitecerrado",
-    },
+    // Faixa encerrada em 11/09. Os links da oferta de R$ 497 foram removidos de
+    // propósito, pelo mesmo motivo da faixa de lançamento: link de oferta
+    // vencida no repo acaba em algum build. Não vire `faixaAtualId` pra cá.
+    checkout: {},
   },
   padrao: {
     id: "padrao",
@@ -85,17 +85,18 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     encerraEm: null,
     preco: 597,
     checkout: {
-      // TODO(Lucas): links da oferta de R$ 597. Sem `?off=`, o Hotmart manda
-      // pra oferta padrão do produto — confirme no painel que a padrão é a de
-      // 597 antes de virar pra cá, ou troque pelos links da oferta certa.
+      // Sem `?off=`, o Hotmart manda pra oferta padrão de cada produto. Só está
+      // certo enquanto a padrão no painel for a de R$ 597 (12x 61,02). Se mudar
+      // lá, troque pelos links `?off=` da oferta certa aqui e no ctaHref dos
+      // Projetos em @/data/produtos.ts.
       "projeto-prf": "https://pay.hotmart.com/M106978976I?sck=sitecerrado",
       "projeto-pmgo": "https://pay.hotmart.com/M107409724K?sck=sitecerrado",
     },
   },
 };
 
-// >>> Vire aqui quando o prazo passar. <<<
-export const faixaAtualId: FaixaId = "semana";
+// >>> Vire aqui quando a faixa mudar. <<<
+export const faixaAtualId: FaixaId = "padrao";
 
 export const faixaAtual = faixasPreco[faixaAtualId];
 
