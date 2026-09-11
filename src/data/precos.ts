@@ -85,12 +85,10 @@ export const faixasPreco: Record<FaixaId, FaixaPreco> = {
     encerraEm: null,
     preco: 597,
     checkout: {
-      // Sem `?off=`, o Hotmart manda pra oferta padrão de cada produto. Só está
-      // certo enquanto a padrão no painel for a de R$ 597 (12x 61,02). Se mudar
-      // lá, troque pelos links `?off=` da oferta certa aqui e no ctaHref dos
-      // Projetos em @/data/produtos.ts.
-      "projeto-prf": "https://pay.hotmart.com/M106978976I?sck=sitecerrado",
-      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?sck=sitecerrado",
+      // Oferta de R$ 597 (12x 61,02). Se trocar a oferta no painel, troque
+      // aqui e no ctaHref dos Projetos em @/data/produtos.ts.
+      "projeto-prf": "https://pay.hotmart.com/M106978976I?off=948v5dvl&sck=sitecerrado",
+      "projeto-pmgo": "https://pay.hotmart.com/M107409724K?off=vt6buao3&sck=sitecerrado",
     },
   },
 };

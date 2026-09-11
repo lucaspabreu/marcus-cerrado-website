@@ -120,7 +120,7 @@ const produtosPRF: Produto[] = [
     // é só o fallback caso a faixa vigente não tenha link pra este produto —
     // mantenha na oferta vigente. Este arquivo entra no bundle do cliente (via
     // WhatsAppFloat), então link de oferta vencida aqui fica achável no JS.
-    ctaHref: "https://pay.hotmart.com/M106978976I?sck=sitecerrado",
+    ctaHref: "https://pay.hotmart.com/M106978976I?off=948v5dvl&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
   },
@@ -223,7 +223,7 @@ const produtosPMGO: Produto[] = [
     // é só o fallback caso a faixa vigente não tenha link pra este produto —
     // mantenha na oferta vigente. Este arquivo entra no bundle do cliente (via
     // WhatsAppFloat), então link de oferta vencida aqui fica achável no JS.
-    ctaHref: "https://pay.hotmart.com/M107409724K?sck=sitecerrado",
+    ctaHref: "https://pay.hotmart.com/M107409724K?off=vt6buao3&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
   },
