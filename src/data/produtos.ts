@@ -21,9 +21,11 @@ const produtosCarreirasPoliciais: Produto[] = [
   },
 ];
 
-// `somenteNoProjeto` em todos os materiais: hoje só o Projeto é vendido.
-// Pra reabrir a venda avulsa de um material, tire a flag dele — o bloco
-// "Ou compre separado" reaparece sozinho.
+// `somenteNoProjeto` em todos os materiais: só o Projeto é vendido. Os links
+// de checkout dos avulsos foram removidos (ctaHref "#") — este arquivo entra
+// no bundle do cliente e link morto fica achável no JS. Pra reabrir a venda
+// avulsa de um material, tire a flag dele e recoloque o link da oferta pego
+// no painel da Hotmart; o bloco "Ou compre separado" reaparece sozinho.
 const produtosPRF: Produto[] = [
   {
     id: "cronograma-prf",
@@ -59,7 +61,7 @@ const produtosPRF: Produto[] = [
       "Mapa de revisão até a véspera",
     ],
     ctaLabel: "Quero o guia",
-    ctaHref: "https://pay.hotmart.com/I106397959R?off=zfv4qvwf&sck=sitecerrado",
+    ctaHref: "#",
     somenteNoProjeto: true,
     preco: 97,
   },
@@ -78,7 +80,7 @@ const produtosPRF: Produto[] = [
       "Histórico de desempenho por tema",
     ],
     ctaLabel: "Quero os flashcards",
-    ctaHref: "https://pay.hotmart.com/L106397820L?off=ba3j2nt6&sck=sitecerrado",
+    ctaHref: "#",
     somenteNoProjeto: true,
     preco: 117,
   },
@@ -97,7 +99,7 @@ const produtosPRF: Produto[] = [
       "Pensado para revisão acelerada",
     ],
     ctaLabel: "Quero o resumo",
-    ctaHref: "https://pay.hotmart.com/P106397581D?off=vs539ug2&sck=sitecerrado",
+    ctaHref: "#",
     somenteNoProjeto: true,
     preco: 197,
   },
@@ -159,7 +161,7 @@ const produtosPMGO: Produto[] = [
       "Pensado para revisão acelerada",
     ],
     ctaLabel: "Quero o resumo",
-    ctaHref: "https://pay.hotmart.com/P106397581D?off=85zdba0x",
+    ctaHref: "#",
     somenteNoProjeto: true,
     preco: 197,
   },
