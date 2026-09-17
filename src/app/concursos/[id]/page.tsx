@@ -71,7 +71,7 @@ export default async function ConcursoPage({
           <Container size="wide">
             <div className="relative py-14 sm:py-16 lg:py-20">
               <Link
-                href="/#trilhas"
+                href="/#materiais"
                 className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-medium text-[var(--bg)]/70 hover:text-[var(--bg)] transition-colors mb-8"
               >
                 <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
@@ -199,7 +199,7 @@ export default async function ConcursoPage({
                   Os materiais pra {concurso.sigla} estão em preparação. Volte em breve ou veja as carreiras já disponíveis.
                 </p>
                 <Link
-                  href="/#trilhas"
+                  href="/#materiais"
                   className="mt-6 inline-flex items-center gap-2 rounded-md bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors"
                 >
                   Ver carreiras disponíveis

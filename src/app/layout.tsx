@@ -160,6 +160,17 @@ export default function RootLayout({
         )}
         {children}
         <WhatsAppFloat />
+        {/* A âncora da seção de produtos era #trilhas e virou #materiais.
+            Links antigos (bio, stories, anúncios) ainda podem apontar pro hash
+            velho. Hash não chega ao servidor, então o redirect é no cliente.
+            Fica no fim do body pra seção já existir quando o browser navegar
+            pro fragmento novo e rolar até ela. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'if(location.hash==="#trilhas")location.replace("#materiais")',
+          }}
+        />
       </body>
     </html>
   );

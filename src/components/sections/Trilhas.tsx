@@ -12,7 +12,7 @@ const ordered = [
 export function Trilhas() {
   return (
     <Section
-      id="trilhas"
+      id="materiais"
       eyebrow="Materiais de estudo"
       title={
         <>

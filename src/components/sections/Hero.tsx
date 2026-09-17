@@ -34,10 +34,10 @@ export function Hero() {
               style={{ animationDelay: "0.3s" }}
             >
               {/* Âncora nativa de propósito: o <Link> do Next não rola de novo
-                  quando a URL já está em #trilhas (segundo clique, ou quem
-                  chegou por /#trilhas e subiu). */}
+                  quando a URL já está em #materiais (segundo clique, ou quem
+                  chegou por /#materiais e subiu). */}
               <a
-                href="#trilhas"
+                href="#materiais"
                 className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors w-fit"
               >
                 <span>QUERO ME PREPARAR</span>
