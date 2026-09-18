@@ -5,11 +5,13 @@ import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { CTAFinal } from "@/components/sections/CTAFinal";
 import { Diagnostico } from "@/components/sections/Diagnostico";
+import { ParaQuem } from "@/components/sections/ParaQuem";
 import { FaixaOferta } from "@/components/sections/FaixaOferta";
 import { Autoridade } from "@/components/sections/Autoridade";
 import { Depoimentos } from "@/components/sections/Depoimentos";
 import { ProdutosGrid } from "@/components/sections/ProdutosGrid";
 import { Acesso } from "@/components/sections/Acesso";
+import { ExAluno } from "@/components/sections/ExAluno";
 import { VideoYouTube } from "@/components/VideoYouTube";
 import { Container } from "@/components/ui/Container";
 import { ofertaConcursos } from "@/data/produtos";
@@ -156,6 +158,9 @@ export default async function ConcursoPage({
 
         {ativo && <Diagnostico sigla={concurso.sigla} />}
 
+        {/* Qualifica o visitante antes do preço; fala do Projeto, então só com ele à venda */}
+        {ativo && projeto && <ParaQuem sigla={concurso.sigla} />}
+
         {/* PRODUTOS */}
         <section className="py-16 sm:py-20 md:py-24">
           <Container size="wide">
@@ -211,6 +216,9 @@ export default async function ConcursoPage({
 
         {/* Duração do acesso: logo abaixo do investimento, antes da autoridade */}
         {ativo && projeto && <Acesso />}
+
+        {/* Condição de ex-aluno: fecha o bloco de investimento/acesso */}
+        {ativo && projeto && <ExAluno sigla={concurso.sigla} />}
 
         {ativo && (
           <>
