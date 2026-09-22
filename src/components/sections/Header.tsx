@@ -45,10 +45,10 @@ export function Header() {
             aria-label="Cerrado Concursos — página inicial"
           >
             <Image
-              src="/cerrado-logo-marrom.webp"
+              src="/cerrado-logo-branca.png"
               alt="Cerrado Concursos"
-              width={180}
-              height={48}
+              width={186}
+              height={60}
               priority
               className="h-9 w-auto"
             />

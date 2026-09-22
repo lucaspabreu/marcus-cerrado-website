@@ -38,7 +38,7 @@ export function Hero() {
                   chegou por /#materiais e subiu). */}
               <a
                 href="#materiais"
-                className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors w-fit"
+                className="group inline-flex items-center gap-2.5 rounded-lg bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] hover:text-[var(--paper)] transition-colors w-fit"
               >
                 <span>QUERO ME PREPARAR</span>
                 <ArrowDown

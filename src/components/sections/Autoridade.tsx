@@ -64,18 +64,18 @@ export function Autoridade({ sigla }: AutoridadeProps) {
                 className="object-cover"
               />
             </div>
-            <div className="grid grid-cols-2 divide-x divide-[var(--bg)]/10 bg-[var(--ink)] px-5 py-4">
+            <div className="grid grid-cols-2 divide-x divide-[var(--band-fg)]/10 bg-[var(--band)] px-5 py-4">
               <div>
-                <p className="font-display text-2xl text-[var(--bg)] tabular-nums">05</p>
-                <p className="mt-0.5 text-[10px] uppercase tracking-wider leading-snug text-[var(--bg)]/60">
+                <p className="font-display text-2xl text-[var(--band-fg)] tabular-nums">05</p>
+                <p className="mt-0.5 text-[10px] uppercase tracking-wider leading-snug text-[var(--band-fg)]/60">
                   Aprovações
                   <br />
                   em segurança pública
                 </p>
               </div>
               <div className="pl-5">
-                <p className="font-display text-2xl text-[var(--bg)] tabular-nums">19</p>
-                <p className="mt-0.5 text-[10px] uppercase tracking-wider leading-snug text-[var(--bg)]/60">
+                <p className="font-display text-2xl text-[var(--band-fg)] tabular-nums">19</p>
+                <p className="mt-0.5 text-[10px] uppercase tracking-wider leading-snug text-[var(--band-fg)]/60">
                   Anos
                   <br />
                   aprovado na PRF

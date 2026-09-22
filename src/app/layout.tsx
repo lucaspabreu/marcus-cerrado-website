@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Anton, Cal_Sans, Inter, Roboto_Mono } from "next/font/google";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
@@ -101,6 +101,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#131210",
 };
 
 export default function RootLayout({

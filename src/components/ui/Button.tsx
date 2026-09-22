@@ -20,9 +20,9 @@ interface ButtonProps {
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] active:bg-[var(--accent-deep)]",
+    "bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] hover:text-[var(--paper)] active:bg-[var(--accent-deep)] active:text-[var(--paper)]",
   secondary:
-    "bg-[var(--accent)] text-[var(--bg)] hover:bg-[var(--accent-deep)]",
+    "bg-[var(--accent)] text-[var(--paper)] hover:bg-[var(--accent-deep)]",
   ghost:
     "bg-transparent text-[var(--ink)] hover:text-[var(--accent)]",
   outline:

@@ -1,18 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Cerrado palette */
-  --bg: #FAFAF7;
-  --bg-elevated: #F5F2EC;
-  --ink: #111111;
-  --ink-soft: #2a2a2a;
-  --neutral: #6B6B6B;
-  --neutral-soft: #9b9b9b;
-  --line: #E8E5DE;
-  --line-strong: #D8D3C7;
-  --accent: #B5532A;
-  --accent-soft: #C97447;
+  /* Cerrado palette — tema escuro (quente, terroso) */
+  --bg: #131210;
+  --bg-elevated: #1B1916;
+  --ink: #F2EFE8;
+  --ink-soft: #DAD6CD;
+  --neutral: #A39E94;
+  --neutral-soft: #7A756C;
+  --line: #2A2723;
+  --line-strong: #3D3932;
+  --accent: #C45C2F;
+  --accent-soft: #D9804F;
   --accent-deep: #8E3F1F;
+
+  /* Faixas de contraste (antes: fundo preto sobre site claro).
+     No tema escuro viram a superfície mais profunda da página. */
+  --band: #070706;
+  --band-fg: #F2EFE8;
+
+  /* Fixos, independentes do tema: pra texto sobre imagem/gradiente preto
+     e pra texto sobre o terracota. */
+  --paper: #FAFAF7;
+  --coal: #111111;
 }
 
 @theme inline {
@@ -27,6 +37,10 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-deep: var(--accent-deep);
+  --color-band: var(--band);
+  --color-band-fg: var(--band-fg);
+  --color-paper: var(--paper);
+  --color-coal: var(--coal);
   --font-display: var(--font-cal-sans);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono);
@@ -39,6 +53,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  color-scheme: dark;
 }
 
 body {
@@ -54,7 +69,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--paper);
 }
 
 /* Display utility — Cal Sans, geometric, tight by default */
@@ -98,9 +113,9 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
 }
 
 /* Grit texture for dark cover banners (lifts midtones instead of darkening) */

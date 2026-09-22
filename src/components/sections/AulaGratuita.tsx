@@ -96,10 +96,10 @@ export function AulaGratuita() {
               <p className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--accent-soft)] mb-2">
                 Aula gratuita · {VIDEO.duracao}
               </p>
-              <h3 className="font-display text-2xl sm:text-3xl text-[var(--bg)] leading-tight tracking-tight">
+              <h3 className="font-display text-2xl sm:text-3xl text-[var(--paper)] leading-tight tracking-tight">
                 {VIDEO.titulo}
               </h3>
-              <p className="mt-2 text-sm text-[var(--bg)]/75 leading-snug max-w-md">
+              <p className="mt-2 text-sm text-[var(--paper)]/75 leading-snug max-w-md">
                 {VIDEO.descricao}
               </p>
             </div>
@@ -112,7 +112,7 @@ export function AulaGratuita() {
                   aria-hidden="true"
                   className="absolute inset-0 rounded-full bg-[var(--accent)] opacity-0 group-hover:opacity-30 group-hover:scale-150 transition-all duration-500"
                 />
-                <span className="relative inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--bg)] text-[var(--ink)] shadow-2xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-[var(--accent)] group-hover:text-[var(--bg)]">
+                <span className="relative inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--paper)] text-[var(--coal)] shadow-2xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-[var(--accent)] group-hover:text-[var(--paper)]">
                   <Play className="h-6 w-6 sm:h-7 sm:w-7 translate-x-0.5" strokeWidth={2} fill="currentColor" />
                 </span>
               </div>

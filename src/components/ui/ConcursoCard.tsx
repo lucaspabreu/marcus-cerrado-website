@@ -41,7 +41,7 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
             className={cn(
               "inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider backdrop-blur-sm",
               ativo
-                ? "bg-[var(--accent)] text-[var(--bg)] shadow-lg shadow-black/20"
+                ? "bg-[var(--accent)] text-[var(--paper)] shadow-lg shadow-black/20"
                 : "bg-[var(--bg)]/85 text-[var(--neutral)] ring-1 ring-[var(--bg)]/40"
             )}
           >
@@ -64,8 +64,8 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
                 ? "bg-transparent"
                 : ativo
                   ? featured
-                    ? "bg-[var(--accent)] text-[var(--bg)]"
-                    : "bg-[var(--ink)] text-[var(--bg)] group-hover/concurso:bg-[var(--accent)]"
+                    ? "bg-[var(--accent)] text-[var(--paper)]"
+                    : "bg-[var(--ink)] text-[var(--bg)] group-hover/concurso:bg-[var(--accent)] group-hover/concurso:text-[var(--paper)]"
                   : "bg-[var(--line)] text-[var(--neutral)]"
             )}
           >
@@ -115,8 +115,8 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
                 "inline-flex items-center gap-1.5 rounded-lg font-medium text-[var(--bg)] whitespace-nowrap transition-colors",
                 featured ? "px-5 py-2.5 text-sm" : "px-4 py-2 text-xs",
                 ativo && featured
-                  ? "bg-[var(--accent)] group-hover/concurso:bg-[var(--accent-deep)]"
-                  : "bg-[var(--ink)] group-hover/concurso:bg-[var(--accent)]"
+                  ? "bg-[var(--accent)] text-[var(--paper)] group-hover/concurso:bg-[var(--accent-deep)]"
+                  : "bg-[var(--ink)] group-hover/concurso:bg-[var(--accent)] group-hover/concurso:text-[var(--paper)]"
               )}
             >
               Quero começar

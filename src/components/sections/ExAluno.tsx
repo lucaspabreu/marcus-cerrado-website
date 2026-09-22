@@ -13,7 +13,7 @@ export function ExAluno({ sigla }: { sigla: string }) {
   return (
     <section
       id="ex-aluno"
-      className="bg-[var(--ink)] py-14 text-center text-[var(--bg)] sm:py-16 md:py-20"
+      className="bg-[var(--band)] py-14 text-center text-[var(--band-fg)] sm:py-16 md:py-20"
     >
       <Container>
         <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--accent-soft)]">
@@ -32,7 +32,7 @@ export function ExAluno({ sigla }: { sigla: string }) {
           className="mx-auto mt-6 h-px w-16 bg-[var(--accent-soft)]/60"
         />
 
-        <p className="mx-auto mt-6 max-w-lg text-balance text-sm leading-relaxed text-[var(--bg)]/65 sm:text-base">
+        <p className="mx-auto mt-6 max-w-lg text-balance text-sm leading-relaxed text-[var(--band-fg)]/65 sm:text-base">
           Quem já foi aluno não paga o mesmo que quem está chegando agora. Fale
           no nosso WhatsApp e receba a sua condição para a {sigla}.
         </p>
@@ -41,7 +41,7 @@ export function ExAluno({ sigla }: { sigla: string }) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group mt-7 inline-flex w-full max-w-sm items-center justify-center gap-3 rounded-lg bg-[var(--accent)] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-colors duration-200 hover:bg-[var(--accent-deep)]"
+          className="group mt-7 inline-flex w-full max-w-sm items-center justify-center gap-3 rounded-lg bg-[var(--accent)] px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--band-fg)] transition-colors duration-200 hover:bg-[var(--accent-deep)]"
         >
           <svg
             viewBox="0 0 24 24"
@@ -58,7 +58,7 @@ export function ExAluno({ sigla }: { sigla: string }) {
           />
         </a>
 
-        <p className="mt-4 flex items-center justify-center gap-2 text-xs text-[var(--bg)]/45">
+        <p className="mt-4 flex items-center justify-center gap-2 text-xs text-[var(--band-fg)]/45">
           <span
             aria-hidden="true"
             className="h-1.5 w-1.5 rounded-full bg-[var(--accent-soft)]"

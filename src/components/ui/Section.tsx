@@ -30,7 +30,7 @@ export function Section({
       className={cn(
         "py-16 sm:py-20 md:py-24",
         isDark
-          ? "bg-[var(--ink)] text-[var(--bg)]"
+          ? "bg-[var(--band)] text-[var(--band-fg)]"
           : "border-t border-[var(--line)]",
         className
       )}
@@ -43,7 +43,7 @@ export function Section({
                 <span
                   className={cn(
                     "text-[11px] uppercase tracking-[0.18em] font-medium",
-                    isDark ? "text-[var(--bg)]/55" : "text-[var(--neutral)]"
+                    isDark ? "text-[var(--band-fg)]/55" : "text-[var(--neutral)]"
                   )}
                 >
                   {eyebrow}
@@ -54,7 +54,7 @@ export function Section({
               <h2
                 className={cn(
                   "font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight",
-                  isDark ? "text-[var(--bg)]" : "text-[var(--ink)]"
+                  isDark ? "text-[var(--band-fg)]" : "text-[var(--ink)]"
                 )}
               >
                 {title}
@@ -64,7 +64,7 @@ export function Section({
               <p
                 className={cn(
                   "mt-5 text-base sm:text-lg leading-relaxed max-w-xl",
-                  isDark ? "text-[var(--bg)]/65" : "text-[var(--neutral)]"
+                  isDark ? "text-[var(--band-fg)]/65" : "text-[var(--neutral)]"
                 )}
               >
                 {intro}

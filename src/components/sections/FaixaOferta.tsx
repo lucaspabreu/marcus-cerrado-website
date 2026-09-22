@@ -64,26 +64,26 @@ export function FaixaOferta({ produto = "Projeto" }: FaixaOfertaProps) {
   if (!ofertaAtiva || alvo === null || encerrada) return null;
 
   return (
-    <div className="bg-[#A23420] text-[var(--bg)]">
+    <div className="bg-[#A23420] text-[var(--paper)]">
       <Container size="wide">
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 py-2.5 sm:justify-between">
           <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-            <span className="hidden items-center gap-2 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--bg)]/80 sm:inline-flex">
+            <span className="hidden items-center gap-2 whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--paper)]/80 sm:inline-flex">
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--bg)]/90"
+                className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--paper)]/90"
               />
               Oferta especial
             </span>
 
             <span
               aria-hidden="true"
-              className="hidden h-4 w-px bg-[var(--bg)]/25 sm:inline-block"
+              className="hidden h-4 w-px bg-[var(--paper)]/25 sm:inline-block"
             />
 
-            <span className="text-sm text-[var(--bg)]/85 sm:text-[15px]">
+            <span className="text-sm text-[var(--paper)]/85 sm:text-[15px]">
               {produto} por{" "}
-              <strong className="font-semibold text-[var(--bg)]">
+              <strong className="font-semibold text-[var(--paper)]">
                 R$ {faixaAtual.preco}
               </strong>
               <span className="hidden md:inline"> até {faixaAtual.prazo}</span>
@@ -91,7 +91,7 @@ export function FaixaOferta({ produto = "Projeto" }: FaixaOfertaProps) {
           </p>
 
           <p className="flex items-center gap-x-3 whitespace-nowrap">
-            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--bg)]/80">
+            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--paper)]/80">
               Termina em
             </span>
             <span
@@ -113,7 +113,7 @@ function Unidade({ valor, sufixo }: { valor?: string; sufixo: string }) {
   return (
     <span className="inline-flex items-baseline">
       <span>{valor ?? "--"}</span>
-      <span className="ml-0.5 text-[10px] font-medium text-[var(--bg)]/70">
+      <span className="ml-0.5 text-[10px] font-medium text-[var(--paper)]/70">
         {sufixo}
       </span>
     </span>

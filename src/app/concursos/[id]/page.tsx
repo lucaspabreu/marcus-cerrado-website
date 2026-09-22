@@ -74,7 +74,7 @@ export default async function ConcursoPage({
             <div className="relative py-14 sm:py-16 lg:py-20">
               <Link
                 href="/#materiais"
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-medium text-[var(--bg)]/70 hover:text-[var(--bg)] transition-colors mb-8"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] font-medium text-[var(--paper)]/70 hover:text-[var(--paper)] transition-colors mb-8"
               >
                 <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
                 <span>Voltar pra carreiras</span>
@@ -92,18 +92,18 @@ export default async function ConcursoPage({
                       className={cn(
                         "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-wider",
                         ativo
-                          ? "bg-[var(--accent)] text-[var(--bg)]"
-                          : "bg-[var(--bg)]/15 text-[var(--bg)] ring-1 ring-[var(--bg)]/25"
+                          ? "bg-[var(--accent)] text-[var(--paper)]"
+                          : "bg-[var(--paper)]/15 text-[var(--paper)] ring-1 ring-[var(--paper)]/25"
                       )}
                     >
                       {concurso.statusLabel}
                     </span>
-                    <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                    <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--paper)]/55">
                       Carreira policial
                     </span>
                   </div>
 
-                  <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-[var(--bg)]">
+                  <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-[var(--paper)]">
                     {ativo ? (
                       <>
                         A Melhor Ferramenta para você{" "}
@@ -116,17 +116,17 @@ export default async function ConcursoPage({
                     )}
                   </h1>
 
-                  <p className="mt-6 text-base sm:text-lg text-[var(--bg)]/70 leading-relaxed max-w-2xl">
+                  <p className="mt-6 text-base sm:text-lg text-[var(--paper)]/70 leading-relaxed max-w-2xl">
                     {ativo ? (
-                      <span className="text-[var(--bg)]">{concurso.nome}</span>
+                      <span className="text-[var(--paper)]">{concurso.nome}</span>
                     ) : (
                       <>
-                        Sigla: <span className="text-[var(--bg)]">{concurso.sigla}</span>
+                        Sigla: <span className="text-[var(--paper)]">{concurso.sigla}</span>
                       </>
                     )}
                     {concurso.banca && (
                       <>
-                        {" · "}Banca: <span className="text-[var(--bg)]">{concurso.banca}</span>
+                        {" · "}Banca: <span className="text-[var(--paper)]">{concurso.banca}</span>
                       </>
                     )}
                   </p>
@@ -135,7 +135,7 @@ export default async function ConcursoPage({
                   {ativo && (
                     <a
                       href="#investimento"
-                      className="group/cta mt-8 inline-flex items-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--bg)] shadow-lg shadow-black/25 transition-colors hover:bg-[var(--accent-soft)] sm:text-base"
+                      className="group/cta mt-8 inline-flex items-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--paper)] shadow-lg shadow-black/25 transition-colors hover:bg-[var(--accent-soft)] sm:text-base"
                     >
                       <span>Quero adquirir</span>
                       <ArrowDown
@@ -205,7 +205,7 @@ export default async function ConcursoPage({
                 </p>
                 <Link
                   href="/#materiais"
-                  className="mt-6 inline-flex items-center gap-2 rounded-md bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] transition-colors"
+                  className="mt-6 inline-flex items-center gap-2 rounded-md bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-[var(--bg)] hover:bg-[var(--accent)] hover:text-[var(--paper)] transition-colors"
                 >
                   Ver carreiras disponíveis
                 </Link>

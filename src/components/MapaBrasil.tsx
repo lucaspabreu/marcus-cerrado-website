@@ -10,10 +10,10 @@ const statusFill: Record<StatusConcurso, string> = {
   autorizado: "var(--accent)",
   "comissao-formada": "var(--accent-soft)",
   "credito-liberado": "var(--accent-soft)",
-  "banca-contratacao": "#6b6b6b",
-  previsto: "#6b6b6b",
-  anunciado: "#3a3a3a",
-  solicitado: "#1f1f1f",
+  "banca-contratacao": "#8C877D",
+  previsto: "#8C877D",
+  anunciado: "#B5B0A6",
+  solicitado: "#D6D2C9",
 };
 
 interface MapaBrasilProps {

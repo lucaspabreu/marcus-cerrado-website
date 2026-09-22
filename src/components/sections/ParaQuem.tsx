@@ -32,27 +32,27 @@ export function ParaQuem({ sigla }: { sigla: string }) {
                   className="mt-1 h-5 w-5 shrink-0 text-[var(--accent-soft)]"
                   strokeWidth={2.5}
                 />
-                <span className="text-base leading-snug text-[var(--bg)]/85 sm:text-lg">
+                <span className="text-base leading-snug text-[var(--band-fg)]/85 sm:text-lg">
                   {comSigla(item)}
                 </span>
               </li>
             ))}
           </ul>
 
-          <div aria-hidden="true" className="mt-10 h-px bg-[var(--bg)]/15" />
+          <div aria-hidden="true" className="mt-10 h-px bg-[var(--band-fg)]/15" />
 
           <div className="pt-8">
-            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--bg)]/55">
+            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--band-fg)]/55">
               E pra quem não é
             </span>
             <ul className="mt-5 space-y-3.5">
               {paraQuemNaoE.map((item) => (
                 <li key={item} className="flex items-start gap-3.5">
                   <X
-                    className="mt-0.5 h-4 w-4 shrink-0 text-[var(--bg)]/40"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-[var(--band-fg)]/40"
                     strokeWidth={2.5}
                   />
-                  <span className="text-sm leading-snug text-[var(--bg)]/60">
+                  <span className="text-sm leading-snug text-[var(--band-fg)]/60">
                     {comSigla(item)}
                   </span>
                 </li>
@@ -62,7 +62,7 @@ export function ParaQuem({ sigla }: { sigla: string }) {
 
           <a
             href="#investimento"
-            className="group mt-10 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-8 py-4 text-base font-medium tracking-tight text-[var(--bg)] transition-colors duration-200 hover:bg-[var(--accent-deep)] sm:w-auto"
+            className="group mt-10 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-8 py-4 text-base font-medium tracking-tight text-[var(--band-fg)] transition-colors duration-200 hover:bg-[var(--accent-deep)] sm:w-auto"
           >
             <span>É pra mim, quero ver o Projeto</span>
             <ArrowRight
@@ -76,12 +76,12 @@ export function ParaQuem({ sigla }: { sigla: string }) {
           {objecoes.map((objecao) => (
             <article
               key={objecao.id}
-              className="rounded-2xl bg-[var(--bg)]/[0.06] p-6 ring-1 ring-[var(--bg)]/10 sm:p-8"
+              className="rounded-2xl bg-[var(--band-fg)]/[0.06] p-6 ring-1 ring-[var(--band-fg)]/10 sm:p-8"
             >
-              <p className="font-display text-xl leading-snug tracking-tight text-[var(--bg)] sm:text-2xl">
+              <p className="font-display text-xl leading-snug tracking-tight text-[var(--band-fg)] sm:text-2xl">
                 “{comSigla(objecao.pergunta)}”
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-[var(--bg)]/65 sm:text-base">
+              <p className="mt-4 text-sm leading-relaxed text-[var(--band-fg)]/65 sm:text-base">
                 {objecao.resposta}
               </p>
               <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--accent-soft)]">

@@ -46,7 +46,7 @@ export function Acesso() {
                       </div>
                     )}
                     <div
-                      className="absolute inset-y-0 left-0 flex items-center rounded-2xl bg-[#2B1A11] px-5 shadow-lg shadow-black/15 sm:px-8"
+                      className="absolute inset-y-0 left-0 flex items-center rounded-2xl bg-[#3A2416] ring-1 ring-white/10 px-5 shadow-lg shadow-black/40 sm:px-8"
                       style={{ width: `${pct}%` }}
                     >
                       <span className="font-display text-2xl leading-none tracking-tight text-white sm:text-4xl">

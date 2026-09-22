@@ -56,16 +56,16 @@ export default function ComoAcessarPage() {
   return (
     <>
       <Header />
-      <main className="flex-1 bg-[var(--ink)] text-[var(--bg)]">
+      <main className="flex-1 bg-[var(--band)] text-[var(--band-fg)]">
         <section className="py-12 sm:py-16 md:py-20">
           <Container>
             <header className="max-w-2xl">
               <div className="mb-4">
-                <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--band-fg)]/55">
                   Seu acesso
                 </span>
               </div>
-              <h1 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--bg)]">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--band-fg)]">
                 Como acessar seu material.
               </h1>
             </header>
@@ -112,11 +112,11 @@ export default function ComoAcessarPage() {
             <div className="mt-14 sm:mt-20">
               <header className="mb-8 sm:mb-10 max-w-2xl">
                 <div className="mb-4">
-                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--band-fg)]/55">
                     Passo 2 · Depois de assistir
                   </span>
                 </div>
-                <h2 className="font-display text-2xl sm:text-3xl font-normal leading-[1.1] tracking-tight text-[var(--bg)]">
+                <h2 className="font-display text-2xl sm:text-3xl font-normal leading-[1.1] tracking-tight text-[var(--band-fg)]">
                   Seus dois acessos.
                 </h2>
               </header>
@@ -160,16 +160,16 @@ export default function ComoAcessarPage() {
             </div>
 
             {/* SUPORTE — pra quem travou em algum passo */}
-            <div className="mt-14 sm:mt-20 rounded-2xl border border-[var(--bg)]/15 p-6 sm:p-8 md:p-10">
+            <div className="mt-14 sm:mt-20 rounded-2xl border border-[var(--band-fg)]/15 p-6 sm:p-8 md:p-10">
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-10">
                 <div className="max-w-xl">
-                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/55">
+                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--band-fg)]/55">
                     Suporte
                   </span>
-                  <h2 className="mt-3 font-display text-2xl sm:text-3xl font-normal leading-[1.1] tracking-tight text-[var(--bg)]">
+                  <h2 className="mt-3 font-display text-2xl sm:text-3xl font-normal leading-[1.1] tracking-tight text-[var(--band-fg)]">
                     Travou em algum passo?
                   </h2>
-                  <p className="mt-3 text-base sm:text-lg leading-relaxed text-[var(--bg)]/65">
+                  <p className="mt-3 text-base sm:text-lg leading-relaxed text-[var(--band-fg)]/65">
                     Fala com a gente no WhatsApp.
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function ComoAcessarPage() {
                   href={whatsappHref(SUPORTE_MENSAGEM)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex shrink-0 items-center justify-center gap-2.5 rounded-lg bg-[var(--bg)] px-7 py-4 text-base font-medium text-[var(--ink)] transition-colors hover:bg-[var(--accent)] hover:text-white"
+                  className="group inline-flex shrink-0 items-center justify-center gap-2.5 rounded-lg bg-[var(--band-fg)] px-7 py-4 text-base font-medium text-[var(--band)] transition-colors hover:bg-[var(--accent)] hover:text-white"
                 >
                   <MessageCircle className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
                   <span>Falar com o suporte</span>

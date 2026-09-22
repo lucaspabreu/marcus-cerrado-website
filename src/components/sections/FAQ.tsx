@@ -36,7 +36,7 @@ export function FAQ() {
         Outra dúvida específica? Mande mensagem pelo Instagram{" "}
         <a
           href="https://instagram.com/marcusconcursos"
-          className="text-[var(--accent)] underline underline-offset-4 hover:text-[var(--accent-deep)]"
+          className="text-[var(--accent)] underline underline-offset-4 hover:text-[var(--accent-soft)]"
           target="_blank"
           rel="noopener noreferrer"
         >

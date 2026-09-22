@@ -13,10 +13,10 @@ const statusDot: Record<StatusConcurso, string> = {
   autorizado: "bg-[var(--accent)]",
   "comissao-formada": "bg-[var(--accent-soft)]",
   "credito-liberado": "bg-[var(--accent-soft)]",
-  "banca-contratacao": "bg-[#6b6b6b]",
-  previsto: "bg-[#6b6b6b]",
-  anunciado: "bg-[#9b9b9b]",
-  solicitado: "bg-[#9b9b9b]",
+  "banca-contratacao": "bg-[#8C877D]",
+  previsto: "bg-[#8C877D]",
+  anunciado: "bg-[#B5B0A6]",
+  solicitado: "bg-[#B5B0A6]",
 };
 
 // Estados presentes nos dados, na ordem em que aparecem, com a contagem de

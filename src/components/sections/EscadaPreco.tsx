@@ -32,7 +32,7 @@ export function EscadaPreco() {
               className={cn(
                 "rounded-lg px-2 py-4 text-center sm:px-4 sm:py-5",
                 vigente
-                  ? "bg-[#2B1A11] shadow-lg shadow-black/15"
+                  ? "bg-[#3A2416] ring-1 ring-white/10 shadow-lg shadow-black/40"
                   : "opacity-45"
               )}
             >

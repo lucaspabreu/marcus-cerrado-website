@@ -16,21 +16,21 @@ export function BannerDestaque() {
             <span className="flex items-center gap-2 shrink-0">
               <span
                 aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--bg)]/90 animate-pulse"
+                className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--paper)]/90 animate-pulse"
               />
-              <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--bg)]/80 whitespace-nowrap">
+              <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[var(--paper)]/80 whitespace-nowrap">
                 Em destaque
               </span>
             </span>
 
-            <span aria-hidden="true" className="hidden sm:inline-block w-px h-4 bg-[var(--bg)]/25" />
+            <span aria-hidden="true" className="hidden sm:inline-block w-px h-4 bg-[var(--paper)]/25" />
 
             {/* Título + detalhe */}
             <p className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 min-w-0">
-              <span className="font-display text-base sm:text-lg text-[var(--bg)] tracking-tight">
+              <span className="font-display text-base sm:text-lg text-[var(--paper)] tracking-tight">
                 Projeto PRF
               </span>
-              <span className="text-xs sm:text-sm text-[var(--bg)]/75">
+              <span className="text-xs sm:text-sm text-[var(--paper)]/75">
                 Combo + Plataforma Cerrado ·{" "}
                 {vendasPausadas ? (
                   <>vendas encerradas até {vendasRetorno}</>
@@ -45,7 +45,7 @@ export function BannerDestaque() {
             </p>
 
             {/* CTA */}
-            <span className="ml-auto inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[var(--bg)] whitespace-nowrap">
+            <span className="ml-auto inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[var(--paper)] whitespace-nowrap">
               Ver o Projeto
               <ArrowRight
                 className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"

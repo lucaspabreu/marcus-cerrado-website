@@ -29,7 +29,7 @@ export function CTAFinal() {
           </div>
 
           {/* Video container — embed do YouTube */}
-          <div className="lg:col-span-7 aspect-video w-full overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--ink)] relative">
+          <div className="lg:col-span-7 aspect-video w-full overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--coal)] relative">
             <iframe
               className="absolute inset-0 h-full w-full"
               src="https://www.youtube.com/embed/ssQPHA1qIBM"

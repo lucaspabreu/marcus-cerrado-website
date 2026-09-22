@@ -246,7 +246,7 @@ function CoverBanner({
           aria-hidden="true"
           className="absolute top-5 left-1/2 z-20 h-7 w-36 -translate-x-1/2 opacity-90 [filter:brightness(0)_invert(1)]"
           style={{
-            backgroundImage: "url(/cerrado-logo-marrom.webp)",
+            backgroundImage: "url(/cerrado-logo-branca.png)",
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -256,7 +256,7 @@ function CoverBanner({
 
       {/* Selo (Mais escolhido) */}
       {produto.selo && (
-        <span className="absolute top-3 right-3 z-20 inline-flex items-center rounded-full bg-[var(--bg)] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-deep)] shadow-lg shadow-black/30">
+        <span className="absolute top-3 right-3 z-20 inline-flex items-center rounded-full bg-[var(--paper)] px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-deep)] shadow-lg shadow-black/30">
           {produto.selo}
         </span>
       )}
@@ -350,7 +350,7 @@ function ProjetoHero({
                     key={item.id}
                     className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
                   >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-deep)]">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-soft)]">
                       {i + 1}
                     </span>
                     <span className="flex-1 text-sm font-medium leading-snug text-[var(--ink)]">
@@ -359,10 +359,10 @@ function ProjetoHero({
                   </li>
                 ))}
                 <li className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-deep)]">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-soft)]">
                     {inclusos.length + 1}
                   </span>
-                  <span className="flex-1 text-sm font-medium leading-snug text-[var(--accent-deep)]">
+                  <span className="flex-1 text-sm font-medium leading-snug text-[var(--accent-soft)]">
                     E muito mais ferramentas na Plataforma.
                   </span>
                 </li>
@@ -386,7 +386,7 @@ function ProjetoHero({
           <div className="mt-8 flex flex-col gap-5 border-t border-[var(--line)] pt-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               {!vendasPausadas && economia !== null && (
-                <span className="mb-2 inline-flex items-center rounded-full bg-[var(--accent)]/12 px-2.5 py-1 text-[11px] font-semibold text-[var(--accent-deep)]">
+                <span className="mb-2 inline-flex items-center rounded-full bg-[var(--accent)]/12 px-2.5 py-1 text-[11px] font-semibold text-[var(--accent-soft)]">
                   Economize R$ {economia}
                 </span>
               )}
@@ -418,7 +418,7 @@ function ProjetoHero({
             ) : (
               <Link
                 href={checkoutDaFaixa(faixaAtual, produto.id, produto.ctaHref)}
-                className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--bg)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)] sm:text-base"
+                className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--paper)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)] sm:text-base"
                 aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
               >
                 <span>{produto.ctaLabel}</span>
@@ -508,7 +508,7 @@ function ProdutoCard({
                 "group/btn inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors",
                 fechado
                   ? "border border-[var(--line-strong)] bg-[var(--bg)] text-[var(--ink)] hover:border-[var(--ink)]"
-                  : "bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)]"
+                  : "bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] hover:text-[var(--paper)]"
               )}
               aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
             >

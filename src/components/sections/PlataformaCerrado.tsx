@@ -12,7 +12,7 @@ export function PlataformaCerrado({ titulo }: { titulo: string }) {
         </span>
         <h2
           id="plataforma-cerrado"
-          className="mt-3 font-display text-3xl font-normal leading-[1.1] tracking-tight text-[#4A2C18] sm:text-4xl md:text-[2.75rem]"
+          className="mt-3 font-display text-3xl font-normal leading-[1.1] tracking-tight text-[var(--ink)] sm:text-4xl md:text-[2.75rem]"
         >
           {titulo}.
         </h2>
@@ -33,7 +33,7 @@ export function PlataformaCerrado({ titulo }: { titulo: string }) {
                 className="object-cover object-top"
               />
             </div>
-            <h4 className="mt-4 font-display text-lg tracking-tight text-[#4A2C18]">
+            <h4 className="mt-4 font-display text-lg tracking-tight text-[var(--ink)]">
               {recurso.titulo}
             </h4>
             <p className="mt-1.5 text-sm leading-snug text-[var(--neutral)]">
