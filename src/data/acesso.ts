@@ -21,7 +21,7 @@ export const linhasAcesso: LinhaAcesso[] = [
     id: "materiais-plataforma",
     titulo: "Materiais e Plataforma",
     descricao: "Anki, Guia de Estudos, Resumo, Cronograma e Flashcards",
-    meses: 6,
+    meses: 12,
     depois: "Em breve",
   },
 ];

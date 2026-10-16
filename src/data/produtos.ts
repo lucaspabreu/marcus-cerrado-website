@@ -7,7 +7,7 @@ const produtosCarreirasPoliciais: Produto[] = [
     subtitulo: "Roteiro base pra qualquer carreira policial",
     descricao:
       "Guia introdutório pra quem ainda não definiu carreira ou quer construir base sólida antes de focar num concurso específico. Foco nas matérias comuns à maioria das carreiras policiais.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Matérias-base comuns às carreiras policiais",
@@ -33,7 +33,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "A rotina de estudo, semana a semana",
     descricao:
       "Cronograma pronto pra PRF: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Semana a semana, do início até a prova",
@@ -52,7 +52,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "O que estudar e em que ordem",
     descricao:
       "Roteiro completo para quem vai encarar a PRF: o que priorizar, como sequenciar as matérias e o passo a passo do estudo eficiente até a prova.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Sequência de estudo por fase: base, aprofundamento e reta final",
@@ -71,7 +71,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "Ativa memória e calibra timing",
     descricao:
       "Banco de flashcards e questões organizadas por matéria, com repetição espaçada e foco no padrão da banca. Pra fixar conteúdo e treinar prova de verdade.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Flashcards com repetição espaçada",
@@ -90,7 +90,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "Matéria condensada pra revisão e véspera",
     descricao:
       "Resumo direto e completo de todas as matérias da PRF, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Cobertura integral do edital PRF",
@@ -109,7 +109,7 @@ const produtosPRF: Produto[] = [
     subtitulo: "Todos os materiais com condição especial",
     descricao:
       "Guia de Estudos, Cronograma, Resumo e Flashcards integrados na Plataforma Cerrado. Ela mostra o que estudar, quanto ainda falta e refaz o plano nos dias em que você rende menos — um passo a passo até a prova.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "acesso integral aos 4 produtos",
     bullets: [
       "Guia + Cronograma + Resumo + Flashcards integrados",
@@ -133,7 +133,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "A rotina de estudo, semana a semana",
     descricao:
       "Cronograma pronto pra PM-GO: quais matérias estudar em cada semana, quanto tempo dedicar a cada uma e quando revisar. Pra parar de decidir todo dia o que estudar e só executar.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Semana a semana, do início até a prova",
@@ -152,7 +152,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "Matéria condensada pra revisão e véspera",
     descricao:
       "Resumo direto e completo de todas as matérias da PM-GO, no formato que poupa tempo e potencializa revisão. Pensado pra quem precisa fechar lacunas sem perder o ritmo.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Cobertura integral do edital PM-GO",
@@ -171,7 +171,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "O que estudar e em que ordem",
     descricao:
       "Roteiro completo para quem vai encarar a PM-GO: o que priorizar, como sequenciar as matérias e o passo a passo do estudo eficiente até a prova.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Sequência de estudo por fase: base, aprofundamento e reta final",
@@ -191,7 +191,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "Ativa memória e calibra timing",
     descricao:
       "Banco de flashcards e questões organizadas por matéria, com repetição espaçada e foco no padrão da banca. Pra fixar conteúdo e treinar prova de verdade.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "a partir da compra",
     bullets: [
       "Flashcards com repetição espaçada",
@@ -211,7 +211,7 @@ const produtosPMGO: Produto[] = [
     subtitulo: "Todos os materiais com condição especial",
     descricao:
       "Resumo, Cronograma, Guia de Estudos e Flashcards integrados na Plataforma Cerrado. Ela mostra o que estudar, quanto ainda falta e refaz o plano nos dias em que você rende menos — um passo a passo até a prova.",
-    acesso: "6 meses",
+    acesso: "12 meses",
     acessoDetalhe: "acesso integral aos 4 produtos",
     bullets: [
       "Resumo + Cronograma liberados na hora da compra",
