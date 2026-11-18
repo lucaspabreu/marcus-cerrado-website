@@ -142,11 +142,11 @@ const produtosPRF: Produto[] = [
       "Cronograma Interativo por 7 dias, de teste",
     ],
     ctaLabel: "Quero os Materiais",
-    // PROVISÓRIO: preço, parcela e link ainda não são os da oferta real.
-    // Pegar no painel da Hotmart (produto MATERIAIS PRF, id 8851655)
-    // e trocar aqui. Os 7 dias de teste batem com o mapa do app
-    // (cerrado-app, migration 0077) — se mudarem lá, mude aqui.
-    ctaHref: "#",
+    // Checkout MATERIAIS PRF (Hotmart 8851655), oferta padrão do produto.
+    // Preço e parcela conferidos no checkout em 18/11/2026 (R$ 297 ou
+    // 12x 30,36) — se trocar a oferta no painel, troque os três aqui. Os 7
+    // dias de teste batem com o mapa do app (cerrado-app, migration 0077).
+    ctaHref: "https://pay.hotmart.com/P108277009B?sck=sitecerrado",
     pacote: true,
     diasTesteCronograma: 7,
     preco: 297,
@@ -266,11 +266,11 @@ const produtosPMGO: Produto[] = [
       "Cronograma Interativo por 7 dias, de teste",
     ],
     ctaLabel: "Quero os Materiais",
-    // PROVISÓRIO: preço, parcela e link ainda não são os da oferta real.
-    // Pegar no painel da Hotmart (produto MATERIAIS PMGO, id 8851674)
-    // e trocar aqui. Os 7 dias de teste batem com o mapa do app
-    // (cerrado-app, migration 0077) — se mudarem lá, mude aqui.
-    ctaHref: "#",
+    // Checkout MATERIAIS PMGO (Hotmart 8851674), oferta padrão do produto.
+    // Preço e parcela conferidos no checkout em 18/11/2026 (R$ 297 ou
+    // 12x 30,36) — se trocar a oferta no painel, troque os três aqui. Os 7
+    // dias de teste batem com o mapa do app (cerrado-app, migration 0077).
+    ctaHref: "https://pay.hotmart.com/T108277035K?sck=sitecerrado",
     pacote: true,
     diasTesteCronograma: 7,
     preco: 297,

@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  CalendarClock,
   CalendarDays,
   Check,
   Clock,
@@ -608,20 +607,6 @@ function MateriaisCard({
               Na Plataforma Cerrado
             </span>
           </div>
-
-          {/* Mesma frase do app no fim do teste (cerrado-app, teste-do-cronograma.tsx) */}
-          {dias !== undefined && (
-            <p className="mt-4 flex items-start gap-2 text-sm leading-snug text-[var(--neutral)]">
-              <CalendarClock
-                className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-soft)]"
-                strokeWidth={1.75}
-              />
-              <span>
-                Depois do teste, o Cronograma continua no Projeto, com o seu plano do
-                jeito que você deixou.
-              </span>
-            </p>
-          )}
 
           <div className="mt-6 flex flex-col gap-4 border-t border-[var(--line)] pt-5 sm:flex-row sm:items-end sm:justify-between">
             {typeof produto.preco === "number" && (

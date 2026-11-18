@@ -89,7 +89,8 @@ export function ConcursoCard({ concurso, featured = false }: ConcursoCardProps) 
                 featured ? "text-2xl sm:text-3xl" : "text-lg"
               )}
             >
-              Projeto {concurso.sigla}
+              {/* Só a carreira: a página tem o Projeto e os Materiais */}
+              {concurso.sigla}
             </h3>
             <p
               className={cn(
