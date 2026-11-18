@@ -46,6 +46,9 @@ export default async function ExemploPage({
 
   const projeto = concurso.produtos.find((p) => p.destaque)!;
   const inclusos = concurso.produtos.filter((p) => !p.destaque);
+  // Materiais ainda não lançados na carreira, pelo prefixo do id
+  // ("guia-pmgo" → "guia"). As seções não prometem o que está aqui.
+  const emBreve = inclusos.filter((p) => p.badge).map((p) => p.id.split("-")[0]);
   const fundoHero = concurso.imagemHero ?? concurso.imagem;
 
   return (
@@ -53,7 +56,7 @@ export default async function ExemploPage({
       <FaixaOferta produto={projeto.titulo} />
       <Header />
       <main className="flex-1">
-        {/* HERO: igual ao atual, sem a linha de banca */}
+        {/* HERO: igual ao atual, sem a banca na linha de baixo */}
         <section className="relative overflow-hidden">
           <div
             aria-hidden="true"
@@ -85,6 +88,7 @@ export default async function ExemploPage({
                       passar no concurso da {concurso.sigla}
                     </span>
                   </h1>
+                  <p className="mt-5 text-base text-[var(--paper)] sm:text-lg">{concurso.nome}</p>
                   <a
                     href="#investimento"
                     className="group/cta mt-8 inline-flex items-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--paper)] shadow-lg shadow-black/25 transition-colors hover:bg-[var(--accent-soft)] sm:text-base"
@@ -106,15 +110,15 @@ export default async function ExemploPage({
           </Container>
         </section>
 
-        <AntesDepois sigla={concurso.sigla} />
+        <AntesDepois sigla={concurso.sigla} emBreve={emBreve} />
         <PerfisGrid sigla={concurso.sigla} />
-        <VitrinePlataforma />
+        <VitrinePlataforma emBreve={emBreve} />
         <OfertaVisual
           produto={projeto}
           inclusos={inclusos}
           concurso={{ sigla: concurso.sigla, nome: concurso.nome, brasao: concurso.brasao }}
         />
-        <MarcusVisual />
+        <MarcusVisual sigla={concurso.sigla} />
 
         {/* RESULTADOS: só os prints, sem texto de abertura */}
         <section className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">

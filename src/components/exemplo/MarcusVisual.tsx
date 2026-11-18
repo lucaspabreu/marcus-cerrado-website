@@ -3,8 +3,15 @@ import { aprovacoes } from "@/data/aprovacoes";
 import { Container } from "../ui/Container";
 
 // Substitui o "Quem é o Marcus": foto grande, as cinco aprovações como
-// selos e dois números. Sem lista de conquistas e sem citação.
-export function MarcusVisual() {
+// selos e dois números. Sem lista de conquistas e sem citação. A aprovação
+// da carreira da página ("PM-GO" → PMGO) vem primeiro e em destaque.
+export function MarcusVisual({ sigla }: { sigla: string }) {
+  const daPagina = sigla.replaceAll("-", "").toUpperCase();
+  const lista = [
+    ...aprovacoes.filter((a) => a.sigla === daPagina),
+    ...aprovacoes.filter((a) => a.sigla !== daPagina),
+  ];
+
   return (
     <section className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
       <Container size="wide">
@@ -49,12 +56,12 @@ export function MarcusVisual() {
               {String(aprovacoes.length).padStart(2, "0")} aprovações em segurança pública
             </p>
             <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {aprovacoes.map((a, i) => (
+              {lista.map((a) => (
                 <li
                   key={a.sigla}
                   className={
                     "rounded-xl p-4 ring-1 sm:p-5 " +
-                    (i === 0
+                    (a.sigla === daPagina
                       ? "bg-[var(--accent)] text-[var(--paper)] ring-[var(--accent)]"
                       : "bg-[var(--bg-elevated)] ring-[var(--line)]")
                   }
@@ -63,7 +70,7 @@ export function MarcusVisual() {
                   <p
                     className={
                       "mt-1 text-xs leading-snug " +
-                      (i === 0 ? "text-[var(--paper)]/80" : "text-[var(--neutral)]")
+                      (a.sigla === daPagina ? "text-[var(--paper)]/80" : "text-[var(--neutral)]")
                     }
                   >
                     {a.nome}

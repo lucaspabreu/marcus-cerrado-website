@@ -5,6 +5,7 @@ import {
   CalendarDays,
   Clock,
   FileText,
+  Hourglass,
   Layers,
   LayoutDashboard,
   Map as MapIcon,
@@ -38,9 +39,18 @@ interface OfertaVisualProps {
 // Substitui card do Projeto + "Acesso" + faixa de ex-aluno: o que vem vira
 // blocos com ícone, a duração vira selo e o ex-aluno vira uma linha.
 export function OfertaVisual({ produto, inclusos, concurso }: OfertaVisualProps) {
+  // Liberados primeiro; os com `badge` ("Em breve") vão pro fim, apagados
   const itens = inclusos
-    .map((p) => ({ chave: p.id.split("-")[0], titulo: p.titulo }))
-    .sort((a, b) => ordem.indexOf(a.chave) - ordem.indexOf(b.chave));
+    .map((p) => ({ chave: p.id.split("-")[0], titulo: p.titulo, badge: p.badge }))
+    .sort(
+      (a, b) =>
+        Number(!!a.badge) - Number(!!b.badge) || ordem.indexOf(a.chave) - ordem.indexOf(b.chave)
+    );
+  const pendentes = itens.filter((i) => i.badge).map((i) => materiais[i.chave]?.rotulo ?? i.titulo);
+  const nomesPendentes =
+    pendentes.length > 1
+      ? `${pendentes.slice(0, -1).join(", ")} e ${pendentes.at(-1)}`
+      : pendentes[0];
 
   const exAlunoHref = whatsappHref(
     `Olá! Já sou aluno(a) da Cerrado e quero saber da condição especial de ex-aluno para a ${concurso.sigla}.`
@@ -61,16 +71,34 @@ export function OfertaVisual({ produto, inclusos, concurso }: OfertaVisualProps)
               </span>
 
               <ul className="mt-4 grid grid-cols-2 gap-3">
-                {itens.map(({ chave, titulo }) => {
+                {itens.map(({ chave, titulo, badge }) => {
                   const m = materiais[chave];
                   const Icone = m?.icone ?? FileText;
                   return (
                     <li
                       key={chave}
-                      className="flex flex-col gap-3 rounded-xl bg-[var(--bg)] p-4 ring-1 ring-[var(--line)]"
+                      className={cn(
+                        "relative flex flex-col gap-3 rounded-xl p-4",
+                        badge
+                          ? "border border-dashed border-[var(--line-strong)]"
+                          : "bg-[var(--bg)] ring-1 ring-[var(--line)]"
+                      )}
                     >
-                      <Icone className="h-6 w-6 text-[var(--accent-soft)]" strokeWidth={1.75} />
-                      <span className="font-display text-base leading-tight tracking-tight text-[var(--ink)] sm:text-lg">
+                      {badge && (
+                        <span className="absolute right-3 top-3 rounded-full bg-[var(--line)] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[var(--neutral)]">
+                          {badge}
+                        </span>
+                      )}
+                      <Icone
+                        className={cn("h-6 w-6", badge ? "text-[var(--neutral-soft)]" : "text-[var(--accent-soft)]")}
+                        strokeWidth={1.75}
+                      />
+                      <span
+                        className={cn(
+                          "font-display text-base leading-tight tracking-tight sm:text-lg",
+                          badge ? "text-[var(--neutral)]" : "text-[var(--ink)]"
+                        )}
+                      >
                         {m?.rotulo ?? titulo}
                       </span>
                     </li>
@@ -96,6 +124,16 @@ export function OfertaVisual({ produto, inclusos, concurso }: OfertaVisualProps)
                   Atualizações inclusas
                 </span>
               </div>
+
+              {nomesPendentes && (
+                <p className="mt-4 flex items-start gap-2 text-sm leading-snug text-[var(--neutral)]">
+                  <Hourglass className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-soft)]" strokeWidth={1.75} />
+                  <span>
+                    {nomesPendentes} {pendentes.length > 1 ? "entram" : "entra"} no seu acesso
+                    assim que {pendentes.length > 1 ? "forem lançados" : "for lançado"}.
+                  </span>
+                </p>
+              )}
 
               <div className="mt-8 flex flex-col gap-5 border-t border-[var(--line)] pt-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>

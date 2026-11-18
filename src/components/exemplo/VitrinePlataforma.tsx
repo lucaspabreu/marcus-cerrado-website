@@ -17,8 +17,9 @@ const icones: Record<string, LucideIcon> = {
 const INTERVALO_MS = 5000;
 
 // Substitui a vitrine de quatro miniaturas: uma tela grande do app com abas.
-// Gira sozinha até a pessoa clicar numa aba.
-export function VitrinePlataforma() {
+// Gira sozinha até a pessoa clicar numa aba. `emBreve` marca as ferramentas
+// ainda não liberadas na carreira (prefixo do id: "guia", "flashcards").
+export function VitrinePlataforma({ emBreve = [] }: { emBreve?: string[] }) {
   const [ativa, setAtiva] = useState(0);
   const [automatico, setAutomatico] = useState(true);
 
@@ -57,6 +58,7 @@ export function VitrinePlataforma() {
             {recursosPlataforma.map((recurso, i) => {
               const Icone = icones[recurso.id] ?? FileText;
               const sel = i === ativa;
+              const pendente = emBreve.some((k) => recurso.id.startsWith(k));
               return (
                 <button
                   key={recurso.id}
@@ -88,6 +90,11 @@ export function VitrinePlataforma() {
                       )}
                     >
                       {recurso.titulo}
+                      {pendente && (
+                        <span className="ml-2 inline-block rounded-full bg-[var(--line)] px-2 py-0.5 align-middle font-sans text-[10px] font-medium uppercase tracking-wider text-[var(--neutral)]">
+                          Em breve
+                        </span>
+                      )}
                     </span>
                     <span
                       className={cn(

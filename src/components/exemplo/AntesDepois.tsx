@@ -2,14 +2,30 @@ import { ArrowRight, Check, X } from "lucide-react";
 import { Container } from "../ui/Container";
 
 // Substitui o "Diagnóstico": em vez de parágrafos, três pares lado a lado,
-// do erro comum ao que o Projeto resolve.
+// do erro comum ao que o Projeto resolve. Cada solução depende de um material;
+// se ele ainda está "Em breve" na carreira (ex.: Guia na PM-GO), entra o
+// `alternativo`, que só cita o que já está liberado.
 const pares = [
-  { sem: "Abre o edital sem saber o que cai", com: "Guia com o peso de cada matéria" },
-  { sem: "Aula atrás de aula, sem prioridade", com: "Cronograma diz o que estudar hoje" },
-  { sem: "Faz questão sem saber se evolui", com: "Revisão espaçada que fixa" },
+  {
+    sem: "Abre o edital sem saber o que cai",
+    com: "Guia com o peso de cada matéria",
+    material: "guia",
+    alternativo: "Resumo com o edital inteiro",
+  },
+  {
+    sem: "Aula atrás de aula, sem prioridade",
+    com: "Cronograma diz o que estudar hoje",
+    material: "cronograma",
+  },
+  {
+    sem: "Faz questão sem saber se evolui",
+    com: "Revisão espaçada que fixa",
+    material: "flashcards",
+    alternativo: "Plataforma mostra quanto falta",
+  },
 ];
 
-export function AntesDepois({ sigla }: { sigla: string }) {
+export function AntesDepois({ sigla, emBreve = [] }: { sigla: string; emBreve?: string[] }) {
   return (
     <section className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
       <Container size="wide">
@@ -50,7 +66,7 @@ export function AntesDepois({ sigla }: { sigla: string }) {
                     <Check className="h-4 w-4 text-[var(--paper)]" strokeWidth={3} />
                   </span>
                   <span className="font-display text-lg tracking-tight text-[var(--ink)] sm:text-xl">
-                    {par.com}
+                    {emBreve.includes(par.material) && par.alternativo ? par.alternativo : par.com}
                   </span>
                 </div>
               </li>
