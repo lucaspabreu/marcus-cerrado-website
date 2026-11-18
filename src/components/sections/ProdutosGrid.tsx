@@ -160,7 +160,7 @@ export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
 
 // Composição de "capa" estilo arte do produto: fundo escuro gritty,
 // marca-d'água repetida, brasão do concurso, kicker, título dourado e tag azul.
-function CoverBanner({
+export function CoverBanner({
   produto,
   variant,
   concurso,
