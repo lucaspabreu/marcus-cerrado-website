@@ -179,10 +179,9 @@ const produtosPMGO: Produto[] = [
       "Filtros de questões no Qconcursos e TecConcursos",
       "Mapa de revisão até a véspera",
     ],
-    ctaLabel: "Em breve",
+    ctaLabel: "Quero o guia",
     ctaHref: "#",
     somenteNoProjeto: true,
-    badge: "Em breve",
     preco: 97,
   },
   {
@@ -199,10 +198,9 @@ const produtosPMGO: Produto[] = [
       "Padrão e estilo da banca da PM-GO",
       "Histórico de desempenho por tema",
     ],
-    ctaLabel: "Em breve",
+    ctaLabel: "Quero os flashcards",
     ctaHref: "#",
     somenteNoProjeto: true,
-    badge: "Em breve",
     preco: 117,
   },
   {
@@ -214,8 +212,7 @@ const produtosPMGO: Produto[] = [
     acesso: "12 meses",
     acessoDetalhe: "acesso integral aos 4 produtos",
     bullets: [
-      "Resumo + Cronograma liberados na hora da compra",
-      "Guia e Flashcards liberados assim que forem lançados",
+      "Guia + Cronograma + Resumo + Flashcards integrados",
       "Atualizações inclusas durante o acesso",
     ],
     ctaLabel: "Quero o Projeto",
