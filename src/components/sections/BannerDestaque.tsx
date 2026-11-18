@@ -31,7 +31,7 @@ export function BannerDestaque() {
                 Projeto PRF
               </span>
               <span className="text-xs sm:text-sm text-[var(--paper)]/75">
-                Combo + Plataforma Cerrado ·{" "}
+                Materiais + Cronograma Interativo ·{" "}
                 {vendasPausadas ? (
                   <>vendas encerradas até {vendasRetorno}</>
                 ) : faixaAtual.precoDe !== undefined ? (

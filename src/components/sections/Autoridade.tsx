@@ -1,90 +1,92 @@
 import Image from "next/image";
-import { Check } from "lucide-react";
-import { Section } from "../ui/Section";
+import { aprovacoes } from "@/data/aprovacoes";
+import { Container } from "../ui/Container";
 
-const conquistas = [
-  "5 aprovações em carreiras policiais: PRF, PCGO, PMGO, PMDF e CBMGO",
-  "Aprovado na PRF aos 19 anos, antes de terminar a faculdade",
-  "Hoje é Servidor Público Federal e professor na Cerrado Concursos",
-  "Ensina o que aplicou na prática — não teoria de curso genérico",
-];
+// "Quem é o Marcus" da página do concurso: foto grande, as aprovações como
+// selos (data/aprovacoes.ts) e dois números. A aprovação da carreira da
+// página ("PM-GO" → PMGO) vem primeiro e em destaque.
+export function Autoridade({ sigla }: { sigla: string }) {
+  const daPagina = sigla.replaceAll("-", "").toUpperCase();
+  const lista = [
+    ...aprovacoes.filter((a) => a.sigla === daPagina),
+    ...aprovacoes.filter((a) => a.sigla !== daPagina),
+  ];
 
-interface AutoridadeProps {
-  sigla?: string;
-}
-
-export function Autoridade({ sigla }: AutoridadeProps) {
   return (
-    <Section id="quem-e-marcus" containerSize="wide">
-      <div className="grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
-        <div className="lg:col-span-7">
-          <span className="eyebrow">Quem é o Marcus</span>
-
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--ink)]">
-            Passou aos 19. <span className="text-[var(--accent)]">Hoje ensina como.</span>
-          </h2>
-
-          <p className="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
-            {sigla
-              ? `O criador do material que você está prestes a levar pra ${sigla}.`
-              : "O criador do material que você está prestes a levar pra prova."}
-          </p>
-
-          <ul className="mt-8 grid gap-x-6 gap-y-5 sm:grid-cols-2">
-            {conquistas.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2.5 text-sm sm:text-[15px] leading-snug text-[var(--ink-soft)]"
-              >
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]"
-                  strokeWidth={2.5}
-                />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-8 max-w-xl border-l-2 border-[var(--accent)] pl-5">
-            <p className="font-display text-lg sm:text-xl leading-[1.35] text-[var(--ink)]">
-              &ldquo;A diferença entre passar e quase passar quase nunca é o conteúdo. É a leitura do que a banca quer.&rdquo;
-            </p>
-            <p className="mt-4 eyebrow">— Marcus Nery</p>
-          </div>
-        </div>
-
-        <div className="lg:col-span-4 lg:col-start-9">
-          <div className="overflow-hidden rounded-xl ring-1 ring-[var(--line-strong)]">
-            <div className="relative aspect-[4/5]">
+    <section id="quem-e-marcus" className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
+      <Container size="wide">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-[var(--line-strong)]">
               <Image
                 src="/marcus3.webp"
                 alt="Marcus Nery, criador do Método CERRADO, em frente a parede de troncos de madeira"
                 fill
-                sizes="(max-width: 1024px) 100vw, 34vw"
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
-            </div>
-            <div className="grid grid-cols-2 divide-x divide-[var(--band-fg)]/10 bg-[var(--band)] px-5 py-4">
-              <div>
-                <p className="font-display text-2xl text-[var(--band-fg)] tabular-nums">05</p>
-                <p className="mt-0.5 text-[10px] uppercase tracking-wider leading-snug text-[var(--band-fg)]/60">
-                  Aprovações
-                  <br />
-                  em segurança pública
-                </p>
-              </div>
-              <div className="pl-5">
-                <p className="font-display text-2xl text-[var(--band-fg)] tabular-nums">19</p>
-                <p className="mt-0.5 text-[10px] uppercase tracking-wider leading-snug text-[var(--band-fg)]/60">
-                  Anos
-                  <br />
-                  aprovado na PRF
-                </p>
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/85 to-transparent"
+              />
+              <div className="absolute inset-x-0 bottom-0 grid grid-cols-2 gap-4 p-6 text-[var(--paper)]">
+                <div>
+                  <p className="font-display text-5xl leading-none tabular-nums">19</p>
+                  <p className="mt-2 text-xs uppercase tracking-wider text-[var(--paper)]/70">
+                    anos, aprovado na PRF
+                  </p>
+                </div>
+                <div>
+                  <p className="font-display text-5xl leading-none tabular-nums">100K</p>
+                  <p className="mt-2 text-xs uppercase tracking-wider text-[var(--paper)]/70">
+                    na comunidade
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+
+          <div className="lg:col-span-7">
+            <span className="eyebrow">Quem é o Marcus</span>
+            <h2 className="mt-4 font-display text-3xl leading-[1.1] tracking-tight text-[var(--ink)] sm:text-4xl md:text-5xl">
+              Passou aos 19. <span className="text-[var(--accent)]">Hoje ensina como.</span>
+            </h2>
+
+            <p className="mt-10 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--neutral)]">
+              {String(aprovacoes.length).padStart(2, "0")} aprovações em segurança pública
+            </p>
+            <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {lista.map((a) => (
+                <li
+                  key={a.sigla}
+                  className={
+                    "rounded-xl p-4 ring-1 sm:p-5 " +
+                    (a.sigla === daPagina
+                      ? "bg-[var(--accent)] text-[var(--paper)] ring-[var(--accent)]"
+                      : "bg-[var(--bg-elevated)] ring-[var(--line)]")
+                  }
+                >
+                  <p className="font-display text-2xl tracking-tight sm:text-3xl">{a.sigla}</p>
+                  <p
+                    className={
+                      "mt-1 text-xs leading-snug " +
+                      (a.sigla === daPagina ? "text-[var(--paper)]/80" : "text-[var(--neutral)]")
+                    }
+                  >
+                    {a.nome}
+                  </p>
+                </li>
+              ))}
+              <li className="rounded-xl border border-dashed border-[var(--line-strong)] p-4 sm:p-5">
+                <p className="font-display text-2xl tracking-tight text-[var(--accent-soft)] sm:text-3xl">Hoje</p>
+                <p className="mt-1 text-xs leading-snug text-[var(--neutral)]">
+                  Servidor Público Federal e professor
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

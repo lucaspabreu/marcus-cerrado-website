@@ -209,7 +209,7 @@ body {
   }
 }
 
-/* Exemplo visual (/exemplo/[id]): barra de progresso das abas da vitrine */
+/* PlataformaCerrado: barra de progresso das abas da vitrine */
 @keyframes vitrine-progresso {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
