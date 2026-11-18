@@ -68,7 +68,9 @@ export function VitrinePlataforma({ emBreve = [] }: { emBreve?: string[] }) {
                   aria-controls="vitrine-tela"
                   onClick={() => escolher(i)}
                   className={cn(
-                    "group relative flex shrink-0 items-center gap-3 overflow-hidden rounded-xl px-4 py-3 text-left transition-colors lg:items-start lg:gap-4 lg:px-5 lg:py-5",
+                    // ring-inset: o contorno fica dentro do botão, senão o
+                    // overflow-x da fileira de abas (celular) corta a borda
+                    "group relative flex shrink-0 items-center gap-3 overflow-hidden rounded-xl px-4 py-3 text-left ring-inset transition-colors lg:items-start lg:gap-4 lg:px-5 lg:py-5",
                     sel
                       ? "bg-[var(--bg-elevated)] ring-1 ring-[var(--accent)]/50"
                       : "ring-1 ring-[var(--line)] hover:bg-[var(--bg-elevated)]"
