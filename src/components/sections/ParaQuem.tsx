@@ -1,96 +1,90 @@
-import { ArrowRight, Check, X } from "lucide-react";
-import { objecoes, paraQuemE, paraQuemNaoE } from "@/data/paraQuem";
-import { Section } from "../ui/Section";
+import {
+  ArrowRight,
+  Briefcase,
+  Crosshair,
+  Sprout,
+  Target,
+  TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
+import { paraQuemE, paraQuemNaoE, type Perfil } from "@/data/paraQuem";
+import { Container } from "../ui/Container";
 
-// Seção "Pra quem é", entre o diagnóstico e os produtos: qualifica o visitante
-// antes do preço. Perfis à esquerda (é / não é), objeções respondidas pelo
-// Marcus à direita. O conteúdo fica em data/paraQuem.ts.
+// Seção "Pra quem é", entre o diagnóstico e a plataforma: qualifica o
+// visitante antes do preço. Perfis viram blocos com ícone; os "não é", etiquetas
+// riscadas. O conteúdo fica em data/paraQuem.ts.
+const icones: Record<Perfil["id"], LucideIcon> = {
+  "do-zero": Sprout,
+  "sem-evolucao": TrendingUp,
+  rotina: Briefcase,
+  "na-trave": Target,
+  foco: Crosshair,
+};
+
 export function ParaQuem({ sigla }: { sigla: string }) {
-  const comSigla = (texto: string) => texto.replaceAll("{sigla}", sigla);
-
   return (
-    <Section
+    <section
       id="para-quem"
-      tone="dark"
-      containerSize="wide"
-      eyebrow="Antes de decidir"
-      title={
-        <>
-          Pra quem é o Projeto{" "}
-          <span className="whitespace-nowrap text-[var(--accent-soft)]">
-            {sigla}?
-          </span>
-        </>
-      }
+      className="bg-[var(--band)] py-16 text-[var(--band-fg)] sm:py-20 md:py-24"
     >
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-        <div className="lg:col-span-5">
-          <ul className="space-y-5">
-            {paraQuemE.map((item) => (
-              <li key={item} className="flex items-start gap-3.5">
-                <Check
-                  className="mt-1 h-5 w-5 shrink-0 text-[var(--accent-soft)]"
-                  strokeWidth={2.5}
-                />
-                <span className="text-base leading-snug text-[var(--band-fg)]/85 sm:text-lg">
-                  {comSigla(item)}
+      <Container size="wide">
+        <h2 className="font-display text-3xl leading-[1.1] tracking-tight sm:text-4xl md:text-5xl">
+          Pra quem é o Projeto{" "}
+          <span className="whitespace-nowrap text-[var(--accent-soft)]">{sigla}?</span>
+        </h2>
+
+        <ul className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
+          {paraQuemE.map((perfil, i) => {
+            const Icone = icones[perfil.id];
+            return (
+              <li
+                key={perfil.id}
+                className={
+                  "flex flex-col justify-between gap-8 rounded-2xl bg-[var(--band-fg)]/[0.05] p-5 ring-1 ring-[var(--band-fg)]/10 sm:p-6 " +
+                  // Número ímpar de blocos: o último ocupa a linha toda no celular
+                  (i === paraQuemE.length - 1 && paraQuemE.length % 2 === 1
+                    ? "col-span-2 md:col-span-1"
+                    : "")
+                }
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent)]/15">
+                  <Icone className="h-6 w-6 text-[var(--accent-soft)]" strokeWidth={1.75} />
+                </span>
+                <span className="font-display text-lg leading-snug tracking-tight sm:text-xl">
+                  {perfil.rotulo.replaceAll("{sigla}", sigla)}
                 </span>
               </li>
-            ))}
-          </ul>
+            );
+          })}
+        </ul>
 
-          <div aria-hidden="true" className="mt-10 h-px bg-[var(--band-fg)]/15" />
-
-          <div className="pt-8">
-            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--band-fg)]/55">
-              E pra quem não é
+        <div className="mt-10 flex flex-col gap-8 sm:mt-12 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="mr-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--band-fg)]/50">
+              Não é pra quem quer
             </span>
-            <ul className="mt-5 space-y-3.5">
-              {paraQuemNaoE.map((item) => (
-                <li key={item} className="flex items-start gap-3.5">
-                  <X
-                    className="mt-0.5 h-4 w-4 shrink-0 text-[var(--band-fg)]/40"
-                    strokeWidth={2.5}
-                  />
-                  <span className="text-sm leading-snug text-[var(--band-fg)]/60">
-                    {comSigla(item)}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            {paraQuemNaoE.map((item) => (
+              <span
+                key={item}
+                className="rounded-full px-3.5 py-1.5 text-sm text-[var(--band-fg)]/50 line-through ring-1 ring-[var(--band-fg)]/15"
+              >
+                {item.replaceAll("{sigla}", sigla)}
+              </span>
+            ))}
           </div>
 
           <a
             href="#investimento"
-            className="group mt-10 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-8 py-4 text-base font-medium tracking-tight text-[var(--band-fg)] transition-colors duration-200 hover:bg-[var(--accent-deep)] sm:w-auto"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-8 py-4 text-base font-medium tracking-tight transition-colors hover:bg-[var(--accent-deep)] sm:w-auto"
           >
-            <span>É pra mim, quero ver o Projeto</span>
+            <span>É pra mim</span>
             <ArrowRight
               className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
               strokeWidth={1.75}
             />
           </a>
         </div>
-
-        <div className="space-y-5 lg:col-span-7">
-          {objecoes.map((objecao) => (
-            <article
-              key={objecao.id}
-              className="rounded-2xl bg-[var(--band-fg)]/[0.06] p-6 ring-1 ring-[var(--band-fg)]/10 sm:p-8"
-            >
-              <p className="font-display text-xl leading-snug tracking-tight text-[var(--band-fg)] sm:text-2xl">
-                “{comSigla(objecao.pergunta)}”
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-[var(--band-fg)]/65 sm:text-base">
-                {objecao.resposta}
-              </p>
-              <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--accent-soft)]">
-                Marcus Nery
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

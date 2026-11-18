@@ -208,3 +208,14 @@ body {
     animation: none;
   }
 }
+
+/* PlataformaCerrado: barra de progresso das abas da vitrine */
+@keyframes vitrine-progresso {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.vitrine-progresso {
+  animation-name: vitrine-progresso;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}

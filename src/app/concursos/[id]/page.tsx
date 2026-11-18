@@ -1,20 +1,19 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowDown, ArrowLeft } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
-import { CTAFinal } from "@/components/sections/CTAFinal";
 import { Diagnostico } from "@/components/sections/Diagnostico";
 import { ParaQuem } from "@/components/sections/ParaQuem";
 import { FaixaOferta } from "@/components/sections/FaixaOferta";
+import { PlataformaCerrado } from "@/components/sections/PlataformaCerrado";
 import { Autoridade } from "@/components/sections/Autoridade";
-import { Depoimentos } from "@/components/sections/Depoimentos";
 import { ProdutosGrid } from "@/components/sections/ProdutosGrid";
-import { Acesso } from "@/components/sections/Acesso";
-import { ExAluno } from "@/components/sections/ExAluno";
+import { GaleriaResultados } from "@/components/GaleriaResultados";
 import { VideoYouTube } from "@/components/VideoYouTube";
 import { Container } from "@/components/ui/Container";
 import { ofertaConcursos } from "@/data/produtos";
+import { resultados } from "@/data/resultados";
 import { cn } from "@/lib/utils";
 
 export const dynamicParams = false;
@@ -44,6 +43,9 @@ export default async function ConcursoPage({
   const fundoHero = concurso.imagemHero ?? concurso.imagem;
   const projeto = concurso.produtos.find((p) => p.destaque);
   const materiais = concurso.produtos.filter((p) => !p.destaque);
+  // Materiais ainda não lançados na carreira (badge "Em breve"), pelo prefixo
+  // do id ("guia-pmgo" → "guia"). As seções não prometem o que está aqui.
+  const emBreve = materiais.filter((p) => p.badge).map((p) => p.id.split("-")[0]);
 
   return (
     <>
@@ -51,7 +53,7 @@ export default async function ConcursoPage({
       <Header />
       <main className="flex-1">
         {/* HERO do concurso */}
-        <section className="relative overflow-hidden border-b border-[var(--line)]">
+        <section className="relative overflow-hidden">
           <div
             aria-hidden="true"
             className="absolute inset-0"
@@ -87,23 +89,18 @@ export default async function ConcursoPage({
                 )}
               >
                 <div className={video ? "lg:col-span-6" : "max-w-3xl"}>
-                  <div className="flex items-center gap-3 mb-5">
-                    <span
-                      className={cn(
-                        "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-wider",
-                        ativo
-                          ? "bg-[var(--accent)] text-[var(--paper)]"
-                          : "bg-[var(--paper)]/15 text-[var(--paper)] ring-1 ring-[var(--paper)]/25"
-                      )}
-                    >
-                      {concurso.statusLabel}
-                    </span>
-                    <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--paper)]/55">
-                      Carreira policial
-                    </span>
-                  </div>
+                  <span
+                    className={cn(
+                      "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-wider",
+                      ativo
+                        ? "bg-[var(--accent)] text-[var(--paper)]"
+                        : "bg-[var(--paper)]/15 text-[var(--paper)] ring-1 ring-[var(--paper)]/25"
+                    )}
+                  >
+                    {concurso.statusLabel}
+                  </span>
 
-                  <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-[var(--paper)]">
+                  <h1 className="mt-5 font-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-[var(--paper)]">
                     {ativo ? (
                       <>
                         A Melhor Ferramenta para você{" "}
@@ -116,17 +113,18 @@ export default async function ConcursoPage({
                     )}
                   </h1>
 
-                  <p className="mt-6 text-base sm:text-lg text-[var(--paper)]/70 leading-relaxed max-w-2xl">
+                  <p className="mt-5 text-base sm:text-lg text-[var(--paper)]/70 leading-relaxed max-w-2xl">
                     {ativo ? (
                       <span className="text-[var(--paper)]">{concurso.nome}</span>
                     ) : (
                       <>
                         Sigla: <span className="text-[var(--paper)]">{concurso.sigla}</span>
-                      </>
-                    )}
-                    {concurso.banca && (
-                      <>
-                        {" · "}Banca: <span className="text-[var(--paper)]">{concurso.banca}</span>
+                        {concurso.banca && (
+                          <>
+                            {" · "}Banca:{" "}
+                            <span className="text-[var(--paper)]">{concurso.banca}</span>
+                          </>
+                        )}
                       </>
                     )}
                   </p>
@@ -156,36 +154,28 @@ export default async function ConcursoPage({
           </Container>
         </section>
 
-        {ativo && <Diagnostico sigla={concurso.sigla} />}
+        {ativo && <Diagnostico sigla={concurso.sigla} emBreve={emBreve} />}
 
-        {/* Qualifica o visitante antes do preço; fala do Projeto, então só com ele à venda */}
-        {ativo && projeto && <ParaQuem sigla={concurso.sigla} />}
+        {/* Qualifica o visitante e mostra a plataforma antes do preço; os dois
+            falam do Projeto, então só com ele à venda */}
+        {ativo && projeto && (
+          <>
+            <ParaQuem sigla={concurso.sigla} />
+            <PlataformaCerrado emBreve={emBreve} />
+          </>
+        )}
 
         {/* PRODUTOS */}
-        <section className="py-16 sm:py-20 md:py-24">
+        <section className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
           <Container size="wide">
             {(!ativo || !projeto) && (
               <div className="mb-10 sm:mb-14 max-w-2xl">
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="font-display text-xs text-[var(--accent)] tabular-nums">
-                    01
-                  </span>
-                  <span className="text-[11px] uppercase tracking-[0.18em] font-medium text-[var(--neutral)]">
-                    Produtos disponíveis
-                  </span>
-                </div>
                 <h2 className="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--ink)]">
                   {ativo
                     ? `Materiais pra ${concurso.sigla}.`
                     : `Em breve para ${concurso.sigla}.`}
                 </h2>
-                {ativo ? (
-                  <p className="mt-5 text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
-                    {materiais.length === 1
-                      ? "Um produto disponível pra esta carreira."
-                      : `${materiais.length} produtos disponíveis pra esta carreira. Escolha o que faz mais sentido pra onde você está agora.`}
-                  </p>
-                ) : (
+                {!ativo && (
                   <p className="mt-5 text-base sm:text-lg leading-relaxed text-[var(--neutral)]">
                     Estamos preparando os materiais. Por enquanto, dá uma olhada nas carreiras que já estão prontas.
                   </p>
@@ -214,17 +204,40 @@ export default async function ConcursoPage({
           </Container>
         </section>
 
-        {/* Duração do acesso: logo abaixo do investimento, antes da autoridade */}
-        {ativo && projeto && <Acesso />}
-
-        {/* Condição de ex-aluno: fecha o bloco de investimento/acesso */}
-        {ativo && projeto && <ExAluno sigla={concurso.sigla} />}
-
         {ativo && (
           <>
             <Autoridade sigla={concurso.sigla} />
-            <Depoimentos />
-            <CTAFinal />
+
+            {/* RESULTADOS: só os prints, sem texto de abertura */}
+            <section id="depoimentos" className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
+              <Container size="wide">
+                <div className="mb-10 flex items-end justify-between gap-6">
+                  <h2 className="font-display text-3xl leading-[1.1] tracking-tight text-[var(--ink)] sm:text-4xl md:text-5xl">
+                    Resultados.
+                  </h2>
+                  <Link
+                    href="/resultados"
+                    className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-[var(--accent-soft)] hover:text-[var(--ink)]"
+                  >
+                    Ver todos
+                    <ArrowUpRight className="h-4 w-4" strokeWidth={1.75} />
+                  </Link>
+                </div>
+                <GaleriaResultados imagens={resultados.slice(0, 6)} />
+              </Container>
+            </section>
+
+            {/* AULA GRATUITA: título + vídeo */}
+            <section className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
+              <Container>
+                <h2 className="text-center font-display text-3xl leading-[1.1] tracking-tight text-[var(--ink)] sm:text-4xl md:text-5xl">
+                  Comece com uma <span className="text-[var(--accent)]">aula gratuita.</span>
+                </h2>
+                <div className="mx-auto mt-10 max-w-4xl">
+                  <VideoYouTube id="ssQPHA1qIBM" titulo="Aula gratuita — Método CERRADO" />
+                </div>
+              </Container>
+            </section>
           </>
         )}
       </main>

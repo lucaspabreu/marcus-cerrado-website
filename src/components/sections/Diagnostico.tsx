@@ -1,70 +1,79 @@
-import { X } from "lucide-react";
-import { Section } from "../ui/Section";
+import { ArrowRight, Check, X } from "lucide-react";
+import { Container } from "../ui/Container";
 
-const erros = [
-  "Abre o edital sem saber o que a banca realmente cobra",
-  "Assiste aula atrás de aula sem prioridade nenhuma",
-  "Resolve questão sem saber se está evoluindo",
+// Diagnóstico da página do concurso: título e três pares lado a lado, do erro
+// comum ao que o Projeto resolve. Cada solução depende de um material;
+// se ele ainda está "Em breve" na carreira (ex.: Guia na PM-GO), entra o
+// `alternativo`, que só cita o que já está liberado.
+const pares = [
+  {
+    sem: "Abre o edital sem saber o que cai",
+    com: "Guia com o peso de cada matéria",
+    material: "guia",
+    alternativo: "Resumo com o edital inteiro",
+  },
+  {
+    sem: "Aula atrás de aula, sem prioridade",
+    com: "Cronograma diz o que estudar hoje",
+    material: "cronograma",
+  },
+  {
+    sem: "Faz questão sem saber se evolui",
+    com: "Revisão espaçada que fixa",
+    material: "flashcards",
+    alternativo: "Plataforma mostra quanto falta",
+  },
 ];
 
-interface DiagnosticoProps {
-  sigla?: string;
-}
-
-export function Diagnostico({ sigla }: DiagnosticoProps) {
+export function Diagnostico({ sigla, emBreve = [] }: { sigla: string; emBreve?: string[] }) {
   return (
-    <Section id="diagnostico" containerSize="wide">
-      <div className="grid lg:grid-cols-12 gap-x-12 gap-y-10 items-start">
-        <div className="lg:col-span-7">
-          <span className="eyebrow">Diagnóstico</span>
+    <section id="diagnostico" className="border-t border-[var(--line)] py-16 sm:py-20 md:py-24">
+      <Container size="wide">
+        <h2 className="max-w-3xl font-display text-3xl leading-[1.1] tracking-tight text-[var(--ink)] sm:text-4xl md:text-5xl">
+          Quem reprova não é quem sabe menos.{" "}
+          <span className="text-[var(--accent)]">É quem estuda sem direção.</span>
+        </h2>
 
-          <h2 className="mt-4 font-display text-3xl sm:text-4xl md:text-[2.75rem] font-normal leading-[1.1] tracking-tight text-[var(--ink)]">
-            Quem reprova não é quem sabe menos.{" "}
-            <span className="text-[var(--accent)]">É quem estuda sem direção.</span>
-          </h2>
-
-          <p className="mt-6 text-base sm:text-lg leading-relaxed max-w-xl text-[var(--neutral)]">
-            É o que acontece com a maioria dos candidatos {sigla ? `à ${sigla}` : "a concursos policiais"}: muita hora de estudo, pouca conversão em aprovação.
-          </p>
-
-          <p className="mt-4 text-base sm:text-lg leading-relaxed max-w-xl font-medium text-[var(--ink-soft)]">
-            O problema quase nunca é capacidade. É falta de método.
-          </p>
-
-          <div className="mt-8 max-w-xl border-l-2 border-[var(--accent)] pl-5">
-            <p className="text-sm sm:text-base leading-relaxed text-[var(--neutral)]">
-              Sem leitura de edital, sem prioridade por matéria e sem revisão ativa, estudar vira hábito — não estratégia.
-            </p>
+        <div className="mt-12 sm:mt-14">
+          {/* Cabeçalho das colunas (só em telas largas) */}
+          <div className="mb-4 hidden grid-cols-[1fr_auto_1fr] items-center gap-5 md:grid">
+            <span className="eyebrow">Sem método</span>
+            <span className="w-10" />
+            <span className="eyebrow !text-[var(--accent-soft)]">Com o Projeto {sigla}</span>
           </div>
+
+          <ul className="space-y-4 md:space-y-3">
+            {pares.map((par) => (
+              <li
+                key={par.sem}
+                className="grid gap-2 md:grid-cols-[1fr_auto_1fr] md:items-stretch md:gap-5"
+              >
+                <div className="flex items-center gap-4 rounded-xl border border-[var(--line)] px-5 py-4 sm:px-6 sm:py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--line)]">
+                    <X className="h-4 w-4 text-[var(--neutral-soft)]" strokeWidth={2.5} />
+                  </span>
+                  <span className="text-base text-[var(--neutral)] line-through decoration-[var(--neutral-soft)]/60 sm:text-lg">
+                    {par.sem}
+                  </span>
+                </div>
+
+                <div className="hidden items-center justify-center md:flex">
+                  <ArrowRight className="h-5 w-10 text-[var(--accent)]" strokeWidth={1.75} />
+                </div>
+
+                <div className="flex items-center gap-4 rounded-xl bg-[var(--bg-elevated)] px-5 py-4 ring-1 ring-[var(--accent)]/45 sm:px-6 sm:py-5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]">
+                    <Check className="h-4 w-4 text-[var(--paper)]" strokeWidth={3} />
+                  </span>
+                  <span className="font-display text-lg tracking-tight text-[var(--ink)] sm:text-xl">
+                    {emBreve.includes(par.material) && par.alternativo ? par.alternativo : par.com}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <div className="lg:col-span-4 lg:col-start-9">
-          <div className="rounded-xl border border-[var(--line)] bg-[var(--bg-elevated)] p-7 sm:p-8">
-            <span className="eyebrow">O que normalmente acontece</span>
-
-            <ul className="mt-5 space-y-4">
-              {erros.map((erro) => (
-                <li
-                  key={erro}
-                  className="flex items-start gap-3 text-sm leading-snug text-[var(--ink-soft)]"
-                >
-                  <X
-                    className="mt-0.5 h-4 w-4 shrink-0 text-[var(--neutral-soft)]"
-                    strokeWidth={2.5}
-                  />
-                  <span>{erro}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 border-t border-[var(--line)] pt-6">
-              <p className="text-sm italic leading-relaxed text-[var(--ink-soft)]">
-                &ldquo;O Método CERRADO existe porque respeita o cérebro, o tempo e a rotina real de quem estuda pra concurso.&rdquo;
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

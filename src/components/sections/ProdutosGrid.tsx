@@ -1,11 +1,24 @@
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+  Check,
+  Clock,
+  FileText,
+  Hourglass,
+  Layers,
+  LayoutDashboard,
+  Map as MapIcon,
+  RefreshCw,
+  type LucideIcon,
+} from "lucide-react";
 import type { Produto } from "@/types";
 import { cn } from "@/lib/utils";
+import { whatsappHref } from "@/lib/whatsapp";
 import { vendasPausadas, vendasRetorno } from "@/data/vendas";
 import { checkoutDaFaixa, faixaAtual } from "@/data/precos";
 import { EscadaPreco } from "@/components/sections/EscadaPreco";
-import { PlataformaCerrado } from "@/components/sections/PlataformaCerrado";
 
 // Com as vendas pausadas, o valor real nem vai pro HTML: renderiza um
 // placeholder desfocado no lugar do preço.
@@ -26,22 +39,6 @@ function Preco({
     );
   }
   return <span className={className}>{texto}</span>;
-}
-
-// Destaca em negrito os materiais citados na descrição do Projeto
-function renderDescricao(produto: Produto) {
-  if (!produto.destaque) return produto.descricao;
-  return produto.descricao
-    .split(/(Guia de Estudos|Cronograma|Resumo|Flashcards)/)
-    .map((parte, i) =>
-      /^(Guia de Estudos|Cronograma|Resumo|Flashcards)$/.test(parte) ? (
-        <strong key={i} className="font-semibold text-[var(--ink-soft)]">
-          {parte}
-        </strong>
-      ) : (
-        parte
-      )
-    );
 }
 
 // Tom base (escurecido) por trás da composição de capa
@@ -127,13 +124,12 @@ export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
 
   return (
     <div className="space-y-10 sm:space-y-14">
-      <PlataformaCerrado titulo={destaque.titulo} />
-
       {/* A escada anda colada no card: é a justificativa do preço que a pessoa
           acabou de ver, logo abaixo do CTA. */}
       <div id="investimento" className="scroll-mt-24 space-y-4">
         <ProjetoHero produto={destaque} concurso={concurso} inclusos={inclusos} />
         <EscadaPreco />
+        <ExAlunoLinha sigla={concurso.sigla} />
       </div>
 
       {avulsos.length > 0 && (
@@ -307,7 +303,18 @@ function CoverBanner({
   );
 }
 
-// Card-herói do Projeto: largo, horizontal, domina a seção
+// Nome curto + ícone por material, pelo prefixo do id ("guia-prf" → "guia")
+const materiais: Record<string, { rotulo: string; icone: LucideIcon }> = {
+  guia: { rotulo: "Guia de Estudos", icone: MapIcon },
+  cronograma: { rotulo: "Cronograma", icone: CalendarDays },
+  resumo: { rotulo: "Resumo Completo", icone: FileText },
+  flashcards: { rotulo: "Flashcards e Questões", icone: Layers },
+};
+const ordemMateriais = ["guia", "cronograma", "resumo", "flashcards"];
+
+// Card-herói do Projeto: capa à esquerda; à direita o que vem (blocos com
+// ícone), selos de acesso e preço. Material com `badge` ("Em breve") entra
+// apagado, no fim, com aviso de que é liberado no lançamento.
 function ProjetoHero({
   produto,
   concurso,
@@ -320,67 +327,108 @@ function ProjetoHero({
   const economia =
     faixaAtual.precoDe !== undefined ? faixaAtual.precoDe - faixaAtual.preco : null;
 
-  // Sem preço visível, bullets com valores saem junto
-  const bullets = vendasPausadas
-    ? produto.bullets.filter((b) => !b.includes("R$"))
-    : produto.bullets;
+  const itens = inclusos
+    .map((p) => ({ chave: p.id.split("-")[0], titulo: p.titulo, badge: p.badge }))
+    .sort(
+      (a, b) =>
+        Number(!!a.badge) - Number(!!b.badge) ||
+        ordemMateriais.indexOf(a.chave) - ordemMateriais.indexOf(b.chave)
+    );
+  const pendentes = itens
+    .filter((i) => i.badge)
+    .map((i) => materiais[i.chave]?.rotulo ?? i.titulo);
+  const nomesPendentes =
+    pendentes.length > 1
+      ? `${pendentes.slice(0, -1).join(", ")} e ${pendentes.at(-1)}`
+      : pendentes[0];
 
   return (
-    <article className="group/projeto relative overflow-hidden rounded-xl bg-[var(--bg-elevated)] ring-2 ring-[var(--accent)] shadow-xl shadow-black/10">
-      <div className="grid lg:grid-cols-[0.85fr_1fr]">
+    <article className="relative overflow-hidden rounded-2xl bg-[var(--bg-elevated)] ring-2 ring-[var(--accent)] shadow-xl shadow-black/20">
+      <div className="grid lg:grid-cols-[0.9fr_1fr]">
         {/* Painel-capa */}
         <div className="relative min-h-[300px] overflow-hidden lg:min-h-full">
           <CoverBanner produto={produto} variant="hero" concurso={concurso} />
         </div>
 
         {/* Conteúdo */}
-        <div className="flex flex-col p-8 sm:p-10">
-          <p className="text-sm leading-relaxed text-[var(--neutral)] sm:text-base">
-            {renderDescricao(produto)}
-          </p>
+        <div className="flex flex-col p-6 sm:p-10">
+          <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--neutral)]">
+            O que vem no Projeto
+          </span>
 
-          {inclusos.length > 0 && (
-            <div className="mt-6 rounded-lg border border-[var(--line)] bg-[var(--bg)] p-4 sm:p-5">
-              <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--neutral)]">
-                O que vem no projeto
-              </p>
-              <ul className="mt-3 divide-y divide-[var(--line)]">
-                {inclusos.map((item, i) => (
-                  <li
-                    key={item.id}
-                    className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0"
+          <ul className="mt-4 grid grid-cols-2 gap-3">
+            {itens.map(({ chave, titulo, badge }) => {
+              const m = materiais[chave];
+              const Icone = m?.icone ?? FileText;
+              return (
+                <li
+                  key={chave}
+                  className={cn(
+                    "relative flex flex-col gap-3 rounded-xl p-4",
+                    badge
+                      ? "border border-dashed border-[var(--line-strong)]"
+                      : "bg-[var(--bg)] ring-1 ring-[var(--line)]"
+                  )}
+                >
+                  {badge && (
+                    <span className="absolute right-3 top-3 rounded-full bg-[var(--line)] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[var(--neutral)]">
+                      {badge}
+                    </span>
+                  )}
+                  <Icone
+                    className={cn(
+                      "h-6 w-6",
+                      badge ? "text-[var(--neutral-soft)]" : "text-[var(--accent-soft)]"
+                    )}
+                    strokeWidth={1.75}
+                  />
+                  <span
+                    className={cn(
+                      "font-display text-base leading-tight tracking-tight sm:text-lg",
+                      badge ? "text-[var(--neutral)]" : "text-[var(--ink)]"
+                    )}
                   >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-soft)]">
-                      {i + 1}
-                    </span>
-                    <span className="flex-1 text-sm font-medium leading-snug text-[var(--ink)]">
-                      {item.titulo}
-                    </span>
-                  </li>
-                ))}
-                <li className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent)]/12 text-[11px] font-semibold text-[var(--accent-soft)]">
-                    {inclusos.length + 1}
-                  </span>
-                  <span className="flex-1 text-sm font-medium leading-snug text-[var(--accent-soft)]">
-                    E muito mais ferramentas na Plataforma.
+                    {m?.rotulo ?? titulo}
                   </span>
                 </li>
-              </ul>
-            </div>
-          )}
-
-          <ul className="mt-6 grid gap-x-6 gap-y-3 text-sm text-[var(--ink-soft)] sm:grid-cols-2">
-            {bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-2">
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]"
-                  strokeWidth={2.5}
-                />
-                <span className="leading-snug">{bullet}</span>
-              </li>
-            ))}
+              );
+            })}
+            <li className="col-span-2 flex items-center gap-3 rounded-xl bg-[var(--accent)]/12 p-4 ring-1 ring-[var(--accent)]/35">
+              <LayoutDashboard
+                className="h-6 w-6 shrink-0 text-[var(--accent-soft)]"
+                strokeWidth={1.75}
+              />
+              <span className="font-display text-base tracking-tight text-[var(--ink)] sm:text-lg">
+                Tudo integrado na Plataforma Cerrado
+              </span>
+            </li>
           </ul>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {produto.acesso && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--ink-soft)] ring-1 ring-[var(--line-strong)]">
+                <Clock className="h-3.5 w-3.5 text-[var(--accent-soft)]" strokeWidth={2} />
+                {produto.acesso} de acesso
+              </span>
+            )}
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--ink-soft)] ring-1 ring-[var(--line-strong)]">
+              <RefreshCw className="h-3.5 w-3.5 text-[var(--accent-soft)]" strokeWidth={2} />
+              Atualizações inclusas
+            </span>
+          </div>
+
+          {nomesPendentes && (
+            <p className="mt-4 flex items-start gap-2 text-sm leading-snug text-[var(--neutral)]">
+              <Hourglass
+                className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-soft)]"
+                strokeWidth={1.75}
+              />
+              <span>
+                {nomesPendentes} {pendentes.length > 1 ? "entram" : "entra"} no seu acesso
+                assim que {pendentes.length > 1 ? "forem lançados" : "for lançado"}.
+              </span>
+            </p>
+          )}
 
           {/* Preço e link saem da faixa vigente em @/data/precos.ts */}
           <div className="mt-8 flex flex-col gap-5 border-t border-[var(--line)] pt-6 sm:flex-row sm:items-end sm:justify-between">
@@ -390,7 +438,7 @@ function ProjetoHero({
                   Economize R$ {economia}
                 </span>
               )}
-              <p className="font-display text-3xl leading-[1.05] tracking-tight text-[var(--accent)] sm:text-4xl lg:text-5xl">
+              <p className="font-display text-4xl leading-[1.05] tracking-tight text-[var(--accent)] lg:text-5xl">
                 {faixaAtual.parcelas}x{" "}
                 <Preco
                   texto={`R$ ${faixaAtual.parcela}`}
@@ -398,7 +446,7 @@ function ProjetoHero({
                   className="whitespace-nowrap"
                 />
               </p>
-              <p className="mt-2.5 flex flex-wrap items-baseline gap-x-2.5 text-base text-[var(--ink-soft)]">
+              <p className="mt-2 flex flex-wrap items-baseline gap-x-2.5 text-base text-[var(--ink-soft)]">
                 <span>
                   ou <Preco texto={`R$ ${faixaAtual.preco}`} placeholder="R$ 000" /> à
                   vista
@@ -418,7 +466,7 @@ function ProjetoHero({
             ) : (
               <Link
                 href={checkoutDaFaixa(faixaAtual, produto.id, produto.ctaHref)}
-                className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-sm font-medium text-[var(--paper)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)] sm:text-base"
+                className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-base font-medium text-[var(--paper)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)]"
                 aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
               >
                 <span>{produto.ctaLabel}</span>
@@ -432,6 +480,31 @@ function ProjetoHero({
         </div>
       </div>
     </article>
+  );
+}
+
+// Condição de ex-aluno, logo abaixo do card: sem preço aqui de propósito, a
+// condição é passada no WhatsApp; a mensagem já chega citando a carreira.
+function ExAlunoLinha({ sigla }: { sigla: string }) {
+  const href = whatsappHref(
+    `Olá! Já sou aluno(a) da Cerrado e quero saber da condição especial de ex-aluno para a ${sigla}.`
+  );
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center justify-between gap-4 rounded-xl border border-[var(--line)] px-5 py-4 transition-colors hover:border-[var(--accent)]/60 sm:px-6"
+    >
+      <span className="text-sm text-[var(--ink-soft)] sm:text-base">
+        <span className="font-medium text-[var(--ink)]">Já é aluno da Cerrado?</span>{" "}
+        <span className="text-[var(--neutral)]">Tem condição especial no WhatsApp.</span>
+      </span>
+      <ArrowRight
+        className="h-4 w-4 shrink-0 text-[var(--accent-soft)] transition-transform duration-200 group-hover:translate-x-0.5"
+        strokeWidth={2}
+      />
+    </a>
   );
 }
 
