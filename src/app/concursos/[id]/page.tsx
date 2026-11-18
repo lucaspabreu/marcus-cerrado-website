@@ -42,7 +42,7 @@ export default async function ConcursoPage({
   const video = ativo ? concurso.video : undefined;
   const fundoHero = concurso.imagemHero ?? concurso.imagem;
   const projeto = concurso.produtos.find((p) => p.destaque);
-  const materiais = concurso.produtos.filter((p) => !p.destaque);
+  const materiais = concurso.produtos.filter((p) => !p.destaque && !p.pacote);
   // Materiais ainda não lançados na carreira (badge "Em breve"), pelo prefixo
   // do id ("guia-pmgo" → "guia"). As seções não prometem o que está aqui.
   const emBreve = materiais.filter((p) => p.badge).map((p) => p.id.split("-")[0]);

@@ -8,6 +8,12 @@ export const faq: FAQItem[] = [
       "Sim. O Guia de Estudos PRF foi pensado pra te conduzir do zero: o que estudar, em que ordem, com qual rotina. Mesmo sem base, você sai com um plano claro pra disputar a PRF em condição de igualdade com candidatos experientes.",
   },
   {
+    id: "projeto-ou-materiais",
+    pergunta: "Qual a diferença entre o Projeto e os Materiais?",
+    resposta:
+      "Os dois liberam o Resumo, o Guia de Estudos e os Flashcards na Plataforma Cerrado por 12 meses. A diferença é o Cronograma Interativo: no Projeto ele vem pelos 12 meses, monta o plano a partir do edital e refaz nos dias em que você rende menos. Nos Materiais, ele vem por 7 dias, de teste. Se quiser continuar com ele depois, é só entrar no Projeto: o seu plano fica guardado do jeito que você deixou.",
+  },
+  {
     id: "tempo-de-estudo",
     pergunta: "Quantas horas por dia preciso estudar?",
     resposta:

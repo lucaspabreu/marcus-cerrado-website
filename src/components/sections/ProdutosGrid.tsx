@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
+  CalendarClock,
   CalendarDays,
   Check,
   Clock,
@@ -65,6 +66,10 @@ const bannerBackground: Record<string, string> = {
     "linear-gradient(150deg, #2f3327 0%, #171a13 55%, #0a0b08 100%)",
   "projeto-pmgo":
     "linear-gradient(150deg, #9a4622 0%, #4f2010 55%, #1c0c06 100%)",
+  "materiais-prf":
+    "linear-gradient(150deg, #4a3320 0%, #251a10 55%, #0f0a06 100%)",
+  "materiais-pmgo":
+    "linear-gradient(150deg, #4a3320 0%, #251a10 55%, #0f0a06 100%)",
 };
 
 // Kicker (linha superior) e tag (etiqueta azul inferior) por produto
@@ -79,6 +84,8 @@ const coverKicker: Record<string, string> = {
   "flashcards-pmgo": "PRÉ-EDITAL",
   "cronograma-pmgo": "PRÉ-EDITAL",
   "projeto-pmgo": "PRÉ-EDITAL",
+  "materiais-prf": "PRÉ-EDITAL",
+  "materiais-pmgo": "PRÉ-EDITAL",
 };
 
 const coverTag: Record<string, string> = {
@@ -86,12 +93,14 @@ const coverTag: Record<string, string> = {
   "resumo-prf": "COMPLETO",
   "flashcards-prf": "COMPLETO",
   "cronograma-prf": "COMPLETO",
-  "projeto-prf": "COMBO + PLATAFORMA",
+  "projeto-prf": "MATERIAIS + CRONOGRAMA",
   "guia-pmgo": "COMPLETO",
   "resumo-pmgo": "COMPLETO",
   "flashcards-pmgo": "COMPLETO",
   "cronograma-pmgo": "COMPLETO",
-  "projeto-pmgo": "COMBO + PLATAFORMA",
+  "projeto-pmgo": "MATERIAIS + CRONOGRAMA",
+  "materiais-prf": "RESUMO · GUIA · FLASHCARDS",
+  "materiais-pmgo": "RESUMO · GUIA · FLASHCARDS",
 };
 
 interface ConcursoCover {
@@ -107,8 +116,10 @@ interface ProdutosGridProps {
 
 export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
   const destaque = produtos.find((p) => p.destaque);
+  // Os Materiais (pacote sem o Cronograma) são a segunda opção, abaixo do Projeto
+  const pacote = produtos.find((p) => p.pacote);
   // `inclusos` alimenta a lista do Projeto; só parte deles é vendida separado
-  const inclusos = produtos.filter((p) => !p.destaque);
+  const inclusos = produtos.filter((p) => !p.destaque && !p.pacote);
   const avulsos = inclusos.filter((p) => !p.somenteNoProjeto);
 
   // Sem produto em destaque: grade simples (fallback defensivo)
@@ -129,6 +140,17 @@ export function ProdutosGrid({ produtos, concurso }: ProdutosGridProps) {
       <div id="investimento" className="scroll-mt-24 space-y-4">
         <ProjetoHero produto={destaque} concurso={concurso} inclusos={inclusos} />
         <EscadaPreco />
+        {pacote && (
+          <>
+            <div className="flex items-center gap-4 pt-6 sm:pt-8">
+              <span className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--neutral)]">
+                Ou só os materiais
+              </span>
+              <span className="h-px flex-1 bg-[var(--line)]" />
+            </div>
+            <MateriaisCard produto={pacote} concurso={concurso} inclusos={inclusos} />
+          </>
+        )}
         <ExAlunoLinha sigla={concurso.sigla} />
       </div>
 
@@ -162,10 +184,14 @@ function CoverBanner({
   concurso,
 }: {
   produto: Produto;
-  variant: "hero" | "card";
+  /** "pacote": capa média do card dos Materiais — brasão suave como na
+   *  capa-herói, sem o logo, com título menor. */
+  variant: "hero" | "card" | "pacote";
   concurso: ConcursoCover;
 }) {
   const hero = variant === "hero";
+  // Capa grande o bastante pro brasão forte do card competir com o título
+  const suave = hero || variant === "pacote";
   const tint = bannerBackground[produto.id] ?? bannerBackground["guia-prf"];
   const kicker = coverKicker[produto.id] ?? concurso.sigla;
   const tag = coverTag[produto.id] ?? "COMPLETO";
@@ -204,14 +230,14 @@ function CoverBanner({
           aria-hidden="true"
           className={cn(
             "absolute top-1/2 aspect-square -translate-y-1/2 [mask-image:radial-gradient(circle,#000_38%,transparent_70%)] [-webkit-mask-image:radial-gradient(circle,#000_38%,transparent_70%)]",
-            hero ? "right-[-10%] h-[118%] opacity-[0.24]" : "right-[-16%] h-[160%] opacity-40"
+            suave ? "right-[-10%] h-[118%] opacity-[0.24]" : "right-[-16%] h-[160%] opacity-40"
           )}
           style={{
             backgroundImage: `url(${concurso.brasao})`,
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            filter: hero ? "saturate(0.95) blur(1.4px)" : "saturate(1.2)",
+            filter: suave ? "saturate(0.95) blur(1.4px)" : "saturate(1.2)",
           }}
         />
       )}
@@ -262,7 +288,7 @@ function CoverBanner({
         <span
           className={cn(
             "font-sans uppercase font-medium text-white/65",
-            hero
+            suave
               ? "text-[11px] tracking-[0.45em] pl-[0.45em]"
               : "text-[9px] tracking-[0.4em] pl-[0.4em]"
           )}
@@ -273,7 +299,11 @@ function CoverBanner({
         <h3
           className={cn(
             "mt-2 font-cover uppercase leading-[0.86] tracking-[0.01em] bg-gradient-to-b from-[#FFE08A] via-[#F0A52E] to-[#BF6914] bg-clip-text text-transparent [filter:drop-shadow(0_1px_1px_rgba(0,0,0,0.55))]",
-            hero ? "text-6xl sm:text-7xl" : "text-[1.7rem] sm:text-3xl"
+            hero
+              ? "text-6xl sm:text-7xl"
+              : variant === "pacote"
+                ? "text-5xl"
+                : "text-[1.7rem] sm:text-3xl"
           )}
         >
           {produto.titulo}
@@ -467,6 +497,168 @@ function ProjetoHero({
               <Link
                 href={checkoutDaFaixa(faixaAtual, produto.id, produto.ctaHref)}
                 className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--accent)] px-7 py-3.5 text-base font-medium text-[var(--paper)] shadow-lg shadow-[var(--accent)]/20 transition-colors hover:bg-[var(--accent-deep)]"
+                aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
+              >
+                <span>{produto.ctaLabel}</span>
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
+                  strokeWidth={2}
+                />
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+// Card dos Materiais: a segunda opção, de propósito mais baixa que o Projeto
+// (sem anel de acento, preço menor, botão escuro). Mostra os mesmos blocos do
+// Projeto, com o Cronograma tracejado e o prazo do teste — a diferença entre
+// os dois produtos fica visível sem texto. Preço e link vêm do próprio produto,
+// não da escada (a escada é só do Projeto).
+function MateriaisCard({
+  produto,
+  concurso,
+  inclusos,
+}: {
+  produto: Produto;
+  concurso: ConcursoCover;
+  inclusos: Produto[];
+}) {
+  const dias = produto.diasTesteCronograma;
+  const itens = inclusos
+    .map((p) => ({ chave: p.id.split("-")[0], titulo: p.titulo, badge: p.badge }))
+    .filter((i) => i.chave !== "cronograma")
+    .sort((a, b) => ordemMateriais.indexOf(a.chave) - ordemMateriais.indexOf(b.chave));
+
+  return (
+    <article className="relative overflow-hidden rounded-2xl bg-[var(--bg-elevated)] ring-1 ring-[var(--line-strong)]">
+      <div className="grid lg:grid-cols-[minmax(0,340px)_1fr]">
+        {/* Painel-capa */}
+        <div className="relative min-h-[200px] overflow-hidden lg:min-h-full">
+          <CoverBanner produto={produto} variant="pacote" concurso={concurso} />
+        </div>
+
+        {/* Conteúdo */}
+        <div className="flex flex-col p-6 sm:p-8">
+          <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+            {itens.map(({ chave, titulo, badge }) => {
+              const m = materiais[chave];
+              const Icone = m?.icone ?? FileText;
+              return (
+                <li
+                  key={chave}
+                  className={cn(
+                    "flex flex-col gap-2.5 rounded-lg p-3.5",
+                    badge
+                      ? "border border-dashed border-[var(--line-strong)]"
+                      : "bg-[var(--bg)] ring-1 ring-[var(--line)]"
+                  )}
+                >
+                  <Icone
+                    className={cn(
+                      "h-5 w-5",
+                      badge ? "text-[var(--neutral-soft)]" : "text-[var(--accent-soft)]"
+                    )}
+                    strokeWidth={1.75}
+                  />
+                  <span
+                    className={cn(
+                      "font-display text-[15px] leading-tight tracking-tight",
+                      badge ? "text-[var(--neutral)]" : "text-[var(--ink)]"
+                    )}
+                  >
+                    {m?.rotulo ?? titulo}
+                  </span>
+                  {badge && (
+                    <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--neutral)]">
+                      {badge}
+                    </span>
+                  )}
+                </li>
+              );
+            })}
+            {dias !== undefined && (
+              <li className="flex flex-col gap-2.5 rounded-lg border border-dashed border-[var(--line-strong)] p-3.5">
+                <CalendarDays
+                  className="h-5 w-5 text-[var(--neutral-soft)]"
+                  strokeWidth={1.75}
+                />
+                <span className="font-display text-[15px] leading-tight tracking-tight text-[var(--neutral)]">
+                  Cronograma
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-soft)]">
+                  {dias} dias de teste
+                </span>
+              </li>
+            )}
+          </ul>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {produto.acesso && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--ink-soft)] ring-1 ring-[var(--line-strong)]">
+                <Clock className="h-3.5 w-3.5 text-[var(--accent-soft)]" strokeWidth={2} />
+                {produto.acesso} de acesso
+              </span>
+            )}
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--ink-soft)] ring-1 ring-[var(--line-strong)]">
+              <LayoutDashboard className="h-3.5 w-3.5 text-[var(--accent-soft)]" strokeWidth={2} />
+              Na Plataforma Cerrado
+            </span>
+          </div>
+
+          {/* Mesma frase do app no fim do teste (cerrado-app, teste-do-cronograma.tsx) */}
+          {dias !== undefined && (
+            <p className="mt-4 flex items-start gap-2 text-sm leading-snug text-[var(--neutral)]">
+              <CalendarClock
+                className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent-soft)]"
+                strokeWidth={1.75}
+              />
+              <span>
+                Depois do teste, o Cronograma continua no Projeto, com o seu plano do
+                jeito que você deixou.
+              </span>
+            </p>
+          )}
+
+          <div className="mt-6 flex flex-col gap-4 border-t border-[var(--line)] pt-5 sm:flex-row sm:items-end sm:justify-between">
+            {typeof produto.preco === "number" && (
+              <div>
+                {produto.parcelas && produto.parcela ? (
+                  <>
+                    <p className="font-display text-3xl leading-[1.05] tracking-tight text-[var(--ink)]">
+                      {produto.parcelas}x{" "}
+                      <Preco
+                        texto={`R$ ${produto.parcela}`}
+                        placeholder="R$ 00,00"
+                        className="whitespace-nowrap"
+                      />
+                    </p>
+                    <p className="mt-1.5 text-sm text-[var(--ink-soft)]">
+                      ou <Preco texto={`R$ ${produto.preco}`} placeholder="R$ 000" /> à
+                      vista
+                    </p>
+                  </>
+                ) : (
+                  <Preco
+                    texto={`R$ ${produto.preco}`}
+                    placeholder="R$ 000"
+                    className="font-display text-3xl leading-none tracking-tight text-[var(--ink)]"
+                  />
+                )}
+              </div>
+            )}
+
+            {vendasPausadas ? (
+              <span className="inline-flex cursor-not-allowed items-center justify-center rounded-md border border-[var(--line-strong)] bg-[var(--bg)] px-6 py-3 text-sm font-medium text-[var(--neutral)]">
+                Vendas encerradas até {vendasRetorno}
+              </span>
+            ) : (
+              <Link
+                href={produto.ctaHref}
+                className="group/btn inline-flex items-center justify-center gap-2 rounded-md bg-[var(--ink)] px-6 py-3 text-sm font-medium text-[var(--bg)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--paper)] sm:text-base"
                 aria-label={`${produto.ctaLabel} — ${produto.titulo}`}
               >
                 <span>{produto.ctaLabel}</span>

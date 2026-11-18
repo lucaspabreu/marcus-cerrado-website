@@ -21,7 +21,12 @@ const produtosCarreirasPoliciais: Produto[] = [
   },
 ];
 
-// `somenteNoProjeto` em todos os materiais: só o Projeto é vendido. Os links
+// Vendidos por carreira: o Projeto (os 4 materiais + Cronograma por 12 meses)
+// e os Materiais (`pacote`: Resumo, Guia e Flashcards por 12 meses, Cronograma
+// por 7 dias de teste). No cerrado-app o Projeto é "PROJETO" e os Materiais
+// são o "COMBO"; na Hotmart, MATERIAIS PRF/PMGO.
+//
+// `somenteNoProjeto` em todos os materiais: nenhum é vendido avulso. Os links
 // de checkout dos avulsos foram removidos (ctaHref "#") — este arquivo entra
 // no bundle do cliente e link morto fica achável no JS. Pra reabrir a venda
 // avulsa de um material, tire a flag dele e recoloque o link da oferta pego
@@ -124,6 +129,30 @@ const produtosPRF: Produto[] = [
     destaque: true,
     selo: "Mais escolhido",
   },
+  {
+    id: "materiais-prf",
+    titulo: "Materiais PRF",
+    subtitulo: "Resumo, Guia e Flashcards, sem o Cronograma",
+    descricao:
+      "Resumo, Guia de Estudos e Flashcards da PRF na Plataforma Cerrado, por 12 meses. O Cronograma Interativo vem por 7 dias, de teste — pra continuar com ele, é o Projeto.",
+    acesso: "12 meses",
+    acessoDetalhe: "acesso aos 3 materiais",
+    bullets: [
+      "Resumo + Guia + Flashcards na Plataforma Cerrado",
+      "Cronograma Interativo por 7 dias, de teste",
+    ],
+    ctaLabel: "Quero os Materiais",
+    // PROVISÓRIO: preço, parcela e link ainda não são os da oferta real.
+    // Pegar no painel da Hotmart (produto MATERIAIS PRF, id 8851655)
+    // e trocar aqui. Os 7 dias de teste batem com o mapa do app
+    // (cerrado-app, migration 0077) — se mudarem lá, mude aqui.
+    ctaHref: "#",
+    pacote: true,
+    diasTesteCronograma: 7,
+    preco: 297,
+    parcelas: 12,
+    parcela: "30,36",
+  },
 ];
 
 const produtosPMGO: Produto[] = [
@@ -223,6 +252,30 @@ const produtosPMGO: Produto[] = [
     ctaHref: "https://pay.hotmart.com/M107409724K?off=vt6buao3&sck=sitecerrado",
     destaque: true,
     selo: "Mais escolhido",
+  },
+  {
+    id: "materiais-pmgo",
+    titulo: "Materiais PM-GO",
+    subtitulo: "Resumo, Guia e Flashcards, sem o Cronograma",
+    descricao:
+      "Resumo, Guia de Estudos e Flashcards da PM-GO na Plataforma Cerrado, por 12 meses. O Cronograma Interativo vem por 7 dias, de teste — pra continuar com ele, é o Projeto.",
+    acesso: "12 meses",
+    acessoDetalhe: "acesso aos 3 materiais",
+    bullets: [
+      "Resumo + Guia + Flashcards na Plataforma Cerrado",
+      "Cronograma Interativo por 7 dias, de teste",
+    ],
+    ctaLabel: "Quero os Materiais",
+    // PROVISÓRIO: preço, parcela e link ainda não são os da oferta real.
+    // Pegar no painel da Hotmart (produto MATERIAIS PMGO, id 8851674)
+    // e trocar aqui. Os 7 dias de teste batem com o mapa do app
+    // (cerrado-app, migration 0077) — se mudarem lá, mude aqui.
+    ctaHref: "#",
+    pacote: true,
+    diasTesteCronograma: 7,
+    preco: 297,
+    parcelas: 12,
+    parcela: "30,36",
   },
 ];
 

@@ -53,6 +53,18 @@ export interface Produto {
   destaque?: boolean;
   /** Entra na lista do Projeto, mas não é vendido avulso */
   somenteNoProjeto?: boolean;
+  /**
+   * Pacote dos materiais sem o Cronograma (MATERIAIS PRF/PMGO na Hotmart; no
+   * app, "COMBO"). Vira a segunda opção, abaixo do Projeto, e fica fora da
+   * lista do que vem no Projeto.
+   */
+  pacote?: boolean;
+  /** Dias de teste do Cronograma Interativo que vêm junto (MATERIAIS: 7). */
+  diasTesteCronograma?: number;
+  /** Nº de parcelas do checkout. */
+  parcelas?: number;
+  /** Valor da parcela, só o número ("30,36"). Copiar do Hotmart. */
+  parcela?: string;
   selo?: string;
   badge?: string;
   preco?: number;
